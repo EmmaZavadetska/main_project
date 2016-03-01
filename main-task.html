@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>main-task-container</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="main-task-container.css">
+</head>
+<body>
+<div class="my-app-name-container">
+	<!-- Single button -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Action <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><a href="#">Action</a></li>
+	    <li><a href="#">Another action</a></li>
+	    <li><a href="#">Something else here</a></li>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="#">Separated link</a></li>
+	  </ul>
+	</div>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Primary <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><a href="#">Action</a></li>
+	    <li><a href="#">Another action</a></li>
+	    <li><a href="#">Something else here</a></li>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="#">Separated link</a></li>
+	  </ul>
+	</div>
+	<!-- Split button -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary">Action</button>
+	  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <span class="caret"></span>
+	    <span class="sr-only">Toggle Dropdown</span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><a href="#">Action</a></li>
+	    <li><a href="#">Another action</a></li>
+	    <li><a href="#">Something else here</a></li>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="#">Separated link</a></li>
+	  </ul>
+	</div>
+	<!-- Large button group -->
+	<div class="btn-group">
+	  <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Large button <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    ...
+	  </ul>
+	</div>
+
+	<!-- Small button group -->
+	<div class="btn-group">
+	  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Small button <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    ...
+	  </ul>
+	</div>
+	
+	<!-- btn info -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-info">Info</button>
+	  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <span class="caret"></span>
+	    <span class="sr-only">Toggle Dropdown</span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><a href="#">Action</a></li>
+	    <li><a href="#">Another action</a></li>
+	    <li><a href="#">Something else here</a></li>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="#">Separated link</a></li>
+	  </ul>
+	</div>
+
+	<!-- Danger  button -->
+	<div class="btn-group">
+	  <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	   Danger<span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    ...
+	  </ul>
+	</div>
+	<!-- Pagination -->
+	<nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Table-->
+<div>
+	<table class="table">
+		<tr>
+			<th>1</th>
+			<th>2</th>
+			<th>3</th>
+			<th>4</th>
+		</tr>
+		<tr>
+			<td>11</td>
+			<td>22</td>
+			<td>33</td>
+			<td>44</td>
+		</tr>
+	</table>
+</div>
+
+<div class="container">
+    <div ui-view>
+        <table class="table table-striped">
+            <caption>Статистика системи</caption>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!-- Panels-->
+<div>
+	<div class="panel panel-primary">...</div>
+	<div class="panel panel-success">...</div>
+	<div class="panel panel-info">...</div>
+	<div class="panel panel-warning">...</div>
+	<div class="panel panel-danger">...</div>
+	<div class="panel panel-danger">
+		<table class="table table-striped">
+            <caption>Статистика системи</caption>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+        </table>
+	</div>
+	<div class="panel panel-danger">...</div>
+	<div class="panel panel-danger">
+		<table class="table table-striped">
+            <caption>Статистика системи</caption>
+            <tr ng-repeat="stat in admin.statistics">
+                <td>Зареєстровано {{::stat.title}}</td>
+                <td>{{::stat.count.numberOfRecords}}</td>
+            </tr>
+        </table>
+	</div>
+	<div class="panel panel-danger">...</div>
+
+</div>
+
+
+
+</div>
+</body>
+</html>
