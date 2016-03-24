@@ -4,11 +4,12 @@
     angular.module("app.admin.subjects")
         .factory("subjectsService", subjectsService);
 
-    subjectsService.$inject = ["$http", "$q", "ENTITY_RANGE_ON_PAGE", "BASE_URL", "ENTITIES", "ACTIONS"];
+    subjectsService.$inject = ["$http", "$q", "ENTITY_RANGE_ON_PAGE", "BASE_URL", "URL", "ENTITIES", "ACTIONS"];
 
-    function subjectsService($http, $q, ENTITY_RANGE_ON_PAGE, BASE_URL, ENTITIES, ACTIONS) {
+    function subjectsService($http, $q, ENTITY_RANGE_ON_PAGE, BASE_URL, URL, ENTITIES, ACTIONS) {
         var service = {
             getSubjects: getSubjects,
+            getAllSubjects: getAllSubjects,
             getOneSubject: getOneSubject,
             totalItems: totalItems,
             saveSubject: saveSubject,
@@ -27,6 +28,12 @@
 
         function getSubjects(currentRecordsRange){
              return $http.get(BASE_URL + ENTITIES.SUBJECT + ACTIONS.GET_ENTITY_RANGE + ENTITY_RANGE_ON_PAGE + "/" + currentRecordsRange)
+                .then(_successCallback, _errorCallback);
+        }
+
+
+        function getAllSubjects(){
+             return $http.get(BASE_URL + ENTITIES.SUBJECT + URL.GET_ENTITIES)
                 .then(_successCallback, _errorCallback);
         }
 

@@ -1,1 +1,28 @@
-<div ui-view></div>
+<button ng-click="schedules.test()">TEST</button>
+<div class="my-app-container panel panel-primary">
+    <div class="panel-heading">
+        <h3>
+            Розклад екзаменів
+            <span ng-if="schedules.group">для групи {{ ::schedules.group.group_name }}</span>
+            <span ng-if="schedules.subject" >по предмету {{ ::schedules.subject.subject_name }} </span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <th> № </th>
+                <th> Предмет </th>
+                <th> Група </th>
+                <th> Дата проведення </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="schedule in schedules.list">
+                    <td> {{ $index+1 }} </td>
+                    <td> {{ ::schedules.associativeSubjects[schedule.subject_id] }} </td>
+                    <td> {{ ::schedules.associativeGroups[schedule.group_id] }} </td>
+                    <td> {{ ::schedule.event_date }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

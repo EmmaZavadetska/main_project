@@ -56,7 +56,8 @@
                 QUESTION: "question",
                 ANSWER: "answer",
                 RESULT: "result",
-                ADMINS: "AdminUser"
+                ADMINS: "AdminUser",
+                TIME_TABLE: "timeTable"
             },
 
             ADD_ENTITY: "/insertData/",
@@ -73,6 +74,8 @@
             GET_QUESTIONS_BY_LEVEL_RAND: "/getQuestionsByLevelRand/",
             GET_GROUPS_BY_FACULTY: "/getGroupsByFaculty/",
             GET_GROUPS_BY_SPECIALITY: "/getGroupsBySpeciality/",
+            GET_SCHEDULE_FOR_GROUP: "/getTimeTablesForGroup/",
+            GET_SCHEDULE_FOR_SUBJECT: "/getTimeTablesForSubject/",
             REMOVE_ENTITY: "/del/"
         })
 
