@@ -4,9 +4,9 @@
     angular.module("app.admin.groups")
         .controller("StudentController", StudentController);
 
-    StudentController.$inject = ["$stateParams", "studentsService", "groupsService"];
+    StudentController.$inject = ["$stateParams", "studentsService", "groupsService", "customDialog", "$state"];
 
-    function StudentController($stateParams, studentsService, groupsService) {
+    function StudentController($stateParams, studentsService, groupsService, customDialog, $state) {
         var vm = this;
         vm.addNewStudent = addNewStudent;
         vm.editStudent = editStudent;
@@ -22,29 +22,14 @@
         vm.student_id = $stateParams.student_id;
         vm.showAndEditElements = false;
         vm.associativeGroups = {};
-        vm.newStudent = {
-            username: "",
-            password: "",
-            password_confirm: "",
-            email: "",
-            gradebook_id: "",
-            student_surname: "",
-            student_name: "",
-            student_fname: "",
-            group_id: "" + vm.group_id,
-            plain_password: "",
-            photo: ""
-        };
+        vm.newStudent = getEmptyStudent();
 
 
         if ($stateParams.content_type === "edit") {
-            console.log("edit");
         }
         if ($stateParams.content_type === "show") {
-            console.log("show");
         }
         if ($stateParams.content_type === "add") {
-            console.log("add");
         }
 
         activate()
@@ -55,7 +40,7 @@
                     vm.editElements = $stateParams.content_type === "edit";
                     vm.disableInputs = $stateParams.content_type === "show";
                     vm.showAndEditElements = true;
-                    vm.editAndAddElement = $stateParams.content_type === "edit";
+                    vm.editElement = $stateParams.content_type === "edit";
                     vm.additionalInputs = $stateParams.content_type === "edit";
                     vm.addElements = false;
                     vm.showElements = $stateParams.content_type === "show";
@@ -77,7 +62,21 @@
                 });
             }
         }
-
+        function getEmptyStudent(){
+            return {
+                username: "",
+                password: "",
+                password_confirm: "",
+                email: "",
+                gradebook_id: "",
+                student_surname: "",
+                student_name: "",
+                student_fname: "",
+                group_id: "" + vm.group_id,
+                plain_password: "",
+                photo: ""
+            };
+        }
         function getRandomPas() {
             var random = Math.random().toString(36).slice(-8);
             vm.newStudent.password = random;
@@ -87,40 +86,37 @@
 
         function addNewStudent() {
             if ($stateParams.content_type === "add") {
-                vm.editAndAddElement = $stateParams.content_type === "add";
-
-                return studentsService.addStudent(vm.newStudent).then(function (data) {
+                vm.addElement = $stateParams.content_type === "add";
+                studentsService.addStudent(vm.newStudent).then(function (data) {
+                    vm.newStudent = getEmptyStudent();
                 })
             }
         }
 
-        function editFormAppear() {
-            vm.additionalInputs = true;
-            vm.disableInputs = false;
-        }
 
         function editStudent() {
-
-            return studentsService.editStudent(vm.newStudent, $stateParams.student_id).then(function (response) {
-                console.log("success");
-
-                vm.editElements = true;
-                vm.addElements = false;
-                vm.additionalInputs = true;
-                vm.newStudent = {
-                    username: response.username,
-                    password: response.password,
-                    password_confirm: response.password_confirm,
-                    email: response.email,
-                    gradebook_id: response.gradebook_id,
-                    student_surname: response.student_surname,
-                    student_name: response.student_name,
-                    student_fname: response.student_fname,
-                    group_id: response.group_id,
-                    plain_password: response.plain_password,
-                    photo: response.photo
-                };
+            customDialog.openConfirmationDialog().then(function() {
+                studentsService.editStudent(vm.newStudent, $stateParams.student_id).then(function (response) {
+                    $state.go("admin.student", {group_id: vm.group_id, content_type: 'show', student_id: vm.student_id});
+                    vm.editElements = true;
+                    vm.addElements = false;
+                    vm.additionalInputs = true;
+                    vm.newStudent = {
+                        username: response.username,
+                        password: response.password,
+                        password_confirm: response.password_confirm,
+                        email: response.email,
+                        gradebook_id: response.gradebook_id,
+                        student_surname: response.student_surname,
+                        student_name: response.student_name,
+                        student_fname: response.student_fname,
+                        group_id: response.group_id,
+                        plain_password: response.plain_password,
+                        photo: response.photo
+                    };
+                })
             });
+
         }
 
         groupsService.getGroups().then(function(data) {

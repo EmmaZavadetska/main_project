@@ -8,9 +8,8 @@
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <div class="form-group">
-                    <label ng-if="student.editAndAddElement"  for="picture">Обрати фото</label>
-                    <input ng-if="student.editAndAddElement" id="picture" ng-model="student.newStudent.photo" type="file" onchange="previewFile()"/>
-                    <input ng-if="student.addElements" id="image" image-load="student.newStudent.photo" type="file"/>
+                    <label ng-if="student.editElement || student.addElements"  for="picture">Обрати фото</label>
+                    <input ng-if="student.editElement || student.addElements" id="picture" image-load="student.newStudent.photo" ng-model="student.newStudent.photo" type="file"/>
                     <img ng-src="{{student.newStudent.photo}}" height="250" width="250" alt="Зображення" >
                 </div>
             </div>
@@ -18,10 +17,10 @@
                 <div>
                     <label for="PIB">ПІБ</label>
                     <div class="form-group">
-                        <input ng-disabled="student.disableInputs" id="PIB" class="form-control" type="text" ng-model="student.newStudent.student_name" placeholder="імя"/>
+                        <input ng-disabled="student.disableInputs" class="form-control" type="text" ng-model="student.newStudent.student_surname" placeholder="прівзище"/>
                     </div>
                     <div class="form-group">
-                        <input ng-disabled="student.disableInputs" class="form-control" type="text" ng-model="student.newStudent.student_surname" placeholder="прівзище"/>
+                        <input ng-disabled="student.disableInputs" id="PIB" class="form-control" type="text" ng-model="student.newStudent.student_name" placeholder="імя"/>
                     </div>
                     <div class="form-group">
                         <input  ng-disabled="student.disableInputs" class="form-control" type="text" ng-model="student.newStudent.student_fname" placeholder="по-бітькові"/>
@@ -75,7 +74,7 @@
                             ng-click="student.editFormAppear()">Редагувати</button>
                 </div>
                 <div>
-                    <button type="button" ng-if="student.editElements" id="submit1" class="btn btn-success pull-right" ng-click="student.editStudent()" ui-sref="admin.student({group_id: student.group_id, content_type: 'show', student_id: student.student_id})">Зберегти зміни</button>
+                    <button type="button" ng-if="student.editElements" id="submit1" class="btn btn-success pull-right" ng-click="student.editStudent()">Зберегти зміни</button>
                 </div>
                 <div>
                     <button type="button" ng-if="student.addElements" id="submit" class="btn btn-success pull-right" ng-click="student.addNewStudent()">Зберегти</button>

@@ -6,7 +6,8 @@
         "ui.bootstrap",
         "ngMessages",
         "app.admin",
-        "app.user"
+        "app.user",
+        "custom.dialog"
     ]);
 })();
 
