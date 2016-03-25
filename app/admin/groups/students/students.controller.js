@@ -4,9 +4,9 @@
     angular.module("app.admin.groups")
         .controller("StudentsController", StudentsController);
 
-    StudentsController.$inject = ["$stateParams","studentsService", "ENTITY_RANGE_ON_PAGE", "groupsService", "MESSAGE"];
+    StudentsController.$inject = ["$stateParams","studentsService", "groupsService", "customDialog", "ENTITY_RANGE_ON_PAGE", "MESSAGE"];
 
-    function StudentsController($stateParams, studentsService, ENTITY_RANGE_ON_PAGE, groupsService, MESSAGE) {
+    function StudentsController($stateParams, studentsService, groupsService, customDialog, ENTITY_RANGE_ON_PAGE, MESSAGE) {
         var vm = this;
         vm.headElements = studentsService.getHeadElements();
         vm.currentRecordsRange = 0;
@@ -35,13 +35,11 @@
         }
 
         function studentRemover(student) {
-            var question = confirm(MESSAGE.DEL_CONFIRM);
-            if (question) {
-                console.log("ctrl");
+            customDialog.openDeleteDialog(student.student_name).then(function(){
                 studentsService.removeStudent(student).then(function (result) {
                     activate();
                 })
-            }
+            });
         }
         vm.studentRemover = studentRemover;
 
