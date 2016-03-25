@@ -4,9 +4,9 @@
     angular.module("app.admin.groups")
         .controller("StudentsController", StudentsController);
 
-    StudentsController.$inject = ["$stateParams","studentsService", "groupsService", "customDialog", "ENTITY_RANGE_ON_PAGE", "MESSAGE"];
+    StudentsController.$inject = ["$stateParams","studentsService", "groupsService", "customDialog", "ENTITY_RANGE_ON_PAGE"];
 
-    function StudentsController($stateParams, studentsService, groupsService, customDialog, ENTITY_RANGE_ON_PAGE, MESSAGE) {
+    function StudentsController($stateParams, studentsService, groupsService, customDialog, ENTITY_RANGE_ON_PAGE) {
         var vm = this;
         vm.headElements = studentsService.getHeadElements();
         vm.currentRecordsRange = 0;

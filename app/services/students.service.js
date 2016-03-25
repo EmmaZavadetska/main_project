@@ -38,8 +38,6 @@
             var addNewStudent = $q.defer();
             $http.post(BASE_URL + URL.ENTITIES.STUDENT + URL.ADD_ENTITY, newStudent).then(
                 function (result) {
-                    console.log(newStudent);
-                    console.log(newStudent.password);
                     addNewStudent.resolve(result.data);
                 },
                 function (result) {
@@ -63,6 +61,7 @@
                 function (result) {
                     remover.reject(result);
                 });
+
             return remover.promise;
         }
 
