@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("TestsController", TestsController);
 
-    TestsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "MESSAGE", "ENTITY_RANGE_ON_PAGE"];
+    TestsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "MESSAGE", "PAGINATION"];
 
-    function TestsController($stateParams, testsService, subjectsService, REGEXP, MESSAGE, ENTITY_RANGE_ON_PAGE) {
+    function TestsController($stateParams, testsService, subjectsService, REGEXP, MESSAGE, PAGINATION) {
         var vm = this;
         vm.list = [];
         vm.headElements = testsService.getHeader();
@@ -19,8 +19,8 @@
         vm.removeTest = removeTest;
         vm.onlyNumber = REGEXP.ONLY_NUMBER;
 
-        vm.entitiesPerPage = ENTITY_RANGE_ON_PAGE;
-        vm.maxSize = 3;
+        vm.entitiesPerPage = PAGINATION.ENTITIES_RANGE_ON_PAGE;
+        vm.maxSize = PAGINATION.PAGES_SHOWN;
         vm.currentPage = 1;
         vm.currentRecordsRange = 0;
         vm.getItemsPerPage = getItemsPerPage;
@@ -28,12 +28,12 @@
 
 
         function activate (){
-            testsService.getTests($stateParams.subject_id).then(function(data){
+            testsService.getTestsBySubject($stateParams.subject_id).then(function(data){
                 vm.totalList = data;
                 vm.list = [];
                 getItemsPerPage();
                 vm.totalItems = vm.totalList.length;
-                if(vm.totalItems > ENTITY_RANGE_ON_PAGE) {
+                if (vm.totalItems > PAGINATION.ENTITIES_RANGE_ON_PAGE) {
                     vm.showPagination = true;
                 }else {
                     vm.showPagination = false
@@ -50,7 +50,6 @@
         }
 
         function showForm(test) {
-            console.log(test);
             vm.formCollapsed = false;
             if (test === undefined) {
                 vm.test = {
@@ -72,14 +71,13 @@
         }
 
         function saveEntity () {
-            console.log(vm.test);
             testsService.saveTest(vm.test).then(function (data) {
                 if(data.response === "ok"){
                     alert(MESSAGE.SAVE_SUCCSES);
 
                 } else{
                     alert(MESSAGE.SAVE_ERROR +  " " + data.response);
-                };
+                }
                 vm.hideForm();
                 activate();
                 vm.test = {};
@@ -88,11 +86,10 @@
 
         function removeTest(test) {
             if(confirm(MESSAGE.DEL_CONFIRM)) {
-                testsService.removeTest(test.test_id).then(function (res) {
+                testsService.removeTest(test).then(function (res) {
                     if (res.response === "ok") {
                         alert(MESSAGE.DEL_SUCCESS)
                     } else if (res.response === "error 23000") {
-                        console.log(res)
                         alert(MESSAGE.DEL_ERROR);
                     }
                     activate();
@@ -101,7 +98,7 @@
         }
 
         function getItemsPerPage() {
-            vm.currentRecordsRange = (vm.currentPage - 1) * vm.entitiesPerPage
+            vm.currentRecordsRange = (vm.currentPage - 1) * vm.entitiesPerPage;
             var end = vm.currentRecordsRange + vm.entitiesPerPage;
             if(vm.totalList.length > 0) {
                 vm.list = vm.totalList.slice(vm.currentRecordsRange, end);

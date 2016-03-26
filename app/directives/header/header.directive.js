@@ -1,14 +1,14 @@
 (function() {
     "use strict";
 
-    angular.module("app.admin")
+    angular.module("app")
         .directive("appHeader", appHeader);
 
     appHeader.$inject = [];
 
     function appHeader() {
         var directive = {
-            templateUrl: "app/admin/header/header.directive.html",
+            templateUrl: "app/directives/header/header.directive.html",
             replace: true,
             controller: HeaderController,
             controllerAs: "header"
@@ -25,12 +25,13 @@
         activate();
 
         function logout (){
-            authService.logout().then(function (res) {});
+            authService.logout().then(function (response) {});
         }
 
         function activate (){
-            authService.isLogged().then(function (res){
-                 vm.username = res.username;
+            authService.isLogged().then(function (response){
+                vm.username = response.username;
+                vm.role = response.roles[1];
             })
         }
     }

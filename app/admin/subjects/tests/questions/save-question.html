@@ -12,23 +12,42 @@
 
     <div class="col-md-9">
         <div class="col-md-12">
-                    <textarea rows="4" class="form-control" name="questionText" ng-model="questions.question.question_text"
-                              placeholder="Введіть текст питання..." ng-minlength="5" ng-maxlength="100" required>
-                    </textarea>
+            <textarea type="text" rows="4" class="form-control" name="questionText"
+                      ng-model="questions.question.question_text" placeholder="Введіть текст питання..."
+                      ng-minlength="5" ng-maxlength="100" required>
+            </textarea>
+            <div ng-messages="saveForm.questionText.$error" ng-if="saveForm.questionText.$dirty">
+                <div ng-message="required" class="error-message">
+                    <strong>Поле обов'язкове для заповнення</strong>
+                </div>
+                <div ng-message-exp="['minlength', 'maxlength']" class="error-message">
+                    <strong>Кількість символів від 5 до 100</strong>
+                </div>
+            </div>
         </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-5">
-                    <select class="form-control" ng-model="questions.question.level"
+                    <select class="form-control" ng-model="questions.question.level" name="levelSelected"
                             ng-options="level for level in questions.levels" required>
                         <option value="">Виберіть рівень</option>
                     </select>
+                    <div ng-messages="saveForm.levelSelected.$error" ng-if="saveForm.levelSelected.$dirty">
+                        <div ng-message="required" class="error-message">
+                            <strong>Поле обов'язкове для заповнення</strong>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-7">
-                    <select class="form-control" ng-model="questions.question.type"
+                    <select class="form-control" ng-model="questions.question.type" name="typeSelected"
                             ng-options="type.value as type.name for type in questions.types" required>
                         <option value="">Виберіть тип завдання</option>
                     </select>
+                    <div ng-messages="saveForm.typeSelected.$error" ng-if="saveForm.typeSelected.$dirty">
+                        <div ng-message="required" class="error-message">
+                            <strong>Поле обов'язкове для заповнення</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

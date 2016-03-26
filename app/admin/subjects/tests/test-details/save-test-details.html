@@ -19,7 +19,7 @@
                    ng-pattern="testDetails.onlyNumber" placeholder="Ціна завдання"
                    max-value="255" required>
 
-            <span ng-show="saveform.rate.$error.pattern">Тільки цифри. Не більше 255</span>
+            <span ng-show="saveform.rate.$invalid">Тільки цифри. Не більше 255</span>
         </div>
     </div>
     <div class="col-md-4 pull-right">

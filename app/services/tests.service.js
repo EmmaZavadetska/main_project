@@ -4,14 +4,12 @@
     angular.module("app.admin.subjects")
         .factory("testsService", testsService);
 
-    testsService.$inject = ["$http", "BASE_URL", "ENTITIES", "ACTIONS", ];
+    testsService.$inject = ["$http", "BASE_URL", "URL"];
 
-    function testsService($http, BASE_URL, ENTITIES, ACTIONS) {
-
-
-
+    function testsService($http, BASE_URL, URL) {
         var service = {
             getTests: getTests,
+            getTestsBySubject: getTestsBySubject,
             getOneTest: getOneTest,
             saveTest: saveTest,
             removeTest: removeTest,
@@ -35,15 +33,32 @@
             return response;
         }
 
-        function getTests (subjectId) {
+        function _addTest (test){
 
-            return $http.get(BASE_URL + ENTITIES.TEST + ACTIONS.GET_TEST_BY_SUBJECT + "/" + subjectId)
+            return $http.post(BASE_URL + URL.ENTITIES.TEST + URL.ADD_ENTITY, test)
+                .then(_successCallback, _errorCallback);
+        }
+
+        function _editTest (test) {
+
+            return $http.post(BASE_URL + URL.ENTITIES.TEST + URL.EDIT_ENTITY + test.test_id, test)
+                .then(_successCallback, _errorCallback);
+        }
+
+        function getTests () {
+            return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.GET_ENTITIES)
+                .then(_successCallback, _errorCallback);
+        }
+
+        function getTestsBySubject (subjectId) {
+
+            return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.GET_TEST_BY_SUBJECT + "/" + subjectId)
                 .then(_successCallback, _errorCallback);
         }
 
         function getOneTest (id) {
 
-            return $http.get(BASE_URL + ENTITIES.TEST + ACTIONS.GET_ENTITIES + id)
+            return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.GET_ENTITIES + id)
                 .then(_successCallback, _errorCallback);
         }
 
@@ -57,27 +72,15 @@
             }
         }
 
-        function _addTest (test){
+        function removeTest (test) {
 
-            return $http.post(BASE_URL + ENTITIES.TEST + ACTIONS.ADD_ENTITY, test)
-                .then(_successCallback, _errorCallback);
-        }
-
-        function _editTest (test) {
-
-            return $http.post(BASE_URL + ENTITIES.TEST + ACTIONS.EDIT_ENTITY + test.test_id, test)
-                .then(_successCallback, _errorCallback);
-        }
-
-        function removeTest (id) {
-
-            return $http.get(BASE_URL + ENTITIES.TEST + ACTIONS.REMOVE_ENTITY + id)
+            return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.REMOVE_ENTITY + test.test_id)
                 .then(_successCallback, _errorCallback);
         }
 
         function getHeader() {
 
-            return ["Назва тесту", "Завдань", "Тривалість, хв", "Статус"];
+            return ["Назва тесту", "Завдань", "Тривалість", "Статус"];
         }
 
         function getStatus() {
@@ -94,11 +97,22 @@
 
         //ТESTS-DETAILS
 
-        function getTestLevel (id) {
-            return $http.get(BASE_URL + ENTITIES.TEST_DETAIL + ACTIONS.GET_TEST_DETAILS + "/" + id)
+        function _addTestLevel (testLevel){
+
+            return $http.post(BASE_URL + URL.ENTITIES.TEST_DETAIL + URL.ADD_ENTITY, testLevel)
                 .then(_successCallback, _errorCallback);
         }
 
+        function _editTestLevel (testLevel) {
+
+            return $http.post(BASE_URL + URL.ENTITIES.TEST_DETAIL + URL.EDIT_ENTITY + testLevel.id, testLevel)
+                .then(_successCallback, _errorCallback);
+        }
+
+        function getTestLevel (id) {
+            return $http.get(BASE_URL + URL.ENTITIES.TEST_DETAIL + URL.GET_TEST_DETAILS + "/" + id)
+                .then(_successCallback, _errorCallback);
+        }
         function saveTestLevel(testLevel) {
             if (testLevel.id === undefined) {
 
@@ -109,43 +123,29 @@
             }
         }
 
-        function _addTestLevel (testLevel){
-
-            return $http.post(BASE_URL + ENTITIES.TEST_DETAIL + ACTIONS.ADD_ENTITY, testLevel)
-                .then(_successCallback, _errorCallback);
-        }
-
-        function _editTestLevel (testLevel) {
-
-            return $http.post(BASE_URL + ENTITIES.TEST_DETAIL + ACTIONS.EDIT_ENTITY + testLevel.id, testLevel)
-                .then(_successCallback, _errorCallback);
-        }
-
         function removeTestLevel (id) {
 
-            return $http.get(BASE_URL + ENTITIES.TEST_DETAIL + ACTIONS.REMOVE_ENTITY + id)
+            return $http.get(BASE_URL + URL.ENTITIES.TEST_DETAIL + URL.REMOVE_ENTITY + id)
                 .then(_successCallback, _errorCallback);
         }
 
-
-
         /**
-         * This function filterred available level for select tag.
-         * @param {array} arrTestdetail is array of objects with properties.
+         * This function filtered available level for select tag.
+         * @param {array} arrTestDetail is array of objects with properties.
          * @returns {array} availableLevel is the array with available level in select tag.
          */
 
         function getLevel (arrTestDetail){
             var level = [];
             var usedLevel = [];
-            if(arrTestDetail.length > 0) {
-            arrTestDetail.forEach(function(item){
-                usedLevel.push(item.level);
-            })};
+            if(Array.isArray(arrTestDetail)){
+                arrTestDetail.forEach(function(item){
+                    usedLevel.push(item.level);
+                })}
             for (var i = 1; i <= 7; i++){
                 level.push(i);
-            };
-           var availableLevel = level.filter(function(itemLevel){
+            }
+            var availableLevel = level.filter(function(itemLevel){
 
                 return usedLevel.every(function (usedItem) {
                     return usedItem != itemLevel;
@@ -164,22 +164,17 @@
 
         function availableTasks (arrTestDetail, maxQuantytyOfTasks){
             var countOfUsedTasks = 0;
-            if(arrTestDetail.length > 0){
-            arrTestDetail.forEach(function(item){
-                countOfUsedTasks += parseInt(item.tasks);
-            })}
+            if(Array.isArray(arrTestDetail)){
+                arrTestDetail.forEach(function(item){
+                    countOfUsedTasks += parseInt(item.tasks);
+                })}
 
             return (parseInt(maxQuantytyOfTasks) - countOfUsedTasks);
         }
-
 
         function getHeaderTestDetail() {
 
             return ["Номер рівня", "Кількість завдань", "Кількість балів", "Управління"];
         }
-
-
-
-
     }
 })();

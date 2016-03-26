@@ -3,6 +3,7 @@
     <div class="col-md-6">
         <input class="form-control" name="subjectname" type="text" ng-model="subjects.subject.subject_name"
                placeholder="Введіть назву предмету..."  ng-minlength="3" ng-maxlength="100" required>
+        <span  ng-show="saveform.subjectname.$error.maxlength">Max length 100 symbols!</span>
     </div>
     <div class="col-md-6">
         <input class="form-control" name="subjectdesc" type="text" ng-model="subjects.subject.subject_description"
@@ -18,7 +19,6 @@
         <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="subjects.hideForm()">
             <i class="glyphicon glyphicon-floppy-remove"></i>
         </button>
-        <span  ng-show="addform.subjectname.$error.maxlength">Max length 100 symbols!</span>
-        <span  ng-show="subjects.allowSubmit(subjects.newSubject)">Min length for all fields 3 symbols!</span>
+        <span  ng-show="saveform.$error.minlength">Min length for all fields 3 symbols!</span>
     </div>
 </form>

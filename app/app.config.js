@@ -110,5 +110,21 @@
                 templateUrl: "app/user/home-user.html",
                 controller: "HomeUserController as user"
             })
+            .state("user.subjects", {
+                url: "/user/subjects",
+                templateUrl: "app/user/subjects/user-subjects.html",
+                controller: "UserSubjectsController as subjects"
+            })
+            .state("user.tests", {
+                url: "/user/subjects/{subject_id:int}/tests",
+                templateUrl: "app/user/subjects/tests/user-tests.html",
+                controller: "UserTestsController as tests"
+            })
+            .state("user.results", {
+                url: "/user/results",
+                templateUrl: "app/user/results/user-results.html",
+                controller: "UserResultsController as results"
+            })
     }
 })();
+

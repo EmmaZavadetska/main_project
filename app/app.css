@@ -29,21 +29,29 @@ html, body, body>div, .auth-container{
     padding: 5px;
 }
 /*Style admin navbar*/
-.navbar-inverse {
-    border-radius:0;
-}
 header .container .row span{
     font-size: 11px;
     margin-top: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
-header .container .row a {
-    font-size: 11px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin-right: 30px;
+header .container .row span a {
+    margin-right: 45px;
 }
-
+header .navbar-header .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+header .navbar-text.navbar-right a {
+    color: #9d9496;
+    text-decoration: none;
+}
+header .navbar-text.navbar-right a:hover {
+    color: #FFFFFF;
+}
+header .navbar-text.navbar-right a:active  {
+    color: #FFFFFF;
+}
+/*  For form validation of specialities  */
 .specialities input.ng-invalid,
 .admins input.ng-invalid {
     background-color: #ffc0cb;
@@ -71,4 +79,8 @@ header .container .row a {
     background: white;
     cursor: inherit;
     display: block;
+}
+/*  For form validate with ngMessages  */
+.error-message {
+    color: #8B0000;
 }

@@ -2,14 +2,12 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-xs-12 col-md-6  pull-right">
-                <div class="col-xs-1 col-md-1 pull-right">
-                    <button class="btn btn-info"  ng-click="tests.showForm()"  title="Додати тест">
-                        <i class="glyphicon glyphicon-plus"></i>
-                    </button>
-                </div>
+            <h3 class="col-xs-12 col-md-11">Тести предмету: {{::tests.currentSubject}}</h3>
+            <div class="col-xs-12 col-md-1">
+                <button class="btn btn-success"  ng-click="tests.showForm()"  title="Додати тест">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
             </div>
-            <h3 class="col-xs-12 col-md-6">Тести предмету: {{tests.currentSubject}}</h3>
         </div>
         <div ng-include="'app/admin/subjects/tests/save-test.html'" ></div>
     </div>
@@ -26,7 +24,7 @@
             <tr ng-class-odd="'odd'" ng-repeat="test in tests.list | orderBy:'test_name'">
                 <td>{{::test.test_name}}</td>
                 <td>{{::test.tasks}}</a></td>
-                <td>{{::test.time_for_test}}</td>
+                <td>{{::test.time_for_test}} хв</td>
                 <td>{{::tests.status[test.enabled].enabled}}</td>
                 <td><button class="btn btn-info"  ui-sref="admin.questions({subject_id: test.subject_id, test_id: test.test_id})"
                             title="Переглянути завдання">
@@ -50,9 +48,19 @@
             </tr>
             </tbody>
         </table>
-        <uib-pagination ng-show="tests.showPagination" total-items="tests.totalItems" ng-change="tests.getItemsPerPage()"
-                        ng-model="tests.currentPage" max-size="tests.maxSize" class="pagination-sm"
-                        boundary-link-numbers="true" items-per-page="tests.entitiesPerPage" rotate="false"></uib-pagination>
+        <uib-pagination ng-show="tests.showPagination"
+                        total-items="tests.totalItems"
+                        ng-change="tests.getItemsPerPage()"
+                        ng-model="tests.currentPage"
+                        max-size="tests.maxSize"
+                        class="my-pagination"
+                        boundary-link-numbers="true"
+                        items-per-page="tests.entitiesPerPage"
+                        first-text="&#xf049;"
+                        previous-text="&#xf048;"
+                        next-text="&#xf051;"
+                        last-text="&#xf050;">
+        </uib-pagination>
 
     </div>
 </div>

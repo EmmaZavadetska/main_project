@@ -4,11 +4,10 @@
     angular.module("app.admin.subjects")
         .controller("TestDetailsController", TestDetailsController);
 
-    TestDetailsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "MESSAGE"];
+    TestDetailsController.$inject = ["$stateParams", "testsService", "REGEXP", "MESSAGE"];
 
-    function TestDetailsController($stateParams, testsService, subjectsService, REGEXP, MESSAGE) {
+    function TestDetailsController($stateParams, testsService, REGEXP, MESSAGE) {
         var vm = this;
-        var usedLevel = [];
         vm.availableLevel = [];
 
         vm.headElements = testsService.getHeaderTestDetail();
@@ -19,16 +18,13 @@
         vm.saveEntity = saveEntity;
         vm.availableTask = 0;
         vm.onlyNumber = REGEXP.ONLY_NUMBER;
-
         activate();
-
-
 
 
         function activate(){
             testsService.getOneTest($stateParams.test_id).then(function(data){
                 vm.currentTest = data[0];
-            })
+            });
 
             testsService.getTestLevel($stateParams.test_id).then(function(data){
                 if(Array.isArray(data)) {
@@ -51,7 +47,8 @@
         /**
          * Set ava wich available Level. If it's edit,  pushed level of edited object to array.
          * Count and set how much tasks are aviable. If it's edit,  added tasks of edited object to array.
-         * Switch editing and adding.*/
+         * Switch editing and adding.
+         * @param {objject} testLevel get from template. When addfunction used it is undefined*/
 
         function showForm(testLevel) {
 
@@ -62,22 +59,22 @@
                 vm.testLevel = {
                     test_id: $stateParams.test_id
                 }
-            }else{
+            } else {
                 vm.availableLevel.push(testLevel.level);
-                vm.availableTask += parseInt(testLevel.tasks)
+                vm.availableTask += parseInt(testLevel.tasks);
                 vm.testLevel = testLevel;
             }
         }
 
-
         function saveEntity () {
+            countAvailableTask ();
             testsService.saveTestLevel(vm.testLevel).then(function (data) {
-                if(data.response === "ok"){
+                if (data.response === "ok"){
                     alert(MESSAGE.SAVE_SUCCSES);
 
-                } else{
+                } else {
                     alert(MESSAGE.SAVE_ERROR +  " " + data.response);
-                };
+                }
                 activate();
                 vm.testLevel = {};
                 hideForm();
@@ -85,7 +82,7 @@
         }
 
         function removeTestLevel(testLevel) {
-            if(confirm(MESSAGE.DEL_CONFIRM)) {
+            if (confirm(MESSAGE.DEL_CONFIRM)) {
                 testsService.removeTestLevel(testLevel.id).then(function (res) {
                     if (res.response === "ok") {
                         alert(MESSAGE.DEL_SUCCESS)
@@ -97,10 +94,8 @@
             }
         }
 
-        function summaryRate (item) {
-            arrTestDetail.forEach(function(item){
-                countOfUsedTasks += parseInt(item.tasks);
-            })
+        function countAvailableTask () {
+            vm.availableTask =  testsService.availableTasks (vm.list, vm.currentTest.tasks);
         }
     }
 })();
