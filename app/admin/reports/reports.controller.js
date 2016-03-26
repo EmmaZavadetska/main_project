@@ -8,14 +8,16 @@
 
     function ReportsController(reportsService) {
         var vm = this;
+        vm.report = {};
+        vm.reportsFormCollapsed = true;
         vm.showReportsForm = showReportsForm;
         vm.hideReportsForm = hideReportsForm;
         vm.createReport = createReport;
-        vm.updateTestsByGroup = updateTestsByGroup;
+        vm.updateSelectpickerBySubject = updateSelectpickerBySubject;
         activate();
 
         function activate() {
-            
+            getSubjects();
         }
 
         function showReportsForm() {
@@ -28,9 +30,33 @@
             vm.report = {};
         }
 
-        function getGroups() {
-            reportsService.getGroups().then(function(data) {
-                vm.groupsList = Array.isArray(data) ?  data : [];
+        function createReport() {
+            reportsService.getReport(vm.report.selectedGroup_id, vm.report.selectedTest_id).then(function(data) {
+            
+            });
+            hideReportsForm();
+        }
+
+        function getSubjects() {
+            reportsService.getSubjects().then(function(data) {
+                vm.subjectsList = data;
+            });
+        }
+
+        function updateSelectpickerBySubject() {
+            updateGroupsBySubject();
+            updateTestsBySubject();
+        }
+        
+        function updateGroupsBySubject() {
+            reportsService.updateGroupsBySubject(vm.report.selectedSubject_id).then(function(data) {
+                vm.groupsList = data;
+            });
+        }
+
+        function updateTestsBySubject() {
+            reportsService.updateTestsBySubject(vm.report.selectedSubject_id).then(function(data) {
+                vm.testsList = data;
             });
         }
     }

@@ -16,16 +16,22 @@
                 <div class="col-md-9">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-5">
-                                <select class="form-control" name="selectedGroup" ng-model="reports.report.group"
-                                        ng-options="group.group_id for group.group_name in reports.groupsList"
-                                        ng-change="reports.updateTestsByGroup()" required>
+                            <div class="col-md-4">
+                                <select class="form-control" name="selectedSubject" ng-model="reports.report.selectedSubject_id"
+                                        ng-options="subject.subject_id as subject.subject_name for subject in reports.subjectsList"
+                                        ng-change="reports.updateSelectpickerBySubject()">
+                                    <option value="">Виберіть назву предмету</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="selectedGroup" ng-model="reports.report.selectedGroup_id"
+                                        ng-options="group.group_id as group.group_name for group in reports.groupsList">
                                     <option value="">Виберіть групу</option>
                                 </select>
                             </div>
-                            <div class="col-md-7">
-                                <select class="form-control" name="selectedTest" ng-model="reports.report.test"
-                                        ng-options="test.test_id for test.test_name in reports.testsList" required>
+                            <div class="col-md-4">
+                                <select class="form-control" name="selectedTest" ng-model="reports.report.selectedTest_id"
+                                        ng-options="test.test_id as test.test_name for test in reports.testsList">
                                     <option value="">Виберіть назву тесту</option>
                                 </select>
                             </div>
