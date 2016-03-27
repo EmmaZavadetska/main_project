@@ -9,6 +9,7 @@
         function groupsService($http, URL, BASE_URL, MESSAGE) {
             var groupsService = {
                 getGroups: getGroups,
+                getGroup: getGroup,
                 getGroupsByFaculty: getGroupsByFaculty,
                 getGroupsBySpeciality: getGroupsBySpeciality,
                 removeGroup: removeGroup,
@@ -28,6 +29,10 @@
                 // get all the groups
             function getGroups() {
                 return $http.get(BASE_URL + URL.ENTITIES.GROUP + URL.GET_ENTITIES).then(_successCallback, _errorCallback);
+            }
+                // get one group by ID
+            function getGroup(group_id) {
+                return $http.get(BASE_URL + URL.ENTITIES.GROUP + URL.GET_ENTITIES + group_id).then(_successCallback, _errorCallback);
             }
                 // get groups by faculty ID
             function getGroupsByFaculty(f_id) {
