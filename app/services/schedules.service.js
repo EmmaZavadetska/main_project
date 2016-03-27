@@ -9,8 +9,9 @@
     function schedulesService($http, BASE_URL, URL) {
         var service = {
             getSchedulesForGroup: getSchedulesForGroup,
-            getSchedulesForSubject: getSchedulesForSubject
-            //headers: headers
+            getSchedulesForSubject: getSchedulesForSubject,
+            removeSchedule: removeSchedule,
+            saveSchedule: saveSchedule
         };
 
         return service;
@@ -32,13 +33,17 @@
             return $http.get(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.GET_SCHEDULE_FOR_SUBJECT + subject_id)
                 .then(_successCallback, _errorCallback);
         }
-
-        //function headers() {
-        //    return [
-        //        'Предмет',
-        //        'Група',
-        //        'Дата'
-        //    ]
-        //}
+            // delete schedule from database
+        function removeSchedule(schedule_id) {
+            return $http.get(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.REMOVE_ENTITY + schedule_id).then(_successCallback, _errorCallback);
+        }
+            // create/update
+        function saveSchedule(schedule) {
+            if (schedule.timetable_id === undefined) {
+                return $http.post(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.ADD_ENTITY, schedule).then([_successCallback, console.log("Додано до бази даних")], _errorCallback)
+            } else {
+                return $http.post(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.EDIT_ENTITY + schedule.timetable_id, schedule).then([_successCallback, console.log("Зміни внесено до бази даних")], _errorCallback)
+            }
+        }
     }
 })();
