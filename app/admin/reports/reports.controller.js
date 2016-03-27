@@ -10,6 +10,7 @@
         var vm = this;
         vm.report = {};
         vm.reportsFormCollapsed = true;
+        vm.headElements = reportsService.getHeader();
         vm.showReportsForm = showReportsForm;
         vm.hideReportsForm = hideReportsForm;
         vm.createReport = createReport;
@@ -32,7 +33,7 @@
 
         function createReport() {
             reportsService.getReport(vm.report.selectedGroup_id, vm.report.selectedTest_id).then(function(data) {
-            
+                vm.results = data;
             });
             hideReportsForm();
         }

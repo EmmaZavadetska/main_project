@@ -1,0 +1,45 @@
+<div class="panel panel-primary reports">
+    <div class="panel-heading">
+        <div class="row">
+            <h3 class="title">Детальна інформація про проходження тестування</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">Студент: </div>
+            <div class="col-xs-6">Назва тесту: </div>
+            <div class="col-xs-3">Дата: </div>
+            <div class="col-xs-3">Рейтинг: </div>
+            <div class="col-xs-3">Початок тесту: </div>
+            <div class="col-xs-3">Кінець тесту: </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <p ng-hide="reports.results.length">Результатів немає</p>
+        <table ng-show="reports.results.length" class="table table-striped table-condensed">
+            <tbody>
+            <thead>
+            <tr>
+                <th class="clip" class="header">Завдання</th>
+                <th class="clip" class="header">Відповідь</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-class-odd="'odd'" ng-repeat="result in reports.results">
+                <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}&nbsp{{::result.student_fname}}</td>
+                <td class="clip">{{::result.result}}</td>
+                <td class="clip">{{::result.percentTrueAnswers}}%</td>
+                <td class="clip">{{::result.session_date}}</td>
+                <td class="clip">{{::result.start_time}}</td>
+                <td class="clip">{{::result.end_time}}</td>
+                <td class="clip">
+                    <button class="btn btn-info" ui-sref="admin.reportDetails({student_id: result.student_id, test_id: result.test_id})"
+                            title="Більше інформації">
+                        <i class="glyphicon glyphicon-wrench"></i> Деталіше
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

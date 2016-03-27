@@ -9,6 +9,7 @@
     function subjectsService($http, $q, PAGINATION, BASE_URL, URL, testsService) {
         var service = {
             getSubjects: getSubjects,
+            getAllSubjects: getAllSubjects,
             getOneSubject: getOneSubject,
             totalItems: totalItems,
             saveSubject: saveSubject,
@@ -34,6 +35,11 @@
         function _editSubject(subject){
 
             return $http.post(BASE_URL + URL.ENTITIES.SUBJECT + URL.EDIT_ENTITY  + subject.subject_id, subject)
+                .then(_successCallback, _errorCallback);
+        }
+
+        function getAllSubjects(){
+            return $http.get(BASE_URL + URL.ENTITIES.SUBJECT + URL.GET_ENTITIES)
                 .then(_successCallback, _errorCallback);
         }
 
