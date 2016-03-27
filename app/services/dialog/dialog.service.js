@@ -72,7 +72,7 @@
        
         angular.extend(options.resolve, { dialogData: function () { return data; } });
       
-        return $modal.open(options).result;
+        return $uibModal.open(options).result;
       }
      
       return {

@@ -9,11 +9,11 @@
       var vm = this;     
       vm.data = dialogData;
       vm.return = function (button) {        
-        if (button.dismiss) {          
-          $modalInstance.dismiss(button.value || button.label);
+        if (button.dismiss) {
+          $uibModalInstance.dismiss(button.value || button.label);
         }
-        else {          
-          $modalInstance.close(button.value || button.label);
+        else {
+          $uibModalInstance.close(button.value || button.label);
         }
       };
     }
