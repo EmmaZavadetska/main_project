@@ -5,7 +5,7 @@
 
     customDialogService.$inject = ["$uibModal", "MESSAGE"];
 
-    function customDialogService($modal, MESSAGE){
+    function customDialogService($uibModal, MESSAGE){
     
       var defaultIconStyles = {
         info: ["fa fa-info-circle", "text-info"],

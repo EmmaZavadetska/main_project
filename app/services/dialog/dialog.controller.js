@@ -5,7 +5,7 @@
 
     dialogController.$inject = ["$uibModalInstance", "dialogData"];
 
-    function dialogController($modalInstance, dialogData){
+    function dialogController($uibModalInstance, dialogData){
       var vm = this;     
       vm.data = dialogData;
       vm.return = function (button) {        
