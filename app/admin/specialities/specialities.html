@@ -9,7 +9,7 @@
                     </button>
                 </div>
                 <div class="col-xs-9 col-md-6 pull-right">
-                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук">
+                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці">
                 </div>
             </div>
             <h3 class="col-xs-12 col-md-6">Спеціальності</h3>
@@ -53,11 +53,12 @@
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="speciality in specialities.list | orderBy: 'speciality_code' | filter: search">
-                <td class="clip">{{$index + 1}}</td>
-                <td class="clip"><a ui-sref="admin.groupsByEntity({entity: 'speciality', entity_id: speciality.speciality_id})"
-                    title='Перейти до груп спеціальності "{{speciality.speciality_name}}"'>{{speciality.speciality_name}}</a></td>
-                <td class="clip">{{speciality.speciality_code}}</td>
-                <td class="clip">
+                <td>{{speciality.speciality_name}}</td>
+                <td>{{speciality.speciality_code}}</td>
+                <td class="pull-right">
+                    <button class="btn btn-info" ui-sref="admin.groupsByEntity({entity: 'speciality', entity_id: speciality.speciality_id})"
+                       title='Перейти до груп спеціальності "{{speciality.speciality_name}}"'><i class="fa fa-list"></i>
+                    </button>
                     <button class="btn btn-warning" ng-click="specialities.showSaveForm(speciality)"
                             title='Редагувати "{{::speciality.speciality_name}}"'>
                         <i class="glyphicon glyphicon-pencil"></i>
@@ -71,7 +72,12 @@
             </tbody>
         </table>
         <uib-pagination total-items="specialities.totalItems" ng-change="specialities.pageChanged()"
-                        ng-model="specialities.currentPage" max-size="specialities.maxSize" class="pagination-sm"
-                        boundary-link-numbers="true" rotate="false"></uib-pagination>
+                        ng-model="specialities.currentPage" max-size="specialities.maxSize" class="my-pagination"
+                        boundary-link-numbers="true" rotate="false"
+                        first-text="&#xf049;"
+                        previous-text="&#xf048;"
+                        next-text="&#xf051;"
+                        last-text="&#xf050;">
+        </uib-pagination>
     </div>
 </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

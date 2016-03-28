@@ -16,8 +16,8 @@
         vm.removeFaculty = removeFaculty;
         vm.minNameLength = FACULTIES_CONST.MIN_CHAR_LENGTH;
         vm.maxNameLength = FACULTIES_CONST.MAX_CHAR_LENGTH;
-        vm.maxSize = 5;
-        vm.currentPage = 1;
+        vm.maxSize = PAGINATION.PAGES_SHOWN;
+        vm.currentPage = PAGINATION.CURRENT_PAGE;
         vm.currentRecordsRange = 0;
         vm.pageChanged = pageChanged;
         activate();

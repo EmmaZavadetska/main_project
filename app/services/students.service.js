@@ -51,11 +51,9 @@
         //function that remove student from list of students with the same group_id
 
         function removeStudent(student) {
-            console.log("srv");
             var remover = $q.defer();
             $http.get(BASE_URL + URL.ENTITIES.STUDENT + URL.REMOVE_ENTITY + student.user_id).then(
                 function (result) {
-                    console.log(result)
                     remover.resolve(result);
                 },
                 function (result) {

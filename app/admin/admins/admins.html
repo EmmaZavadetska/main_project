@@ -26,11 +26,11 @@
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="admin in admins.list | orderBy: 'username' | filter: search">
-                <td class="clip">{{ admin.username }}</td>
-                <td class="clip">{{ admin.email }}</td>
-                <td class="clip"><i>{{ admin.last_login }}</i></td>
-                <td class="clip">{{ admin.logins }}</td>
-                <td class="clip">
+                <td>{{ admin.username }}</td>
+                <td>{{ admin.email }}</td>
+                <td><i>{{ admin.last_login }}</i></td>
+                <td>{{ admin.logins }}</td>
+                <td class="pull-right">
                     <button class="btn btn-warning" ng-click="admins.showSaveForm(admin, 'Редагування')"
                             title="Редагувати {{ ::admin.username }}">
                         <i class="glyphicon glyphicon-pencil"></i>
