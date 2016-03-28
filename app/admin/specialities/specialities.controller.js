@@ -16,8 +16,8 @@
         vm.removeSpeciality = removeSpeciality;
         vm.minNameLength = SPECIALITIES_CONST.MIN_NAME_LENGTH;
         vm.maxNameLength = SPECIALITIES_CONST.MAX_NAME_LENGTH;
-        vm.maxSize = 5;
-        vm.currentPage = 1;
+        vm.maxSize = PAGINATION.PAGES_SHOWN;
+        vm.currentPage =  vm.currentPage = PAGINATION.CURRENT_PAGE;
         vm.currentRecordsRange = 0;
         vm.pageChanged = pageChanged;
         activate();

@@ -8,7 +8,7 @@
 
     function validateDirective(SPECIALITIES_CONST, specialitiesService) {
         var all;
-
+        getSpecialities();
         function getSpecialities(){
             specialitiesService.getSpecialities().then(function(data) {
                all = data;
@@ -50,7 +50,6 @@
             link: function(scope, element, attr, mCtrl) {
                 function validation(value) {
                     mCtrl.$setValidity("validText", validText(whichInput(attr.name).regexp, value));
-                    getSpecialities();
                     mCtrl.$setValidity("alreadyExist", !alreadyExist(all, whichInput(attr.name).key, value));
 
                     return value;
