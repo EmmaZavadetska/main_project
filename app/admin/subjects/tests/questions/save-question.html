@@ -1,6 +1,6 @@
 <form name="saveForm" class="row" uib-collapse="questions.saveFormCollapsed" ng-submit="questions.saveQuestion()">
     <div class="col-md-3">
-        <div class="col-md-12">
+        <div class="col-md-12 form-group">
                     <span class="btn btn-info btn-file">
                         <i class="glyphicon glyphicon-picture"></i> Вибрати зображення
                         <input type="file" image-load="questions.image"/>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-md-9">
-        <div class="col-md-12">
+        <div class="col-md-12 form-group">
             <textarea type="text" rows="4" class="form-control" name="questionText"
                       ng-model="questions.question.question_text" placeholder="Введіть текст питання..."
                       ng-minlength="5" ng-maxlength="100" required>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-5 form-group">
                     <select class="form-control" ng-model="questions.question.level" name="levelSelected"
                             ng-options="level for level in questions.levels" required>
                         <option value="">Виберіть рівень</option>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 form-group">
                     <select class="form-control" ng-model="questions.question.type" name="typeSelected"
                             ng-options="type.value as type.name for type in questions.types" required>
                         <option value="">Виберіть тип завдання</option>
