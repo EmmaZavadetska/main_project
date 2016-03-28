@@ -11,23 +11,17 @@
         vm.report = {};
         vm.reportsFormCollapsed = true;
         vm.headElements = reportsService.getHeaderOfReport();
-        vm.showReportsForm = showReportsForm;
-        vm.hideReportsForm = hideReportsForm;
+        vm.cancelReport = cancelReport;
         vm.createReport = createReport;
         vm.updateSelectpickerBySubject = updateSelectpickerBySubject;
         activate();
 
         function activate() {
+            vm.report = {};
             getSubjects();
         }
 
-        function showReportsForm() {
-            vm.reportsFormCollapsed = false;
-            vm.report = {};
-        }
-
-        function hideReportsForm() {
-            vm.reportsFormCollapsed = true;
+        function cancelReport() {
             vm.report = {};
             vm.groupsList = undefined;
             vm.testsList = undefined;
@@ -37,7 +31,6 @@
             reportsService.getReport(vm.report.selectedGroup, vm.report.selectedTest).then(function(data) {
                 vm.results = data;
             });
-            hideReportsForm();
         }
 
         function getSubjects() {

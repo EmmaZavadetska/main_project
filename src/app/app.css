@@ -84,7 +84,7 @@ header .navbar-text.navbar-right a:active  {
 .error-message {
     color: #8B0000;
 }
-/**/
+/*  For report form  */
 .panel .panel-heading h4 {
-    padding-left: 15px;
+    padding-left: 10px;
 }

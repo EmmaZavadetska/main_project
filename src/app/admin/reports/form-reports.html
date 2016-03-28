@@ -1,5 +1,5 @@
-<form name="reportsForm" class="row" uib-collapse="reports.reportsFormCollapsed" ng-submit="reports.createReport()">
-    <div class="col-md-9">
+<form name="reportsForm" class="row" ng-submit="reports.createReport()">
+    <div class="col-md-10">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 form-group">
@@ -44,7 +44,7 @@
         <button type="submit" class="btn btn-success" title="Сформувати" ng-disabled="reportsForm.$invalid">
             <i class="glyphicon glyphicon-floppy-saved"></i>
         </button>
-        <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="reports.hideReportsForm()">
+        <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="reports.cancelReport()">
             <i class="glyphicon glyphicon-floppy-remove"></i>
         </button>
     </div>
