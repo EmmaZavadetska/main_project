@@ -48,12 +48,6 @@
                 .then(_successCallback, _errorCallback);
         }
 
-
-        function getAllSubjects(){
-             return $http.get(BASE_URL + URL.ENTITIES.SUBJECT + URL.GET_ENTITIES)
-                .then(_successCallback, _errorCallback);
-        }
-
         function getOneSubject(id) {
             return $http.get(BASE_URL + URL.ENTITIES.SUBJECT + URL.GET_ENTITIES + id)
                 .then(_successCallback, _errorCallback);
