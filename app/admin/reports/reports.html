@@ -3,75 +3,39 @@
         <div class="row">
             <h3 class="col-xs-10 col-sm-11 title">Формування звітів</h3>
             <div class="col-xs-2 col-sm-1 pull-right">
-                    <button class="btn btn-success" ng-click="reports.showReportsForm()" title="Сформувати звіт">
-                        <i class="fa fa-plus"></i>
-                    </button>
+                <button class="btn btn-success" ng-click="reports.showReportsForm()" title="Сформувати звіт">
+                    <i class="fa fa-plus"></i>
+                </button>
             </div>
         </div>
 
-        <div>
-            <form name="reportsForm" class="row" uib-collapse="reports.reportsFormCollapsed" ng-submit="reports.createReport()">
-                <div class="col-md-9">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4 form-group">
-                                <select class="form-control" name="selectedSubject" ng-model="reports.report.selectedSubject_id"
-                                        ng-options="subject.subject_id as subject.subject_name for subject in reports.subjectsList"
-                                        ng-change="reports.updateSelectpickerBySubject()">
-                                    <option value="">Виберіть назву предмету</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <select class="form-control" name="selectedGroup" ng-model="reports.report.selectedGroup_id"
-                                        ng-options="group.group_id as group.group_name for group in reports.groupsList">
-                                    <option value="">Виберіть групу</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <select class="form-control" name="selectedTest" ng-model="reports.report.selectedTest_id"
-                                        ng-options="test.test_id as test.test_name for test in reports.testsList">
-                                    <option value="">Виберіть назву тесту</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-2 pull-right">
-                    <button type="submit" class="btn btn-success" title="Сформувати" ng-disabled="reportsForm.$invalid">
-                        <i class="glyphicon glyphicon-floppy-saved"></i>
-                    </button>
-                    <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="reports.hideReportsForm()">
-                        <i class="glyphicon glyphicon-floppy-remove"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
+        <div ng-include="'app/admin/reports/form-reports.html'" ></div>
     </div>
 
     <div class="panel-body">
-        <p ng-hide="reports.results.length">Результатів немає</p>
-        <table ng-show="reports.results.length" class="table table-striped table-condensed">
+        <p ng-if="reports.results != undefined && !reports.results.length">Результатів немає</p>
+        <table ng-if="reports.results.length" class="table table-striped table-condensed">
             <tbody>
-            <thead>
-            <tr>
-                <th class="clip" class="header" ng-repeat="headerElement in reports.headElements">
-                    {{::headerElement}}
-                </th>
-                <!--<th colspan="2"></th>-->
-            </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th class="clip" class="header" ng-repeat="headerElement in reports.headElements">
+                            {{::headerElement}}
+                        </th>
+                    </tr>
+                </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="result in reports.results">
-                <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}&nbsp{{::result.student_fname}}</td>
+                <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}
+                    &nbsp{{::result.student_fname}}</td>
                 <td class="clip">{{::result.result}}</td>
                 <td class="clip">{{::result.percentTrueAnswers}}%</td>
                 <td class="clip">{{::result.session_date}}</td>
                 <td class="clip">{{::result.start_time}}</td>
                 <td class="clip">{{::result.end_time}}</td>
                 <td class="clip">
-                    <button class="btn btn-info" ui-sref="admin.reportDetails({session_id: result.session_id, student_id: result.student_id, test_id: result.test_id})"
-                            title="Більше інформації">
+                    <button class="btn btn-info" title="Більше інформації"
+                            ui-sref="admin.reportDetails({session_id: result.session_id, student_id: result.student_id,
+                            test_id: result.test_id})">
                         <i class="glyphicon glyphicon-wrench"></i> Деталіше
                     </button>
                 </td>
