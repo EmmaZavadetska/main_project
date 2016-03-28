@@ -84,3 +84,7 @@ header .navbar-text.navbar-right a:active  {
 .error-message {
     color: #8B0000;
 }
+/**/
+.panel .panel-heading h4 {
+    padding-left: 15px;
+}

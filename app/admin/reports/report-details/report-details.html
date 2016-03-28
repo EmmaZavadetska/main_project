@@ -1,31 +1,32 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <h3 class="title">Детальна інформація про проходження тестування</h3>
+            <h4>Детальна інформація про проходження тестування</h4>
         </div>
 
         <div class="row">
-            <div class="col-xs-6">Студент: {{::detail.student_surname}}&nbsp{{::detail.student_name}}&nbsp{{::detail.student_fname}}</div>
-            <div class="col-xs-6">Назва тесту: {{::detail.result}}</div>
-            <div class="col-xs-3">Дата: {{::detail.session_date}}</div>
-            <div class="col-xs-3">Рейтинг: </div>
-            <div class="col-xs-3">Початок тесту: {{::detail.start_time}}</div>
-            <div class="col-xs-3">Кінець тесту: {{::detail.end_time}}</div>
+            <div class="col-xs-6">Студент: {{::details.detail.student_surname}}&nbsp{{::details.detail.student_name}}
+                &nbsp{{::details.detail.student_fname}}</div>
+            <div class="col-xs-6">Назва тесту: {{::details.detail.test_name}}</div>
+            <div class="col-xs-3">Дата: {{::details.detail.session_date}}</div>
+            <div class="col-xs-3">Рейтинг: {{::details.detail.result}}</div>
+            <div class="col-xs-3">Початок тесту: {{::details.detail.start_time}}</div>
+            <div class="col-xs-3">Кінець тесту: {{::details.detail.end_time}}</div>
         </div>
     </div>
 
     <div class="panel-body">
-        <p>Завдання</p>
         <table class="table table-striped table-condensed">
             <tbody>
             <thead>
             <tr>
-                <th class="clip" class="header">Завдання</th>
-                <th class="clip" class="header">Відповідь</th>
+                <th class="clip" class="header" ng-repeat="headerElement in details.headElements">
+                    {{::headerElement}}
+                </th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-class-odd="'odd'" ng-repeat="question in detail.questionsList">
+            <tr ng-class-odd="'odd'" ng-repeat="question in details.detail.questionsList">
                 <td class="clip">{{::question.question.question_text}}</td>
                 <td class="clip">{{::question.answer}}</td>
             </tr>

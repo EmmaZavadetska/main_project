@@ -10,7 +10,7 @@
         var vm = this;
         vm.report = {};
         vm.reportsFormCollapsed = true;
-        vm.headElements = reportsService.getHeader();
+        vm.headElements = reportsService.getHeaderOfReport();
         vm.showReportsForm = showReportsForm;
         vm.hideReportsForm = hideReportsForm;
         vm.createReport = createReport;
@@ -29,10 +29,12 @@
         function hideReportsForm() {
             vm.reportsFormCollapsed = true;
             vm.report = {};
+            vm.groupsList = undefined;
+            vm.testsList = undefined;
         }
 
         function createReport() {
-            reportsService.getReport(vm.report.selectedGroup_id, vm.report.selectedTest_id).then(function(data) {
+            reportsService.getReport(vm.report.selectedGroup, vm.report.selectedTest).then(function(data) {
                 vm.results = data;
             });
             hideReportsForm();
@@ -50,13 +52,13 @@
         }
         
         function updateGroupsBySubject() {
-            reportsService.updateGroupsBySubject(vm.report.selectedSubject_id).then(function(data) {
+            reportsService.updateGroupsBySubject(vm.report.selectedSubject).then(function(data) {
                 vm.groupsList = data;
             });
         }
 
         function updateTestsBySubject() {
-            reportsService.updateTestsBySubject(vm.report.selectedSubject_id).then(function(data) {
+            reportsService.updateTestsBySubject(vm.report.selectedSubject).then(function(data) {
                 vm.testsList = data;
             });
         }

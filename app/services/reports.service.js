@@ -4,18 +4,22 @@
     angular.module("app.admin")
         .factory("reportsService", reportsService);
 
-    reportsService.$inject = ["$http", "$q", "BASE_URL", "URL", "groupsService", "studentsService", "testsService", "subjectsService", "schedulesService"];
+    reportsService.$inject = ["$http", "$q", "BASE_URL", "URL", "groupsService", "studentsService", "testsService",
+        "subjectsService", "schedulesService"];
 
-    function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService, schedulesService) {
+    function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService,
+                            schedulesService) {
         var results = [];
+        var testName = "";
 
         var service = {
             getSubjects: getSubjects,
-            getReport: getReport,
             updateGroupsBySubject: updateGroupsBySubject,
             updateTestsBySubject: updateTestsBySubject,
-            getHeader: getHeader,
-            getResultsDetail: getResultsDetail
+            getReport: getReport,
+            getResultsDetail: getResultsDetail,
+            getHeaderOfReport: getHeaderOfReport,
+            getHeaderOfReportDetail: getHeaderOfReportDetail
         };
 
         return service;
@@ -34,13 +38,13 @@
         }
 
         // update selectpicker Tests in form by choosing subject
-        function updateTestsBySubject(subject_id) {
-            return testsService.getTestsBySubject(subject_id).then(_successCallback, _errorCallback);
+        function updateTestsBySubject(subject) {
+            return testsService.getTestsBySubject(subject.subject_id).then(_successCallback, _errorCallback);
         }
 
         // update selectpicker Groups in form by choosing subject
-        function updateGroupsBySubject(subject_id) {
-            return _getTimesTableBySubject(subject_id).then(function(data) {
+        function updateGroupsBySubject(subject) {
+            return _getTimesTableBySubject(subject.subject_id).then(function(data) {
                 var uniqueIdGroups = _uniqueItemsArray(data, "group_id");
                 return _getGroupsBySubject(uniqueIdGroups);
             });
@@ -76,18 +80,19 @@
         }
 
         // create report by group and test
-        function getReport(group_id, test_id) {
-            return _getStudentsByGroup(group_id).then(function(data) {
+        function getReport(group, test) {
+            return _getStudentsByGroup(group.group_id).then(function(data) {
                 var arrayStudents = data;
-                return _getResultByStudents(arrayStudents, test_id).then(function(data) {
+                return _getResultByStudents(arrayStudents, test.test_id).then(function(data) {
                     var report = _addToResultsStudentsName(data, arrayStudents);
                     report = _addToResultsCountTrueAnswers(report);
                     results = report;
+                    testName = test.test_name;
                     return report;
                 });
             });
         }
-
+        
         // get students by group
         function _getStudentsByGroup(group_id) {
             return studentsService.getStudentsByGroupId(group_id).then(_successCallback, _errorCallback);
@@ -153,46 +158,46 @@
             return arrayResults;
         }
 
-        function _countTestPassesByStudent(student_id, test_id) {
-            return $http.get(BASE_URL + URL.ENTITIES.RESULT + URL.COUNT_TEST_PASSES_BY_STUDENT + student_id + "/" + test_id)
-                .then(function(response){
-                        if(response.status === 200) {
-                            return response.numberOfRecords;
-                        }
-                    }, function(response){
-                        return response;
-                    });
-        }
-
-        function getHeader() {
+        function getHeaderOfReport() {
             return ["Студент", "Рейтинг", "Якість", "Дата", "Початок тесту", "Кінець тесту"];
         }
-        
-        //Details of report
+
+
+        // details result of report
         function getResultsDetail(session_id) {
-            var resultDetail = results.find(function(result) {
-                return result.session_id === session_id;
-            });
-            return _getQuestionsByTest(resultDetail.test_id).then(function(data) {
+            var resultDetail = _getObjectByPropertyValueFromArray(results, "session_id", session_id.toString());
+
+            return _getQuestionsByTest(resultDetail.test_id).then(function(response) {
                 var trueAnswers = resultDetail.true_answers.split("/").map(Number);
                 var questionsId = resultDetail.questions.split("/").map(Number);
                 var i = 0;
-                resultDetail.questionList = [];
+                resultDetail.questionsList = [];
                 angular.forEach(questionsId, function(questionId) {
-                    var question = data.find(function(question) {
-                        return question.question_id === questionId;
-                    });
+                    var question = _getObjectByPropertyValueFromArray(response.data, "question_id", questionId.toString());
                     var answer = trueAnswers[i] === 1 ? "Правильна" : "Неправильна";
-                    questionList.push({question: question, answer: answer});
+                    resultDetail.questionsList.push({question: question, answer: answer});
                     i++;
                 });
+                resultDetail.test_name = testName;
                 return resultDetail;
             });
         }
 
+        // get object by property value from array
+        function _getObjectByPropertyValueFromArray(arrayOfObjects, property, value) {
+            var filteredResult  = arrayOfObjects.filter(function(item) { return item[property] === value; });
+
+            return filteredResult[0];
+        }
+
+        // get questions by Test
         function _getQuestionsByTest(test_id) {
             return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.GET_RECORDS_RANGE_BY_TEST + test_id + "/" + "100" + "/" + "0" + "/")
                 .then(_successCallback, _errorCallback);
+        }
+
+        function getHeaderOfReportDetail() {
+            return ["Завдання", "Відповідь"];
         }
     }
 
