@@ -4,9 +4,9 @@
     angular.module("app.admin")
         .factory("reportsService", reportsService);
 
-    reportsService.$inject = ["$http", "$q", "BASE_URL", "URL", "groupsService", "studentsService", "testsService", "subjectsService"];
+    reportsService.$inject = ["$http", "$q", "BASE_URL", "URL", "groupsService", "studentsService", "testsService", "subjectsService", "schedulesService"];
 
-    function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService) {
+    function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService, schedulesService) {
         var results = [];
 
         var service = {
@@ -29,29 +29,31 @@
             return response;
         }
 
-        // get Subjects for selectpicker in form
+        // get subjects for selectpicker in form
         function getSubjects() {
             return subjectsService.getAllSubjects().then(_successCallback, _errorCallback);
         }
 
-        // update selectpicker Tests and Groups in form by choosing subject
+        // update selectpicker Tests in form by choosing subject
         function updateTestsBySubject(subject_id) {
             console.log("updateTestsBySubject");
             return testsService.getTestsBySubject(subject_id).then(_successCallback, _errorCallback);
         }
 
+        // update selectpicker Groups in form by choosing subject
         function updateGroupsBySubject(subject_id) {
             console.log("updateGroupsBySubject");
             //when used serviceTimeTable replace response,response.data to data
-            return _getTimesTableBySubjects(subject_id).then(function(response) {
-                var uniqueIdGroups = _uniqueItemsArray(response.data, "group_id");
+            return _getTimesTableBySubjects(subject_id).then(function(data) {
+                var uniqueIdGroups = _uniqueItemsArray(data, "group_id");
                 return _getGroupsBySubject(uniqueIdGroups);
             });
         }
 
         function _getTimesTableBySubjects(subject_id) {
             console.log("_getTimesTableBySubjects");
-            return $http.get(BASE_URL + "/timeTable/getTimeTablesForSubject/" + subject_id)
+            return schedulesService.getSchedulesForSubject(subject_id)
+            // return $http.get(BASE_URL + "/timeTable/getTimeTablesForSubject/" + subject_id)
                 .then(_successCallback, _errorCallback);
         }
 
