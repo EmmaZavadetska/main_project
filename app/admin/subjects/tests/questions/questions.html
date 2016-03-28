@@ -17,8 +17,8 @@
     </div>
 
     <div class="panel-body">
-        <p ng-hide="questions.questionsList.length">Завдань немає</p>
-        <table ng-show="questions.questionsList.length" class="table table-striped table-condensed">
+        <p ng-if="questions.questionsList != undefined && !questions.questionsList.length">Завдань немає</p>
+        <table ng-if="questions.questionsList.length" class="table table-striped table-condensed">
             <tbody>
                 <thead>
                     <tr>
