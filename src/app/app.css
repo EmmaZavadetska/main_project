@@ -1,0 +1,90 @@
+/*Style and alignment login form*/
+html, body, body>div, .auth-container{
+    height: 100%;
+}
+.auth-container{
+    background: url("../images/background.jpg") no-repeat;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.title{
+    font-size: 42px;
+}
+.form-container{
+    margin-right:15%;
+}
+.auth-input-element{
+    border-radius: 0;
+    border: 1px solid #000;
+    background-color: #f6f1ed;
+    min-width: 300px;
+}
+.alert-warning{
+    min-width: 300px;
+    opacity: 0.7;
+    margin: 5px 0;
+    padding: 5px;
+}
+/*Style admin navbar*/
+header .container .row span{
+    font-size: 11px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+header .container .row span a {
+    margin-right: 45px;
+}
+header .navbar-header .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+header .navbar-text.navbar-right a {
+    color: #9d9496;
+    text-decoration: none;
+}
+header .navbar-text.navbar-right a:hover {
+    color: #FFFFFF;
+}
+header .navbar-text.navbar-right a:active  {
+    color: #FFFFFF;
+}
+/*  For form validation of specialities  */
+.specialities input.ng-invalid,
+.admins input.ng-invalid {
+    background-color: #ffc0cb;
+}
+.specialities input.ng-valid,
+.admins input.ng-valid {
+    background-color: #fff;
+}
+/* For image load button */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+/*  For form validate with ngMessages  */
+.error-message {
+    color: #8B0000;
+}
+/**/
+.panel .panel-heading h4 {
+    padding-left: 15px;
+}
