@@ -7,12 +7,15 @@
     reportsService.$inject = ["$http", "$q", "BASE_URL", "URL", "groupsService", "studentsService", "testsService", "subjectsService"];
 
     function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService) {
+        var results = [];
+
         var service = {
             getSubjects: getSubjects,
             getReport: getReport,
             updateGroupsBySubject: updateGroupsBySubject,
             updateTestsBySubject: updateTestsBySubject,
-            getHeader: getHeader
+            getHeader: getHeader,
+            getResultsDetail: getResultsDetail
         };
 
         return service;
@@ -96,12 +99,12 @@
                 return _getResultByStudents(urlCallsResultsStudents, test_id).then(function(data) {
                     var report = _addToResultsStudentsName(data, arrayStudents);
                     report = _addToResultsCountTrueAnswers(report);
+                    results = report;
                     return report;
                 });
             });
         }
-
-
+        
         function _addToResultsCountTrueAnswers(arrayResults) {
             angular.forEach(arrayResults, function(item) {
                 var trueAnswers = item.true_answers.split("/").map(Number);
@@ -156,17 +159,17 @@
             return deferred.promise;
         }
 
-        function _dynamicSort(property) {
-            var sortOrder = 1;
-            if (property[0] === "-") {
-                sortOrder = -1;
-                property = property.substr(1);
-            }
-            return function (a,b) {
-                var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-                return result * sortOrder;
-            }
-        }
+        // function _dynamicSort(property) {
+        //     var sortOrder = 1;
+        //     if (property[0] === "-") {
+        //         sortOrder = -1;
+        //         property = property.substr(1);
+        //     }
+        //     return function (a,b) {
+        //         var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        //         return result * sortOrder;
+        //     }
+        // }
 
         function _getStudentsByGroup(group_id) {
             console.log("_getStudentsByGroup");
@@ -195,11 +198,28 @@
             return ["Студент", "Рейтинг", "Якість", "Дата", "Початок тесту", "Кінець тесту"];
         }
         
-        
-        
-        
         //Details of report
-        
+        function getResultsDetail(session_id) {
+            var resultDetail = results.find(function(result) {
+                return result.session_id === session_id;
+            });
+            return _getQuestionsByTest(resultDetail.test_id).then(function(data) {
+                var trueAnswers = resultDetail.true_answers.split("/").map(Number);
+                var questionsId = resultDetail.questions.split("/").map(Number);
+                var i = 0;
+                resultDetail.questionList = [];
+                angular.forEach(questionsId, function(questionId) {
+                    var question = data.find(function(question) {
+                        return question.question_id === questionId;
+                    });
+                    var answer = trueAnswers[i] === 1 ? "Правильна" : "Неправильна";
+                    questionList.push({question: question, answer: answer});
+                    i++;
+                });
+                return resultDetail;
+            });
+        }
+
         function _getQuestionsByTest(test_id) {
             return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.GET_RECORDS_RANGE_BY_TEST + test_id + "/" + "100" + "/" + "0" + "/")
                 .then(_successCallback, _errorCallback);
