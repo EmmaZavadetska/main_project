@@ -5,10 +5,10 @@
         .factory("reportsService", reportsService);
 
     reportsService.$inject = ["$http", "$q", "BASE_URL", "URL", "groupsService", "studentsService", "testsService",
-        "subjectsService", "schedulesService"];
+        "subjectsService", "schedulesService", "questionsService"];
 
     function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService,
-                            schedulesService) {
+                            schedulesService, questionsService) {
         var results = [];
         var testName = "";
 
@@ -192,7 +192,8 @@
 
         // get questions by Test
         function _getQuestionsByTest(test_id) {
-            return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.GET_RECORDS_RANGE_BY_TEST + test_id + "/" + "100" + "/" + "0" + "/")
+            // return questionsService.getQuestionsByTest(test_id)
+            return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.GET_RECORDS_RANGE_BY_TEST + test_id + "/100/0/")
                 .then(_successCallback, _errorCallback);
         }
 

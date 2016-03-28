@@ -11,6 +11,7 @@
             getQuestionsRange: getQuestionsRange,
             getCountQuestionsByTest: getCountQuestionsByTest,
             getOneQuestion: getOneQuestion,
+            getQuestionsByTest: getQuestionsByTest,
             saveQuestion: saveQuestion,
             removeQuestion: removeQuestion,
             getHeader: getHeader,
@@ -21,6 +22,7 @@
         return service;
 
         function _successCallback(response) {
+            console.log(response);
             return response.data;
         }
 
@@ -57,6 +59,17 @@
                     });
 
             return deferred.promise;
+        }
+
+        function getQuestionsByTest(test_id) {
+            return getCountQuestionsByTest(test_id).then(function(data) {
+                console.log(data);
+                if (data != 0) {
+                    return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.GET_RECORDS_RANGE_BY_TEST + test_id + "/"
+                            + data + "/0/")
+                        .then(_successCallback, _errorCallback);
+                }
+            });
         }
 
         function getOneQuestion(question_id) {
