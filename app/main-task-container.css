@@ -1,3 +1,4 @@
+
 .my-app-name-container h1 small,
 .my-app-name-container h2 small,
 .my-app-name-container h3 small,
@@ -295,6 +296,10 @@
 .my-app-name-container .table tr:hover {
   background-color: #EBD0AD;
 }
+/* buttons in table */
+.my-app-name-container .table .btn {
+  margin-bottom: 4px;
+}
 
 /* panel */
 .my-app-name-container .panel {
@@ -393,6 +398,16 @@
 .my-app-name-container .panel-group .panel {
   border-radius: 0;
 }
+.my-app-name-container .panel-body .btn.btn-danger.pull-right,
+.my-app-name-container .panel-body .btn.btn-info.pull-right {
+  margin-right: 4px;
+}
+.my-app-name-container .panel-primary .btn-file {
+  margin-bottom: 4px;
+}
+.my-app-name-container .panel-primary .panel-heading .row .col-xs-12.col-md-1 .btn-success {
+  margin-bottom: 4px;
+}
 .my-app-name-container .panel .table {
   box-shadow: none; /* shadow */
   border-radius: 0;
@@ -400,9 +415,10 @@
 
 /* form-control */
 .my-app-name-container .form-control {
- border: 1 px solid transparent;
+ border: 1px solid transparent;
  height: 33px;
  border-bottom: 2px solid #03588C;
+ margin-bottom: 10px;
   border-radius: 0;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
 }
