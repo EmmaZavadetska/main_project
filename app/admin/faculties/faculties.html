@@ -15,10 +15,11 @@
             <h3 class="col-xs-12 col-md-6">Факультети:</h3>
         </div>
         <!--SAVE FORM-->
-        <form name="saveForm" class="row" uib-collapse="faculties.saveFormCollapsed" ng-submit="faculties.saveFaculty()">
+        <form name="saveForm" class="row" uib-collapse="faculties.saveFormCollapsed"
+              ng-submit="faculties.saveFaculty()">
             <div class="col-md-3">
                 <input class="form-control" name="facultyName" type="text" ng-model="faculties.faculty.faculty_name"
-                       placeholder="Назва факультету"  ng-minlength="{{faculties.minNameLength}}"
+                       placeholder="Назва факультету" ng-minlength="{{faculties.minNameLength}}"
                        ng-maxlength="{{faculties.maxNameLength}}" required valid-directive>
                 <span ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}}!</span>
                 <span ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}}!</span>
@@ -26,7 +27,8 @@
                 <span ng-show="saveForm.facultyName.$error.alreadyExist && saveForm.facultyName.$dirty"><br>Така назва вже існує!</span>
             </div>
             <div class="col-md-3">
-                <input class="form-control" name="facultyDesc" type="text" ng-model="faculties.faculty.faculty_description"
+                <input class="form-control" name="facultyDesc" type="text"
+                       ng-model="faculties.faculty.faculty_description"
                        placeholder="Опис факультету" required valid-directive>
                 <span ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</span>
                 <span ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</span>
@@ -50,21 +52,26 @@
             <tbody>
             <thead>
             <tr>
-                <th class="clip" class="header" ng-repeat="headerElement in faculties.headElements">{{::headerElement}}</th>
+                <th class="clip" class="header" ng-repeat="headerElement in faculties.headElements">
+                    {{::headerElement}}
+                </th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | orderBy: 'faculty_name' | filter: search">
-                <td class="clip">{{$index + 1}}</td>
-                <td class="clip"><a ui-sref="admin.groupsByEntity({entity: 'faculty', entity_id: faculty.faculty_id})">{{faculty.faculty_name}}</a></td>
+                <td class="clip">{{faculty.faculty_name}}</td>
                 <td class="clip">{{faculty.faculty_description}}</td>
                 <td class="clip">
+                    <button ui-sref="admin.groupsByEntity({entity: 'faculty', entity_id: faculty.faculty_id})"
+                            class="btn btn-info" title="Перейти до груп факультету {{::faculty.faculty_name}}">
+                        <i class="fa fa-list"></i>
+                    </button>
                     <button class="btn btn-warning" ng-click="faculties.showSaveForm(faculty)"
                             title="Редагувати {{::faculty.faculty_name}}">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </button>
-                    <button class="btn btn-danger"  ng-click="faculties.removeFaculty(faculty)"
+                    <button class="btn btn-danger" ng-click="faculties.removeFaculty(faculty)"
                             title="Видалити {{::faculty.faculty_name}}">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
@@ -72,8 +79,18 @@
             </tr>
             </tbody>
         </table>
-        <uib-pagination total-items="faculties.totalItems" ng-change="faculties.pageChanged()"
-                        ng-model="faculties.currentPage" max-size="faculties.maxSize" class="pagination-sm"
-                        boundary-link-numbers="true" rotate="false"></uib-pagination>
+        <div class="my-pagination">
+            <uib-pagination total-items="faculties.totalItems"
+                            ng-change="faculties.pageChanged()"
+                            ng-model="faculties.currentPage"
+                            max-size="faculties.maxSize"
+                            boundary-link-numbers="true"
+                            rotate="false"
+                            first-text="&#xf049;"
+                            previous-text="&#xf048;"
+                            next-text="&#xf051;"
+                            last-text="&#xf050;"
+            ></uib-pagination>
+        </div>
     </div>
 </div>
