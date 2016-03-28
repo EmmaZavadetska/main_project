@@ -52,8 +52,11 @@
             </tbody>
         </table>
 
+        <div class="my-pagination">
         <uib-pagination ng-show="questions.showPagination" total-items="questions.quantityQuestions"
                         ng-change="questions.pageChanged()" ng-model="questions.currentPage" max-size="questions.maxSize"
-                        class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+                        class="pagination-sm" boundary-link-numbers="true" rotate="false"
+                        previous-text="&#xf048;" next-text="&#xf051;"></uib-pagination>
+        </div>
     </div>
 </div>
