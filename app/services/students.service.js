@@ -20,7 +20,7 @@
 
         function getStudentsByGroupId(group_id, currentRecordsRange) {
             var studentsData = $q.defer();
-            $http.get(BASE_URL + URL.ENTITIES.STUDENT + URL.GET_STUDENTS_BY_GROUP + group_id + "/" + PAGINATION.ENTITY_RANGE_ON_PAGE + "/" + currentRecordsRange).then(
+            $http.get(BASE_URL + URL.ENTITIES.STUDENT + URL.GET_STUDENTS_BY_GROUP + group_id + "/" + PAGINATION.ENTITIES_RANGE_ON_PAGE + "/" + currentRecordsRange).then(
                 function (response) {
                     var result = angular.isArray(response.data) ? response.data : [];
                     studentsData.resolve(result);
