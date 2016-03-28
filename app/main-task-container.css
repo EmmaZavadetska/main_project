@@ -1,4 +1,3 @@
-
 .my-app-name-container h1 small,
 .my-app-name-container h2 small,
 .my-app-name-container h3 small,
@@ -573,4 +572,13 @@
  .my-app-name-container .input-group-btn .form-control {
   width: 160px;
  }
+ .my-app-name-container .actionForm .input-group .input-group-btn .form-control {
+  width: 46px;
+ }
+}
+
+/* modal window */
+.modal-open .modal-dialog .modal-content {
+  border: 1px solid transparent;
+  border-radius: 0;
 }
