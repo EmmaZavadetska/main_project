@@ -24,14 +24,14 @@
 
             <div class="navbar-collapse" uib-collapse="navCollapsed">
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-if="header.role==='admin'"><a ui-sref="admin.admins" ng-click="navCollapsed=!navCollapsed">Адміністратори</a></li>
-                    <li ng-if="header.role==='admin'"><a ui-sref="admin.reports" ng-click="navCollapsed=!navCollapsed">Звіти</a></li>
-                    <li ng-if="header.role==='admin'"><a ui-sref="admin.faculties" ng-click="navCollapsed=!navCollapsed">Факультети</a></li>
-                    <li ng-if="header.role==='admin'"><a ui-sref="admin.specialities" ng-click="navCollapsed=!navCollapsed">Спеціальності</a></li>
-                    <li ng-if="header.role==='admin'"><a ui-sref="admin.groups" ng-click="navCollapsed=!navCollapsed">Групи</a></li>
-                    <li ng-if="header.role==='admin'"><a ui-sref="admin.subjects" ng-click="navCollapsed=!navCollapsed">Предмети</a></li>
-                    <li ng-if="header.role!='admin'"><a ui-sref="user.subjects" ng-click="navCollapsed=!navCollapsed">Предмети</a></li>
-                    <li ng-if="header.role!='admin'"><a ui-sref="user.results" ng-click="navCollapsed=!navCollapsed">Результати</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.admins" ng-if="header.role==='admin'">Адміністратори</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.reports" ng-if="header.role==='admin'">Звіти</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.faculties" ng-if="header.role==='admin'">Факультети</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.specialities" ng-if="header.role==='admin'">Спеціальності</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.groups" ng-if="header.role==='admin'">Групи</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.subjects" ng-if="header.role==='admin'">Предмети</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="user.subjects"ng-if="header.role!='admin'">Предмети</a></li>
+                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="user.results" ng-if="header.role!='admin'">Результати</a></li>
                     <li class="visible-xs"><a ui-sref="auth" ng-click="header.logout()">
                         <i class="fa fa-sign-out fa-fw"></i>Вихід</a>
                     </li>

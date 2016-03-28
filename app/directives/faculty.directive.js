@@ -2,11 +2,11 @@
     "use strict";
 
     angular.module("app.admin")
-        .directive("validateDirective", validateDirective);
+        .directive("validDirective", validDirective);
 
-    validateDirective.$inject = ["FACULTIES_CONST", "facultiesService"];
+    validDirective.$inject = ["FACULTIES_CONST", "facultiesService"];
 
-    function validateDirective(FACULTIES_CONST, facultiesService) {
+    function validDirective(FACULTIES_CONST, facultiesService) {
         var all;
         getFaculties();
 
