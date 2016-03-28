@@ -60,6 +60,11 @@
                 templateUrl: "app/admin/reports/reports.html",
                 controller: "ReportsController as reports"
             })
+            .state("admin.reportDetails", {
+                url: "/reports/{session_id:int}/{student_id:int}/{test_id:int}",
+                templateUrl: "app/admin/reports/report-details/report-details.html",
+                controller: "ReportDetailsController as details"
+            })
             .state("admin.specialities", {
                 url: "/specialities",
                 templateUrl: "app/admin/specialities/specialities.html",

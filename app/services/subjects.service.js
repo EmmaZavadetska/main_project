@@ -38,6 +38,11 @@
                 .then(_successCallback, _errorCallback);
         }
 
+        function getAllSubjects(){
+            return $http.get(BASE_URL + URL.ENTITIES.SUBJECT + URL.GET_ENTITIES)
+                .then(_successCallback, _errorCallback);
+        }
+
         function getSubjects(currentRecordsRange){
             return $http.get(BASE_URL + URL.ENTITIES.SUBJECT + URL.GET_ENTITY_RANGE + PAGINATION.ENTITIES_RANGE_ON_PAGE + "/" + currentRecordsRange)
                 .then(_successCallback, _errorCallback);
