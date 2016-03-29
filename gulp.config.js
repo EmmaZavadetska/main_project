@@ -11,7 +11,7 @@ module.exports = function() {
                 BASE_URL: "http://dtapi.local/"
             },
             production: {
-                BASE_URL: "http://dtapi.local/"
+                BASE_URL: "http://ec2-54-69-82-91.us-west-2.compute.amazonaws.com/"
             },
             src: temp + "js/config.js"
         },
