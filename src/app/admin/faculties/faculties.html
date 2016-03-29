@@ -33,8 +33,6 @@
                 <span ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</span>
                 <span ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</span>
                 <span ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</span>
-                <span ng-show="saveForm.facultyDesc.$error.alreadyExist && saveForm.facultyDesc.$dirty"><br>Такий опис вже існує!</span>
-
             </div>
             <div class="col-md-6 pull-right">
                 <button type="submit" class="btn btn-success" title="Зберегти" ng-disabled="saveForm.$invalid">
