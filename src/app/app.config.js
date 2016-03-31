@@ -116,9 +116,9 @@
                 controller: "UserSubjectsController as subjects"
             })
             .state("user.tests", {
-                url: "/user/subjects/{subject_id:int}/tests",
-                templateUrl: "app/user/subjects/tests/user-tests.html",
-                controller: "UserTestsController as tests"
+                url: "/user/subjects/{subject_id:int}/test-player",
+                templateUrl: "app/user/subjects/test-player/test-player.html",
+                controller: "TestPlayerController as testPlayer"
             })
             .state("user.results", {
                 url: "/user/results",
