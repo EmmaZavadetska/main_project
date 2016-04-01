@@ -20,7 +20,7 @@
         }
 
         function checkResponse (data) {
-            if (data.response === "ok" && data.roles[1] === "admin")zz {
+            if (data.response === "ok" && data.roles[1] === "admin") {git 
                 $state.go("admin");
             } else if (data.response === "ok" && data.roles[1] === "student") {
                 $state.go("user");
