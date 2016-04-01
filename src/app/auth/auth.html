@@ -10,20 +10,18 @@
                     <p class="alert-warning" ng-show="authform.username.$error.required || authform.password.$error.required">All fields are required! </p>
                     <input type="text" name="username" class="auth-input-element form-control" placeholder="Username" required
                            ng-model="auth.credentials.username"
-                           ng-minlength="5" ng-maxlength="20">
+                           ng-maxlength="20">
                     <p class="alert-warning" ng-show="authform.username.$error.maxlength">Max length 20 symbols!</p>
                     <p class="alert-warning" ng-show="authform.username.$error.minlength">Min length 5 symbols!</p>
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" class="auth-input-element form-control" placeholder="Password" required
                            ng-model="auth.credentials.password"
-                           ng-minlength="4" ng-maxlength="30">
+                           ng-maxlength="30">
                     <p class="alert-warning" ng-show="authform.password.$error.maxlength">Password is too long!</p>
-                    <p class="alert-warning" ng-show="authform.password.$error.minlength">Min length 4 symbols!</p>
-
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="auth-input-element btn btn-default  btn-block">Log in</button>
+                    <button type="submit" class="auth-input-element btn btn-default  btn-block" ng-disabled="authform.$invalid">Log in</button>
                 </div>
             </form>
         </div>
