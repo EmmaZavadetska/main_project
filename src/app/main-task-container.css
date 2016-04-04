@@ -582,3 +582,22 @@
   border: 1px solid transparent;
   border-radius: 0;
 }
+/* select material */
+.my-app-name-container .panel-heading .form-control {
+  width: 100%;
+  -webkit-appearance: none;
+  background-image: url('../images/arrow.png');
+  background-position: right center;
+  background-repeat: no-repeat;
+  line-height: 1em;
+  /* for FF */
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  /* for IE */
+  -ms-appearance: none;
+  appearance: none !important;
+}
+.my-app-name-container .panel-heading .form-control select::-ms-expand {
+  display: none;
+}
