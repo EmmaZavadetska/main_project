@@ -32,6 +32,7 @@
             COUNT_TEST_PASSES_BY_STUDENT: "/countTestPassesByStudent/",
             EDIT_ENTITY: "/update/",
             GET_ANSWERS_BY_QUESTION: "/getAnswersByQuestion/",
+            GET_DATA: "/getData/",
             GET_ENTITY_RANGE: "/getRecordsRange/",
             GET_ENTITIES: "/getRecords/",
             GET_RESULTS_BY_STUDENT: "/getRecordsByStudent/",
@@ -45,7 +46,8 @@
             GET_GROUPS_BY_SPECIALITY: "/getGroupsBySpeciality/",
             GET_SCHEDULE_FOR_GROUP: "/getTimeTablesForGroup/",
             GET_SCHEDULE_FOR_SUBJECT: "/getTimeTablesForSubject/",
-            REMOVE_ENTITY: "/del/"
+            REMOVE_ENTITY: "/del/",
+            SAVE_DATA: "/saveData/"
         })
 
         .constant("PAGINATION", {

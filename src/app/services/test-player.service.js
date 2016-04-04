@@ -8,8 +8,7 @@
 
     function testPlayerService($http, $q, BASE_URL, URL, testsService) {
         var service = {
-            getTestsBySubject: getTestsBySubject,
-            getTest: getTest,
+            getData: getData,
             finishTest: finishTest
         };
 
@@ -21,10 +20,6 @@
 
         function _errorCallback(response) {
             return response;
-        }
-
-        function getTestsBySubject(subject_id) {
-            return testsService.getTestsBySubject(subject_id).then(_successCallback, _errorCallback);
         }
 
         function _getTestDetailsByTest(test_id) {
@@ -79,7 +74,7 @@
             return deferred.promise;
         }
 
-        function getTest(test_id) {
+        function _getTest(test_id) {
             return _getTestDetailsByTest(test_id).then(function (arrayTestDetails) {
                 return _getQuestionsForTest(test_id, arrayTestDetails).then(function (questionsList) {
                     return _getAnswersForQuestions(questionsList).then(function (answersList) {
@@ -89,13 +84,31 @@
                             var questionPosition = questionsList.map(function(item) { return item.question_id; }).indexOf(question_id);
                             test[questionPosition].answers = answersList[(test[questionPosition]).question_id];
                         });
-
+                        _saveData(test).then(_successCallback, _errorCallback);
                         return test;
                     })
                 })
             });
         }
 
+        function _saveData(test) {
+            return $http.post(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.SAVE_DATA, test)
+                .then(function(response) {
+                    return response.data;
+                }, _errorCallback);
+        }
+
+        function getData(test_id) {
+            return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_DATA)
+                .then(function(response) {
+                    return response.data;
+                }, function(response) {
+                    return _getTest(test_id).then(function(data) {
+                        return data;
+                    });
+                });
+        }
+        
         function finishTest(test) {
             var checkAnswers = [];
             angular.forEach(test, function(question) {

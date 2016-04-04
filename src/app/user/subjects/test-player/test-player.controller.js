@@ -18,21 +18,15 @@
         }
         
         function getTest() {
-            return testPlayerService.getTest($stateParams.test_id).then(function(response) {
+            return testPlayerService.getData($stateParams.test_id).then(function(response) {
                 console.log(response);
                 vm.test = response;
                 vm.question = vm.test[0];
             });
         }
         
-        function getTestsBySubject() {
-            return testPlayerService.getTestsBySubject($stateParams.subject_id).then(function(response) {
-                console.log(response);
-            });
-        }
-
         function showQuestion(question) {
-            console.log(question);
+            // console.log(question);
             vm.question = question;
         }
 
