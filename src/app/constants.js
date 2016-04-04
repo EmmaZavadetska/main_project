@@ -20,10 +20,13 @@
                 ANSWER: "answer",
                 RESULT: "result",
                 ADMINS: "AdminUser",
-                TIME_TABLE: "timeTable"
+                TIME_TABLE: "timeTable",
+                TEST_PLAYER: "TestPlayer",
+                SANSWER: "SAnswer"
             },
 
             ADD_ENTITY: "/insertData/",
+            CHECK_ANSWERS: "/checkAnswers/",
             COUNT_ENTITY: "/countRecords/",
             COUNT_RECORDS_BY_TEST: "/countRecordsByTest/",
             COUNT_TEST_PASSES_BY_STUDENT: "/countTestPassesByStudent/",
@@ -36,6 +39,7 @@
             GET_STUDENTS_BY_GROUP: "/getStudentsByGroup/",
             GET_TEST_BY_SUBJECT: "/getTestsBySubject/",
             GET_TEST_DETAILS: "/getTestDetailsByTest/",
+            GET_TIME_STAMP: "getTimeStamp",
             GET_QUESTIONS_BY_LEVEL_RAND: "/getQuestionsByLevelRand/",
             GET_GROUPS_BY_FACULTY: "/getGroupsByFaculty/",
             GET_GROUPS_BY_SPECIALITY: "/getGroupsBySpeciality/",
