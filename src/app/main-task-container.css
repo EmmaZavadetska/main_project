@@ -598,6 +598,3 @@
   -ms-appearance: none;
   appearance: none !important;
 }
-.my-app-name-container .panel-heading .form-control select::-ms-expand {
-  display: none;
-}
