@@ -9,7 +9,9 @@
     function testPlayerService($http, $q, BASE_URL, URL, testsService) {
         var service = {
             getData: getData,
-            finishTest: finishTest
+            finishTest: finishTest,
+            getTestInfo: getTestInfo,
+            getTimeStamp: getTimeStamp
         };
 
         return service;
@@ -22,8 +24,13 @@
             return response;
         }
 
+
+        function getTestInfo(test_id) {
+            return testsService.getOneTest(test_id).then(_successCallback, _errorCallback);
+        }
+
         function _getTestDetailsByTest(test_id) {
-            return  testsService.getTestLevel(test_id).then(_successCallback, _errorCallback);
+            return testsService.getTestLevel(test_id).then(_successCallback, _errorCallback);
         }
 
         function _getQuestionsForTest(test_id, arrayTestDetails) {
@@ -61,7 +68,7 @@
                     if (!AnswersByQuestion.data.response) {
                         var i = +(AnswersByQuestion.data[0]).question_id;
                         answersList[i] = AnswersByQuestion.data;
-                        angular.forEach(answersList[i], function(answer) {
+                        angular.forEach(answersList[i], function (answer) {
                             answer.checked = false;
                         });
                     }
@@ -79,43 +86,45 @@
                 return _getQuestionsForTest(test_id, arrayTestDetails).then(function (questionsList) {
                     return _getAnswersForQuestions(questionsList).then(function (answersList) {
                         var test = questionsList;
-                        angular.forEach(answersList, function(item) {
+                        angular.forEach(answersList, function (item) {
                             var question_id = item[0].question_id;
-                            var questionPosition = questionsList.map(function(item) { return item.question_id; }).indexOf(question_id);
+                            var questionPosition = questionsList.map(function (item) {
+                                return item.question_id;
+                            }).indexOf(question_id);
                             test[questionPosition].answers = answersList[(test[questionPosition]).question_id];
                         });
                         _saveData(test).then(_successCallback, _errorCallback);
                         return test;
-                    })
-                })
+                    });
+                });
             });
         }
 
         function _saveData(test) {
             return $http.post(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.SAVE_DATA, test)
-                .then(function(response) {
+                .then(function (response) {
                     return response.data;
                 }, _errorCallback);
         }
 
         function getData(test_id) {
             return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_DATA)
-                .then(function(response) {
+                .then(function (response) {
                     return response.data;
-                }, function(response) {
-                    return _getTest(test_id).then(function(data) {
+                }, function (response) {
+                    return _getTest(test_id).then(function (data) {
                         return data;
                     });
                 });
         }
-        
+
         function finishTest(test) {
             var checkAnswers = [];
-            angular.forEach(test, function(question) {
+            angular.forEach(test, function (question) {
                 var checkQuestion = {};
                 checkQuestion.question_id = question.question_id;
                 checkQuestion.answer_ids = [];
-                angular.forEach(question.answers, function(answer) {
+                angular.forEach(question.answers, function (answer) {
                     if (answer.checked === true) {
                         checkQuestion.answer_ids.push(answer.answer_id);
                     }
@@ -131,7 +140,14 @@
 
         function _checkAnswers(answers) {
             return $http.post(BASE_URL + URL.ENTITIES.SANSWER + URL.CHECK_ANSWERS, answers)
-                .then(function(response) {
+                .then(function (response) {
+                    return response.data;
+                }, _errorCallback);
+        }
+
+        function getTimeStamp() {
+            return $http.post(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_TIME_STAMP)
+                .then(function (response) {
                     return response.data;
                 }, _errorCallback);
         }

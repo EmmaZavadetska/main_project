@@ -15,6 +15,7 @@
 
         function activate() {
             getTest();
+            getTestInfo();
         }
         
         function getTest() {
@@ -24,14 +25,20 @@
                 vm.question = vm.test[0];
             });
         }
-        
+
+        function getTestInfo() {
+            return testPlayerService.getTestInfo($stateParams.test_id).then(function(response) {
+                console.log(response);
+                vm.testInfo = response[0];
+            });
+        }
+
         function showQuestion(question) {
-            // console.log(question);
             vm.question = question;
         }
 
         function finishTest() {
-            testPlayerService.finishTest(vm.test).then(function(response) {
+            return testPlayerService.finishTest(vm.test).then(function(response) {
                 console.log(response);
             });
         }

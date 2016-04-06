@@ -40,7 +40,7 @@
             GET_STUDENTS_BY_GROUP: "/getStudentsByGroup/",
             GET_TEST_BY_SUBJECT: "/getTestsBySubject/",
             GET_TEST_DETAILS: "/getTestDetailsByTest/",
-            GET_TIME_STAMP: "getTimeStamp",
+            GET_TIME_STAMP: "/getTimeStamp/",
             GET_QUESTIONS_BY_LEVEL_RAND: "/getQuestionsByLevelRand/",
             GET_GROUPS_BY_FACULTY: "/getGroupsByFaculty/",
             GET_GROUPS_BY_SPECIALITY: "/getGroupsBySpeciality/",
@@ -88,5 +88,7 @@
             DEL_CONFIRM: "Ви підтверджуєте видалення? Дію неможливо відмінити",
             DEL_SUCCESS: "Видалення успішне",
             DEL_ERROR:"Помилка видалення"
-        });
+        })
+        
+        .constant("TIME_DELAY", 3);
 })();
