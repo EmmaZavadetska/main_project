@@ -13,7 +13,7 @@
                 finishTest: "&"
             },
             link: function(scope, element) {
-                scope.$watch('duration', function() {
+                scope.$watch("duration", function() {
                     if (scope.duration === undefined) {
                         element.html("00:00:00");
                     } else {
