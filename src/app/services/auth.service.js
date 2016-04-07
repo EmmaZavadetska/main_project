@@ -7,6 +7,7 @@
     authService.$inject = ["$http", "BASE_URL","URL"];
 
     function authService ($http, BASE_URL, URL) {
+        
         var service = {
             login: login,
             isLogged: isLogged,
@@ -31,7 +32,6 @@
             return $http.get (BASE_URL + URL.IS_LOGGED)
                 .then(function (res){
                         if(res.data.response === "logged") {
-
                             return res.data;
                         }
                     },

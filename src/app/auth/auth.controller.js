@@ -20,12 +20,12 @@
         }
 
         function checkResponse (data) {
-            if (data.response === "ok" && data.roles[1] === "admin") {git 
+            if (data.response === "ok" && data.roles[1] === "admin") {
                 $state.go("admin");
             } else if (data.response === "ok" && data.roles[1] === "student") {
                 $state.go("user");
             } else {
-                vm.isCollapsed = false;
+                vm.isCollapsed = false; 
             }
         }
     }
