@@ -55,7 +55,7 @@
                 vm.subject = {};
             })
         }
-
+ 
         function showForm(subject) {
             vm.formCollapsed = false;
             if (subject === undefined) {

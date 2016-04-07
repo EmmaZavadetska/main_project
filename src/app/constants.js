@@ -20,7 +20,8 @@
                 ANSWER: "answer",
                 RESULT: "result",
                 ADMINS: "AdminUser",
-                TIME_TABLE: "timeTable"
+                TIME_TABLE: "timeTable",
+                ENTITY_MANAGER: "EntityManager"
             },
 
             ADD_ENTITY: "/insertData/",
@@ -31,6 +32,7 @@
             GET_ANSWERS_BY_QUESTION: "/getAnswersByQuestion/",
             GET_ENTITY_RANGE: "/getRecordsRange/",
             GET_ENTITIES: "/getRecords/",
+            GET_ENTITY_VALUES: "/getEntityValues/",
             GET_RESULTS_BY_STUDENT: "/getRecordsByStudent/",
             GET_RECORDS_RANGE_BY_TEST: "/getRecordsRangeByTest/",
             GET_STUDENTS_BY_GROUP: "/getStudentsByGroup/",
