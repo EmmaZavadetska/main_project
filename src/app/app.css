@@ -92,3 +92,7 @@ header .navbar-text.navbar-right a:active  {
 .panel .panel-heading h3 {
     padding-left: 15px;
 }
+/*  For buttons of testplayer  */
+.panel-heading .btn-toolbar .btn {
+    margin-bottom: 5px;
+}

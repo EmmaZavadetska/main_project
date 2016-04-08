@@ -21,15 +21,19 @@
                 RESULT: "result",
                 ADMINS: "AdminUser",
                 TIME_TABLE: "timeTable",
-                ENTITY_MANAGER: "EntityManager"
+                ENTITY_MANAGER: "EntityManager",
+                TEST_PLAYER: "TestPlayer",
+                SANSWER: "SAnswer"
             },
 
             ADD_ENTITY: "/insertData/",
+            CHECK_ANSWERS: "/checkAnswers/",
             COUNT_ENTITY: "/countRecords/",
             COUNT_RECORDS_BY_TEST: "/countRecordsByTest/",
             COUNT_TEST_PASSES_BY_STUDENT: "/countTestPassesByStudent/",
             EDIT_ENTITY: "/update/",
             GET_ANSWERS_BY_QUESTION: "/getAnswersByQuestion/",
+            GET_DATA: "/getData/",
             GET_ENTITY_RANGE: "/getRecordsRange/",
             GET_ENTITIES: "/getRecords/",
             GET_ENTITY_VALUES: "/getEntityValues/",
@@ -38,12 +42,14 @@
             GET_STUDENTS_BY_GROUP: "/getStudentsByGroup/",
             GET_TEST_BY_SUBJECT: "/getTestsBySubject/",
             GET_TEST_DETAILS: "/getTestDetailsByTest/",
+            GET_TIME_STAMP: "/getTimeStamp/",
             GET_QUESTIONS_BY_LEVEL_RAND: "/getQuestionsByLevelRand/",
             GET_GROUPS_BY_FACULTY: "/getGroupsByFaculty/",
             GET_GROUPS_BY_SPECIALITY: "/getGroupsBySpeciality/",
             GET_SCHEDULE_FOR_GROUP: "/getTimeTablesForGroup/",
             GET_SCHEDULE_FOR_SUBJECT: "/getTimeTablesForSubject/",
-            REMOVE_ENTITY: "/del/"
+            REMOVE_ENTITY: "/del/",
+            SAVE_DATA: "/saveData/"
         })
 
         .constant("PAGINATION", {
@@ -84,5 +90,7 @@
             DEL_CONFIRM: "Ви підтверджуєте видалення? Дію неможливо відмінити",
             DEL_SUCCESS: "Видалення успішне",
             DEL_ERROR:"Помилка видалення"
-        });
+        })
+        
+        .constant("TIME_DELAY", 3);
 })();
