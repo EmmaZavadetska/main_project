@@ -17,7 +17,7 @@
                                ng-keyup="groups.checkForError()">
                     </div>
                     <div class="col-md-4" ng-if="!groups.hideSelect">
-                        <select class="form-control"
+                        <select class="form-control select"
                                 ng-model="groups.selectedFaculty"
                                 ng-options="faculty.faculty_id as faculty.faculty_name for faculty in groups.faculties"
                                 ng-click="groups.getGroupsByFaculty(groups.selectedFaculty)">
@@ -25,7 +25,7 @@
                         </select>
                     </div>
                     <div class="col-md-4" ng-if="!groups.hideSelect">
-                        <select class="form-control"
+                        <select class="form-control select"
                                 ng-model="groups.selectedSpeciality"
                                 ng-options="speciality.speciality_id as speciality.speciality_name for speciality in groups.specialities"
                                 ng-click="groups.getGroupsBySpeciality(groups.selectedSpeciality)">
@@ -59,7 +59,7 @@
                             </button>
                         </div>
                         <div class="col-md-10 form-group">
-                            <select class="form-control"
+                            <select class="form-control select"
                                     name="facultyName"
                                     ng-model="groups.group.faculty_id"
                                     ng-options="faculty.faculty_id as faculty.faculty_name for faculty in groups.faculties">
@@ -70,7 +70,7 @@
                             </span>
                         </div>
                         <div class="col-md-10 form-group">
-                            <select class="form-control"
+                            <select class="form-control select"
                                     name="specialityName"
                                     ng-model="groups.group.speciality_id"
                                     ng-options="speciality.speciality_id as speciality.speciality_name for speciality in groups.specialities">

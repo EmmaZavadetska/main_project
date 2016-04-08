@@ -312,6 +312,9 @@
 .my-app-name-container .panel-heading {
   border-radius: 0;
 }
+.my-app-name-container .panel-primary > .panel-heading {
+  background-color: #03588C;
+}
 .my-app-name-container .panel-footer {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -471,7 +474,13 @@
     border-radius: 0;
   }
 }
-
+.my-app-name-container .navbar-inverse .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.my-app-name-container .navbar-text,
+.my-app-name-container .navbar-inverse .navbar-text  {
+  color: #FFFFFF;
+}
 /* navbar-default */
 .my-app-name-container .navbar-default {
   border-color: transparent;
@@ -583,12 +592,14 @@
   border-radius: 0;
 }
 /* select material */
-.my-app-name-container .panel-heading .form-control {
+.my-app-name-container .panel-heading .form-control.select,
+.my-app-name-container #group {
   width: 100%;
   -webkit-appearance: none;
   background-image: url('../images/arrow.png');
   background-position: right center;
   background-repeat: no-repeat;
+  cursor: pointer;
   line-height: 1em;
   /* for FF */
   -moz-appearance: none;
@@ -597,4 +608,8 @@
   /* for IE */
   -ms-appearance: none;
   appearance: none !important;
+}
+
+.my-app-name-container #group  {
+  background-image: url('../images/arrow.png');
 }
