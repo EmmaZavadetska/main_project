@@ -1,6 +1,6 @@
 <div class="input-group">
     <input type="text"
-           class="form-control"
+           class="form-control my-date-picker"
            uib-datepicker-popup=""
            ng-model="ngModel"
            is-open="opened"
@@ -9,7 +9,9 @@
            datepicker-options="dateOptions"
            date-disabled="disabled(date, mode)"
            ng-required="true"
-           close-text="Close" />
+           close-text="Відмінити"
+           current-text="Сьогодні"
+           clear-text="Очистити" />
     <span class="input-group-btn">
         <button class="form-control" ng-click="open($event)">
             <i class="fa fa-calendar"></i>

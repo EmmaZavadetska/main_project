@@ -4,9 +4,9 @@
     angular.module("app.admin.groups")
         .controller("GroupsController", GroupsController);
 
-    GroupsController.$inject = ['groupsService', 'specialitiesService', 'facultiesService', 'PAGINATION', 'MESSAGE', '$stateParams'];
+    GroupsController.$inject = ['groupsService', 'specialitiesService', 'facultiesService', 'PAGINATION', 'MESSAGE', '$stateParams', 'customDialog'];
 
-    function GroupsController(groupsService, specialitiesService, facultiesService, PAGINATION, MESSAGE, $stateParams) {
+    function GroupsController(groupsService, specialitiesService, facultiesService, PAGINATION, MESSAGE, $stateParams, customDialog) {
         var vm = this;
         vm.showError = false;                                    // responsible for showing Error message if no group is found
         vm.showFilterOverAction = true;                          // responsible for showing filter or action (create, update) panel
@@ -25,20 +25,22 @@
         }
         // delete group
         vm.removeGroup = function(group) {
-            var ask = confirm(MESSAGE.DEL_CONFIRM);
-            if (ask) {
+            customDialog.openDeleteDialog(group.group_name).then(function() {
                 groupsService.removeGroup(group.group_id).then(function(data) {
                     data.response.indexOf('error') !== -1 ? alert(MESSAGE.SAVE_ERROR) : console.log(MESSAGE.DEL_SUCCESS);
                     activate();
                 })
-            }
+            });
+            // }
         };
         // update or create group
         vm.saveGroup = function() {
-            groupsService.saveGroup(vm.group).then(function(data) {
-                vm.toggleFilterAction();
-                activate();
-            })
+            customDialog.openConfirmationDialog().then(function() {
+                groupsService.saveGroup(vm.group).then(function(data) {
+                    vm.toggleFilterAction();
+                    activate();
+                })
+            });
         };
         // get all the groups from chosen faculty (if faculty is not chosen, get all the groups from database)
         vm.getGroupsByFaculty = function(f_id) {

@@ -20,7 +20,7 @@
                         <select class="form-control"
                                 ng-model="groups.selectedFaculty"
                                 ng-options="faculty.faculty_id as faculty.faculty_name for faculty in groups.faculties"
-                                ng-click="groups.getGroupsByFaculty(groups.selectedFaculty)">
+                                ng-change="groups.getGroupsByFaculty(groups.selectedFaculty)">
                             <option value="">Виберіть факультет</option>
                         </select>
                     </div>
@@ -28,7 +28,7 @@
                         <select class="form-control"
                                 ng-model="groups.selectedSpeciality"
                                 ng-options="speciality.speciality_id as speciality.speciality_name for speciality in groups.specialities"
-                                ng-click="groups.getGroupsBySpeciality(groups.selectedSpeciality)">
+                                ng-change="groups.getGroupsBySpeciality(groups.selectedSpeciality)">
                             <option value="">Виберіть спецальність</option>
                         </select>
                     </div>
