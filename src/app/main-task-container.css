@@ -625,3 +625,13 @@
 .my-app-name-container .uib-datepicker-popup.dropdown-menu{
   color: #000000;
 }
+.my-app-name-container .uib-datepicker-popup .btn-group .btn, 
+.my-app-name-container .uib-datepicker-popup .btn.btn-success{
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.my-app-name-container .uib-datepicker-popup .btn-danger {
+  margin-left: 5px;
+}
