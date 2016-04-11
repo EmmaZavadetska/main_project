@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <select class="form-control" name="selectedSubject" ng-model="reports.report.selectedSubject"
+                    <select class="form-control select" name="selectedSubject" ng-model="reports.report.selectedSubject"
                             ng-options="subject as subject.subject_name for subject in reports.subjectsList"
                             ng-change="reports.updateSelectpickerBySubject()" required>
                         <option value="">Виберіть назву предмету</option>
@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <select class="form-control" name="selectedGroup" ng-model="reports.report.selectedGroup"
+                    <select class="form-control select" name="selectedGroup" ng-model="reports.report.selectedGroup"
                             ng-options="group as group.group_name for group in reports.groupsList" required>
                         <option value="">Виберіть групу</option>
                     </select>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <select class="form-control" name="selectedTest" ng-model="reports.report.selectedTest"
+                    <select class="form-control select" name="selectedTest" ng-model="reports.report.selectedTest"
                             ng-options="test as test.test_name for test in reports.testsList" required>
                         <option value="">Виберіть назву тесту</option>
                     </select>

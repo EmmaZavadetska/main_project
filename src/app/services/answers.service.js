@@ -71,7 +71,7 @@
 
             return ["Зображення", "Текст відповіді", "Правильність"];
         }
-
+ 
         function getTypeOfAnswer() {
 
             return [{name: "Невірно", value: "0"}, {name: "Вірно", value: "1"}];

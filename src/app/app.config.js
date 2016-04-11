@@ -111,17 +111,17 @@
                 controller: "HomeUserController as user"
             })
             .state("user.subjects", {
-                url: "/user/subjects",
+                url: "/subjects",
                 templateUrl: "app/user/subjects/user-subjects.html",
                 controller: "UserSubjectsController as subjects"
             })
-            .state("user.tests", {
-                url: "/user/subjects/{subject_id:int}/test-player",
+            .state("user.testPlayer", {
+                url: "/subjects/test-player/{test_id:int}",
                 templateUrl: "app/user/subjects/test-player/test-player.html",
                 controller: "TestPlayerController as testPlayer"
             })
             .state("user.results", {
-                url: "/user/results",
+                url: "/results",
                 templateUrl: "app/user/results/user-results.html",
                 controller: "UserResultsController as results"
             })

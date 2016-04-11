@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="row">{{subjects.currentUser.student_name}} {{subjects.currentUser.student_surname}}</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            <thead>
+            <tr>
+                <th class="clip" class="header" ng-repeat="headerElement in subjects.headElements">{{::headerElement}}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="subject in subjects.list | orderBy:'+event_date'">
+                <td>{{::subject.subject_name}}</td>
+                <td>{{::subject.event_date | date: "dd MMMM yyyy"}}</td>
+                <td class="pull-right">
+                    <button class="btn btn-info" ng-disabled="!subject.enabled" ng-click="subjects.showAvailableTests(subject)"
+                            title="Розпочати тестування"><i class="fa fa-hourglass-start"></i> Пройти тест
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
