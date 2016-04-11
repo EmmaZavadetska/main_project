@@ -17,7 +17,7 @@
             <div class="col-md-3" ng-if="schedules.subject">
                 <select ng-options="group.group_id as group.group_name for group in schedules.groups"
                         ng-model="schedules.schedule.group_id"
-                        class="form-control"
+                        class="form-control select"
                         name="groupName">
                     <option value=""> Виберіть групу </option>
                 </select>
@@ -26,7 +26,7 @@
             <div class="col-md-3" ng-if="schedules.group">
                 <select ng-options="subject.subject_id as subject.subject_name for subject in schedules.subjects"
                         ng-model="schedules.schedule.subject_id"
-                        class="form-control"
+                        class="form-control select"
                         name="subjectName">
                     <option value=""> Виберіть предмет </option>
                 </select>

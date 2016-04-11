@@ -31,7 +31,6 @@
                     activate();
                 })
             });
-            // }
         };
         // update or create group
         vm.saveGroup = function() {
