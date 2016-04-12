@@ -2,12 +2,20 @@
 
 <div class="container">
     <div ui-view>
-        <table class="table table-striped">
-            <caption>Статистика системи</caption>
-            <tr ng-repeat="stat in admin.statistics">
-                <td>Зареєстровано {{::stat.title}}</td>
-                <td>{{::stat.count}}</td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <button class="btn btn-primary btn-block" ui-sref="admin.admins">Адміністратори</button>
+                <button class="btn btn-primary btn-block" ui-sref="admin.reports">Сформувати результати</button>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <table class="table table-striped">
+                    <caption>Статистика системи</caption>
+                    <tr ng-repeat="stat in admin.statistics">
+                        <td>Зареєстровано {{::stat.title}}</td>
+                        <td>{{::stat.count}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

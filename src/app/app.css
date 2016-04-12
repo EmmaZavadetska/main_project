@@ -1,4 +1,4 @@
-/*Style and alignment login form*/
+/*  Style and alignment login form  */
 html, body, body>div, .auth-container{
     height: 100%;
 }
@@ -28,28 +28,10 @@ html, body, body>div, .auth-container{
     margin: 5px 0;
     padding: 5px;
 }
-/*Style admin navbar*/
-header .container .row span{
-    font-size: 11px;
-    margin-top: 8px;
-    margin-bottom: 5px;
-}
-header .container .row span a {
-    margin-right: 45px;
-}
+/*  For navbar  */
 header .navbar-header .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
-}
-header .navbar-text.navbar-right a {
-    color: #9d9496;
-    text-decoration: none;
-}
-header .navbar-text.navbar-right a:hover {
-    color: #FFFFFF;
-}
-header .navbar-text.navbar-right a:active  {
-    color: #FFFFFF;
 }
 /*  For form validation of specialities  */
 .specialities input.ng-invalid,
@@ -60,7 +42,7 @@ header .navbar-text.navbar-right a:active  {
 .admins input.ng-valid {
     background-color: #fff;
 }
-/* For image load button */
+/*  For image load button  */
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -88,7 +70,7 @@ header .navbar-text.navbar-right a:active  {
 .panel .panel-heading h4 {
     padding-left: 10px;
 }
-/*  alignment title in panel heading with tbody */
+/*  alignment title in panel heading with tbody  */
 .panel .panel-heading h3 {
     padding-left: 15px;
 }

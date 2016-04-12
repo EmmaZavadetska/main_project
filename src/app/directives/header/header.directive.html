@@ -1,15 +1,6 @@
 <header>
     <nav class="navbar navbar-inverse">
         <div class="container">
-            <div class="row hidden-xs">
-                <span class="navbar-text navbar-left">D-Tester</span>
-                <span class="navbar-text">Hello, {{header.username}}</span>
-                <span class="navbar-text navbar-right">
-                    <a ng-click="header.logout()" ui-sref="auth">
-                        <i class="fa fa-sign-out fa-fw"></i>Вихід</a>
-                </span>
-            </div>
-
             <div class="navbar-header">
                 <a class="navbar-brand" ui-sref="admin" ng-click="navCollapsed=true">
                     <img class="img-responsive" src="images/logo.png" alt="D-Tester"/>
@@ -24,16 +15,33 @@
 
             <div class="navbar-collapse" uib-collapse="navCollapsed">
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.admins" ng-if="header.role==='admin'">Адміністратори</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.reports" ng-if="header.role==='admin'">Звіти</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.faculties" ng-if="header.role==='admin'">Факультети</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.specialities" ng-if="header.role==='admin'">Спеціальності</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.groups" ng-if="header.role==='admin'">Групи</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="admin.subjects" ng-if="header.role==='admin'">Предмети</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="user.subjects"ng-if="header.role!='admin'">Предмети</a></li>
-                    <li ng-click="navCollapsed=!navCollapsed"><a ui-sref="user.results" ng-if="header.role!='admin'">Результати</a></li>
-                    <li class="visible-xs"><a ui-sref="auth" ng-click="header.logout()">
-                        <i class="fa fa-sign-out fa-fw"></i>Вихід</a>
+                    <li ng-click="navCollapsed=!navCollapsed">
+                        <a ui-sref="admin.faculties" ng-if="header.role==='admin'">Факультети</a>
+                    </li>
+                    <li ng-click="navCollapsed=!navCollapsed">
+                        <a ui-sref="admin.specialities" ng-if="header.role==='admin'">Спеціальності</a>
+                    </li>
+                    <li ng-click="navCollapsed=!navCollapsed">
+                        <a ui-sref="admin.groups" ng-if="header.role==='admin'">Групи</a>
+                    </li>
+                    <li ng-click="navCollapsed=!navCollapsed">
+                        <a ui-sref="admin.subjects" ng-if="header.role==='admin'">Предмети</a>
+                    </li>
+                    <li ng-click="navCollapsed=!navCollapsed">
+                        <a ui-sref="user.subjects" ng-if="header.role==='student'">Предмети</a>
+                    </li>
+                    <li ng-click="navCollapsed=!navCollapsed">
+                        <a ui-sref="user.results" ng-if="header.role==='student'">Результати</a>
+                    </li>
+                    <li uib-dropdown on-toggle="toggled(open)">
+                        <span uib-dropdown-toggle>{{header.username}} <span class="caret"></span></span>
+                        <ul class="dropdown-menu" uib-dropdown-menu>
+                            <li>
+                                <a ui-sref="auth" ng-click="header.logout()">
+                                    <i class="fa fa-sign-out fa-fw"></i>Вихід
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
