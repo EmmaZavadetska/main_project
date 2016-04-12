@@ -50,7 +50,9 @@
 
         function getOneSubject(id) {
             return $http.get(BASE_URL + URL.ENTITIES.SUBJECT + URL.GET_ENTITIES + id)
-                .then(_successCallback, _errorCallback);
+                .then((function(result) {
+                    return result.data[0];
+                }), _errorCallback);
         }
 
         function totalItems(){

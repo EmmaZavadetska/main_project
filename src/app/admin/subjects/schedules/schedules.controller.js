@@ -19,14 +19,14 @@
                 vm.schedule.group_id = vm.entity_id;
                 groupsService.getGroup(vm.entity_id)
                     .then(function(data) {
-                        vm.group = data[0];
+                        vm.group = data;
                     })
             } else {
                 schedulesService.getSchedulesForSubject(vm.entity_id).then(_applyDataCallback);
                 vm.schedule.subject_id = vm.entity_id;
                 subjectsService.getOneSubject(vm.entity_id)
                     .then(function(data) {
-                        vm.subject = data[0];
+                        vm.subject = data;
                     })
             }
         }
@@ -89,16 +89,22 @@
         vm.formData = {};
         vm.formData.date = "";
         vm.opened = false;
-        function disabledSunday(item) {
+        function disabledSunday(item) { // can't appoint exams on Sundays
             var date = item.date,
                 mode = item.mode;
-            return mode === 'day' && (date.getDay() === 6);
+            return mode === 'day' && (date.getDay() === 0);
         }
         vm.dateOptions = {
             showWeeks: false,
             startingDay: 1,
-            dateDisabled: disabledSunday
+            dateDisabled: disabledSunday,
+            minDate: new Date()
         };
+
+        ///////////////////////////
+        vm.test = function() {
+            console.log(vm.schedule);
+        }
 
     }
 })();

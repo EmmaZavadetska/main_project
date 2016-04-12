@@ -309,8 +309,9 @@
             box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
 }
-.my-app-name-container .panel-heading {
+.my-app-name-container .panel-heading .row {
   border-radius: 0;
+  padding-right: 25px;
 }
 .my-app-name-container .panel-primary > .panel-heading {
   background-color: #03588C;
@@ -409,6 +410,12 @@
 }
 .my-app-name-container .panel-primary .panel-heading .row .col-xs-12.col-md-1 .btn-success {
   margin-bottom: 4px;
+}
+.my-app-name-container .row {
+  padding-left: 10px;
+}
+.my-app-name-container .row .btn-success {
+  margin-right: 25px;
 }
 .my-app-name-container .panel .table {
   box-shadow: none; /* shadow */
@@ -612,4 +619,19 @@
 
 .my-app-name-container #group  {
   background-image: url('../images/arrow.png');
+}
+
+/* uib-daypicker */
+.my-app-name-container .uib-datepicker-popup.dropdown-menu{
+  color: #000000;
+}
+.my-app-name-container .uib-datepicker-popup .btn-group .btn, 
+.my-app-name-container .uib-datepicker-popup .btn.btn-success{
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.my-app-name-container .uib-datepicker-popup .btn-danger {
+  margin-left: 5px;
 }
