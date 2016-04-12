@@ -19,36 +19,29 @@
         function login (credentials){
 
             return $http.post(BASE_URL + URL.LOGIN, credentials)
-                .then(function (res){
+                .then(function(res) {
                         return res.data;
-                    },
-                    function (res){
+                    }, function (res) {
                         return res;
                     });
         }
 
         function isLogged(){
-
-            return $http.get (BASE_URL + URL.IS_LOGGED)
-                .then(function (res){
+            return $http.get(BASE_URL + URL.IS_LOGGED)
+                .then(function(res) {
                         if(res.data.response === "logged") {
                             return res.data;
                         }
-                    },
-                    function (res){
-                        
+                    }, function (res) {
                         return res;
                     });
         }
 
         function logout(){
             return $http.get(BASE_URL + URL.LOGOUT)
-                .then(function (res){
-
+                .then(function(res) {
                         return res;
-                    },
-                    function (res){
-
+                    }, function (res) {
                         return res;
                     });
         }
