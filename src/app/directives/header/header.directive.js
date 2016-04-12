@@ -34,7 +34,6 @@
             authService.isLogged().then(function (response){
                 vm.username = response.username;
                 vm.role = response.roles[1];
-                checkState();
             })
         }
 
