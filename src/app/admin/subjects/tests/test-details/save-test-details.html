@@ -1,7 +1,7 @@
 <form name="saveform" class="row" uib-collapse="testDetails.formCollapsed" ng-submit="testDetails.saveEntity()">
     <div class="col-md-8">
         <div class="col-md-4">
-            <select class="form-control" name="availableLevel" ng-options="level for level in testDetails.availableLevel"
+            <select class="form-control select" name="availableLevel" ng-options="level for level in testDetails.availableLevel"
                     name="level" type="text" ng-model="testDetails.testLevel.level" required>
                 <option value="" disabled selected>Рівень</option>
             </select>

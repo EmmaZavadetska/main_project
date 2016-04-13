@@ -16,7 +16,7 @@
             <span ng-show="saveform.time_for_test.$invalid">Макс 180 хв</span>
         </div>
         <div class="col-md-2">
-            <select class="form-control" ng-options="status.value as status.enabled for status in tests.status"
+            <select class="form-control select" ng-options="status.value as status.enabled for status in tests.status"
                     name="status" type="text" ng-model="tests.test.enabled" required>
                 <option value="" disabled selected>Статус</option>
             </select>
