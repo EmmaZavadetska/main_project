@@ -92,5 +92,10 @@
             DEL_ERROR:"Помилка видалення"
         })
         
+        .constant("TYPES_OF_QUESTION", {
+            SIMPLE: {NAME: "Простий вибір", VALUE: "1"},
+            MULTI: {NAME: "Мульти-вибір", VALUE: "2"}
+        })
+
         .constant("TIME_DELAY", 3);
 })();

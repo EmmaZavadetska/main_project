@@ -74,7 +74,10 @@ header .navbar-header .navbar-brand {
 .panel .panel-heading h3 {
     padding-left: 15px;
 }
-/*  For buttons of testplayer  */
+/*  For testplayer  */
+.timer {
+    text-align: center;
+}
 .panel-heading .btn-toolbar .btn {
     margin-bottom: 5px;
 }

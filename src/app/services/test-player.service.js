@@ -11,7 +11,8 @@
             getData: getData,
             finishTest: finishTest,
             getTestInfo: getTestInfo,
-            getTimeStamp: getTimeStamp
+            getTimeStamp: getTimeStamp,
+            uncheckOtherAnswers: uncheckOtherAnswers
         };
 
         return service;
@@ -23,8 +24,7 @@
         function _errorCallback(response) {
             return response;
         }
-
-
+        
         function getTestInfo(test_id) {
             return testsService.getOneTest(test_id).then(_successCallback, _errorCallback);
         }
@@ -53,8 +53,7 @@
 
             return deferred.promise;
         }
-
-
+        
         function _getAnswersForQuestions(questionsList) {
             var deferred = $q.defer();
             var urlCallsAnswersByQuestion = [];
@@ -93,6 +92,8 @@
                             }).indexOf(question_id);
                             test[questionPosition].answers = answersList[(test[questionPosition]).question_id];
                         });
+                        console.log(test);
+                        // getTimeStamp().then();
                         _saveData(test).then(_successCallback, _errorCallback);
                         return test;
                     });
@@ -118,6 +119,14 @@
                 });
         }
 
+        function uncheckOtherAnswers(choseAnswer, question) {
+            angular.forEach(question.answers, function(answer) {
+                if (choseAnswer.answer_id !== answer.answer_id) {
+                    answer.checked = false;
+                }
+            });
+        }
+        
         function finishTest(test) {
             var checkAnswers = [];
             angular.forEach(test, function (question) {
@@ -126,10 +135,15 @@
                 checkQuestion.answer_ids = [];
                 angular.forEach(question.answers, function (answer) {
                     if (answer.checked === true) {
+                        console.log("answer.checked=true -------", checkQuestion.question_id);
+                        console.log(checkQuestion);
                         checkQuestion.answer_ids.push(answer.answer_id);
+                    } else {
+                        console.log("answer.checked=false -------", checkQuestion.question_id);
                     }
                 });
                 if (checkQuestion.answer_ids.length === 0) {
+                    console.log(checkQuestion.question_id, "-------- length === 0");
                     checkQuestion.answer_ids.push(0);
                 }
                 checkAnswers.push(checkQuestion);
