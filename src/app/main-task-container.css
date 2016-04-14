@@ -569,9 +569,22 @@
 .my-app-name-container .nav.navbar-nav.navbar-right li {
   border-bottom: 4px solid transparent;
 }
+.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown span {
+  display: inline-block;
+  margin-top: 15px;
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown {
+  height: 54px;
+  padding: 0 15px;
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown .caret {
+  margin-top: 0;
+}
 .my-app-name-container .nav.navbar-nav.navbar-right li:hover,
 .my-app-name-container .nav.navbar-nav.navbar-right li:focus {
   border-bottom: 4px solid #FFFFFF;
+  background-color: #046dAF;
+  box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
 }
 .my-app-name-container .row.hidden-xs .nav.navbar-nav.navbar-right li:hover {
   border-bottom: 4px solid transparent;
@@ -673,4 +686,14 @@
 
 .my-app-name-container .uib-datepicker-popup .btn-danger {
   margin-left: 5px;
+}
+/* checkbox */
+
+/* timer */
+.my-app-name-container .timer {
+  color: #FFFFFF;
+  /*background-color: #218DA6;*/
+  font-weight: 900;
+  font-family: Verdena, sans-serif;
+  font-size: 1.4em;
 }
