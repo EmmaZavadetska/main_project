@@ -316,6 +316,10 @@
 .my-app-name-container .panel-primary > .panel-heading {
   background-color: #03588C;
 }
+/* .my-app-name-container .panel-primary > .panel-heading .pull-right {
+  padding-left: 5px;
+  padding-right: 5px;
+}*/
 .my-app-name-container .panel-footer {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -411,6 +415,9 @@
 .my-app-name-container .panel-primary .panel-heading .row .col-xs-12.col-md-1 .btn-success {
   margin-bottom: 4px;
 }
+.my-app-name-container .panel-primary .pull-right .row .col-md-12 .btn-success {
+  margin-bottom: 10px;
+}
 .my-app-name-container .row {
   padding-left: 10px;
 }
@@ -481,8 +488,10 @@
     border-radius: 0;
   }
 }
-.my-app-name-container .navbar-inverse .navbar-nav > li > a {
+.my-app-name-container .navbar-inverse .navbar-nav > li > a,
+.my-app-name-container .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #FFFFFF;
+  cursor: pointer;
 }
 .my-app-name-container .navbar-text,
 .my-app-name-container .navbar-inverse .navbar-text  {
@@ -531,7 +540,6 @@
 }
 
 /* navbar-inverse */
-
 .my-app-name-container .navbar-inverse {
   border-color: transparent;
 }
@@ -570,6 +578,37 @@
 }
 .my-app-name-container header {
     box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown-menu {
+  background-color: #035E96;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5); /* shadow */
+  border-radius: 0;
+  border: transparent;
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open li,
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open a {
+  border-bottom: none;
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:hover,
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open li:hover,
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open a:hover {
+  background-color: #046DAF;
+  border-bottom: none;
+  border: transparent;
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:hover {
+  box-shadow: 0 7px 7px rgba(0,0,0,0.5); /* shadow */
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:active,
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open li:active,
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open a:active {
+  background-color: #047DC8;
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:active {
+  box-shadow: 0 9px 9px rgba(0,0,0,0.5); /* shadow */
+}
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown-menu a {
+  color: #FFFFFF;
 }
 
 /* form-control background */
