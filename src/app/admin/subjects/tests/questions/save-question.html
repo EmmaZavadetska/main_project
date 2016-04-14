@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-7 form-group">
                     <select class="form-control select" ng-model="questions.question.type" name="typeSelected"
-                            ng-options="type.value as type.name for type in questions.types" required>
+                            ng-options="type.VALUE as type.NAME for type in questions.types" required>
                         <option value="">Виберіть тип завдання</option>
                     </select>
                     <div ng-messages="saveForm.typeSelected.$error" ng-if="saveForm.typeSelected.$dirty">

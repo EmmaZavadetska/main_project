@@ -32,7 +32,8 @@
             <tr ng-class-odd="'odd'" ng-repeat="question in questions.questionsList | orderBy:'text' | filter: search">
                 <td class="clip">{{::question.question_text}}</td>
                 <td class="clip">{{::question.level}}</td>
-                <td class="clip">{{::question.type}}</td>
+                <td class="clip" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
+                <td class="clip" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
                 <td class="clip">
                     <button class="btn btn-info" title="Варіанти відповідей"
                             ui-sref="admin.answer({subject_id: questions.subject_id, test_id: question.test_id,

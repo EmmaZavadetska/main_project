@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("QuestionsController", QuestionsController);
 
-    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "MESSAGE"];
+    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "MESSAGE", "TYPES_OF_QUESTION"];
 
-    function QuestionsController($stateParams, questionsService, PAGINATION, MESSAGE) {
+    function QuestionsController($stateParams, questionsService, PAGINATION, MESSAGE, TYPES_OF_QUESTION) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -22,6 +22,8 @@
         vm.currentRecordsRange = 0;
         vm.pageChanged = pageChanged;
         vm.subject_id = $stateParams.subject_id;
+        vm.simpleQuestion = TYPES_OF_QUESTION.SIMPLE;
+        vm.multiQuestion = TYPES_OF_QUESTION.MULTI;
         activate();
 
         function activate() {
