@@ -5,8 +5,10 @@
                 <p>{{testPlayer.testInfo.test_name}}</p>
             </div>
             <div class="col-xs-3">
-                <div class="timer" timer duration="testPlayer.testInfo.time_for_test"
-                     finish-test="testPlayer.finishTest()"></div>
+                <span class="glyphicon glyphicon-time">
+                <span class="timer" timer duration="testPlayer.testInfo.time_for_test"
+                     finish-test="testPlayer.finishTest()"></span>
+                    </span>
             </div>
             <div class="col-xs-3">
                 <button class="btn btn-success" ng-click="testPlayer.finishTest()" title="Завершити тестування">
@@ -32,13 +34,13 @@
             <p>{{testPlayer.question.question_text}}</p>
         </div>
         <div class="checkbox" ng-repeat="answer in testPlayer.question.answers">
-            <label>
-                <input ng-if="testPlayer.isSimpleTypeOfQuestion(testPlayer.question)" type="checkbox"
-                       ng-checked="{{answer.checked}}" ng-model="answer.checked"
-                       ng-click="testPlayer.uncheckOtherAnswers(answer, testPlayer.question)"/>
-                <input ng-if="testPlayer.isMultiTypeOfQuestion(testPlayer.question)" type="checkbox"
-                       ng-checked="{{answer.checked}}" ng-model="answer.checked"
-                       ng-click="answer.checked!=answer.checked"/>
+            <input ng-if="testPlayer.isSimpleTypeOfQuestion(testPlayer.question)" type="checkbox" id="c{{$index + 1}}"
+                   ng-checked="{{answer.checked}}" ng-model="answer.checked"
+                   ng-click="testPlayer.uncheckOtherAnswers(answer, testPlayer.question)"/>
+            <input ng-if="testPlayer.isMultiTypeOfQuestion(testPlayer.question)" type="checkbox" id="c{{$index + 1}}"
+                   ng-checked="{{answer.checked}}" ng-model="answer.checked"
+                   ng-click="answer.checked!=answer.checked"/>
+            <label for="c{{$index + 1}}">
                 <span>{{answer.answer_text}}</span>
                 <img ng-hide="answer.attachment==='' || answer.attachment==='added'" class="img-responsive"
                      ng-src="{{answer.attachment}}" width="400" height="200" alt="Зображення"/>

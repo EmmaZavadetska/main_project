@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .factory("questionsService", questionsService);
 
-    questionsService.$inject = ["$http", "$q", "BASE_URL", "URL", "PAGINATION"];
+    questionsService.$inject = ["$http", "$q", "BASE_URL", "URL", "PAGINATION", "TYPES_OF_QUESTION"];
 
-    function questionsService($http, $q, BASE_URL, URL, PAGINATION) {
+    function questionsService($http, $q, BASE_URL, URL, PAGINATION, TYPES_OF_QUESTION) {
         var service = {
             getQuestionsRange: getQuestionsRange,
             getCountQuestionsByTest: getCountQuestionsByTest,
@@ -107,7 +107,8 @@
         }
         
         function getTypes() {
-            return [{name: "Простий вибір", value: "1"}, {name: "Мульти-вибір", value: "2"}];
+            
+            return [TYPES_OF_QUESTION.SIMPLE, TYPES_OF_QUESTION.MULTI];
         }
     }
 })();

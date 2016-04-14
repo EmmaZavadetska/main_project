@@ -27,8 +27,13 @@
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="question in details.detail.questionsList">
-                <td class="clip">{{::question.question.question_text}}</td>
-                <td class="clip">{{::question.answer}}</td>
+                <td class="clip col-xs-10">{{::question.question.question_text}}</td>
+                <td class="clip col-xs-2" ng-if="question.answer===1">
+                    <span class="glyphicon glyphicon-ok"> Вірно</span>
+                </td>
+                <td class="clip col-xs-2" ng-if="question.answer===0">
+                    <span class="glyphicon glyphicon-remove"> Невірно</span>
+                </td>
             </tr>
             </tbody>
         </table>
