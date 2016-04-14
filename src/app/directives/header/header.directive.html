@@ -33,7 +33,11 @@
                         <a ui-sref="user.results">Результати</a>
                     </li>
                     <li uib-dropdown on-toggle="toggled(open)">
-                        <span uib-dropdown-toggle>{{header.username}} <span class="caret"></span></span>
+                        <span uib-dropdown-toggle>
+                            <i class="fa fa-user fa-fw"></i>
+                            {{header.username}}
+                            <span class="caret"></span>
+                        </span>
                         <ul class="dropdown-menu" uib-dropdown-menu>
                             <li>
                                 <a ui-sref="auth" ng-click="header.logout()">
