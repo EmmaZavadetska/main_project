@@ -174,7 +174,7 @@
                 resultDetail.questionsList = [];
                 angular.forEach(questionsId, function(questionId) {
                     var question = _getObjectByPropertyValueFromArray(response.data, "question_id", questionId.toString());
-                    var answer = trueAnswers[i] === 1 ? "Правильна" : "Неправильна";
+                    var answer = trueAnswers[i];
                     resultDetail.questionsList.push({question: question, answer: answer});
                     i++;
                 });
