@@ -4,9 +4,9 @@
     angular.module("app.user")
         .controller("UserSubjectsController", UserSubjectsController);
 
-    UserSubjectsController.$inject = ["userService", "testsService", "customDialog", "$state"];
+    UserSubjectsController.$inject = ["userService", "testsService", "customDialog", "$state", "testPlayerService"];
 
-    function UserSubjectsController(userService, testsService, customDialog, $state) {
+    function UserSubjectsController(userService, testsService, customDialog, $state, testPlayerService) {
         var vm = this;
         vm.headElements = userService.getHeader();
         vm.showAvailableTests = showAvailableTests;
@@ -39,7 +39,9 @@
             }).then(function() {
                 customDialog.openChooseTestDialog(vm.currentSubject.subject_name, vm.availableTest)
                     .then(function(res) {
-                        $state.go("user.testPlayer", {test_id: +res});
+                        testPlayerService.getTest(+res).then(function(res) {
+                            $state.go("user.testPlayer");
+                        });
                     });
             })
         }

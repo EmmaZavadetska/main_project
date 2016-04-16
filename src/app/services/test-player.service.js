@@ -9,9 +9,12 @@
     function testPlayerService($http, $q, BASE_URL, URL, testsService) {
         var service = {
             getData: getData,
+            getTest: getTest,
             finishTest: finishTest,
             getTestInfo: getTestInfo,
             getTimeStamp: getTimeStamp,
+            saveEndTime: saveEndTime,
+            getEndTime: getEndTime,
             uncheckOtherAnswers: uncheckOtherAnswers
         };
 
@@ -80,7 +83,7 @@
             return deferred.promise;
         }
 
-        function _getTest(test_id) {
+        function getTest(test_id) {
             return _getTestDetailsByTest(test_id).then(function (arrayTestDetails) {
                 return _getQuestionsForTest(test_id, arrayTestDetails).then(function (questionsList) {
                     return _getAnswersForQuestions(questionsList).then(function (answersList) {
@@ -94,8 +97,10 @@
                         });
                         console.log(test);
                         // getTimeStamp().then();
-                        _saveData(test).then(_successCallback, _errorCallback);
-                        return test;
+                        return _saveData(test).then(function(response) {
+                            return test;
+                        }, _errorCallback);
+                        
                     });
                 });
             });
@@ -108,15 +113,11 @@
                 }, _errorCallback);
         }
 
-        function getData(test_id) {
+        function getData() {
             return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_DATA)
                 .then(function (response) {
                     return response.data;
-                }, function (response) {
-                    return _getTest(test_id).then(function (data) {
-                        return data;
-                    });
-                });
+                }, _errorCallback);
         }
 
         function uncheckOtherAnswers(choseAnswer, question) {
@@ -135,15 +136,10 @@
                 checkQuestion.answer_ids = [];
                 angular.forEach(question.answers, function (answer) {
                     if (answer.checked === true) {
-                        console.log("answer.checked=true -------", checkQuestion.question_id);
-                        console.log(checkQuestion);
                         checkQuestion.answer_ids.push(answer.answer_id);
-                    } else {
-                        console.log("answer.checked=false -------", checkQuestion.question_id);
                     }
                 });
                 if (checkQuestion.answer_ids.length === 0) {
-                    console.log(checkQuestion.question_id, "-------- length === 0");
                     checkQuestion.answer_ids.push(0);
                 }
                 checkAnswers.push(checkQuestion);
@@ -164,6 +160,28 @@
                 .then(function (response) {
                     return response.data;
                 }, _errorCallback);
+        }
+
+        function getEndTime() {
+            return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_END_TIME)
+                .then(function (response) {
+                    // console.log("success", response);
+                    return response.data;
+                }, function(response) {
+                    // console.log("error", response);
+                    return response;
+                });
+        }
+
+        function saveEndTime(endTime) {
+            return $http.post(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.SAVE_END_TIME, endTime)
+                .then(function (response) {
+                    // console.log("success", response);
+                    return response.data;
+                }, function(response) {
+                    // console.log("error", response);
+                    return response;
+                });
         }
     }
 

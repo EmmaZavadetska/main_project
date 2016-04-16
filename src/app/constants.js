@@ -34,6 +34,7 @@
             EDIT_ENTITY: "/update/",
             GET_ANSWERS_BY_QUESTION: "/getAnswersByQuestion/",
             GET_DATA: "/getData/",
+            GET_END_TIME: "/getEndTime/",
             GET_ENTITY_RANGE: "/getRecordsRange/",
             GET_ENTITIES: "/getRecords/",
             GET_ENTITY_VALUES: "/getEntityValues/",
@@ -49,7 +50,8 @@
             GET_SCHEDULE_FOR_GROUP: "/getTimeTablesForGroup/",
             GET_SCHEDULE_FOR_SUBJECT: "/getTimeTablesForSubject/",
             REMOVE_ENTITY: "/del/",
-            SAVE_DATA: "/saveData/"
+            SAVE_DATA: "/saveData/",
+            SAVE_END_TIME: "/saveEndTime/"
         })
 
         .constant("PAGINATION", {

@@ -4,9 +4,9 @@
     angular.module("app.user")
         .controller("TestPlayerController", TestPlayerController);
 
-    TestPlayerController.$inject = ["$stateParams", "testPlayerService", "TYPES_OF_QUESTION"];
+    TestPlayerController.$inject = ["testPlayerService", "TYPES_OF_QUESTION"];
 
-    function TestPlayerController($stateParams, testPlayerService, TYPES_OF_QUESTION) {
+    function TestPlayerController(testPlayerService, TYPES_OF_QUESTION) {
         var vm = this;
         vm.showQuestion = showQuestion;
         vm.isSimpleTypeOfQuestion = isSimpleTypeOfQuestion;
@@ -17,19 +17,19 @@
 
         function activate() {
             getTest();
-            getTestInfo();
         }
         
         function getTest() {
-            return testPlayerService.getData($stateParams.test_id).then(function(response) {
+            return testPlayerService.getData().then(function(response) {
                 console.log(response);
                 vm.test = response;
                 vm.question = vm.test[0];
+                getTestInfo(vm.test[0].test_id);
             });
         }
 
-        function getTestInfo() {
-            return testPlayerService.getTestInfo($stateParams.test_id).then(function(response) {
+        function getTestInfo(test_id) {
+            return testPlayerService.getTestInfo(test_id).then(function(response) {
                 console.log(response);
                 vm.testInfo = response[0];
             });
