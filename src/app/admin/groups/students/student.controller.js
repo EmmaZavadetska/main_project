@@ -23,14 +23,6 @@
         vm.showAndEditElements = false;
         vm.associativeGroups = {};
         vm.newStudent = getEmptyStudent();
-        
-        if ($stateParams.content_type === "edit") {
-        }
-        if ($stateParams.content_type === "show") {
-        }
-        if ($stateParams.content_type === "add") {
-        }
-
         activate();
 
         function activate() {
@@ -57,6 +49,7 @@
                         photo: response.photo
                     };
 
+
                     return vm.newStudent;
                 });
             }
@@ -76,6 +69,7 @@
                 photo: ""
             };
         }
+
         function getRandomPas() {
             var random = Math.random().toString(36).slice(-8);
             vm.newStudent.password = random;
@@ -88,10 +82,11 @@
                 vm.addElement = $stateParams.content_type === "add";
                 studentsService.addStudent(vm.newStudent).then(function (data) {
                     vm.newStudent = getEmptyStudent();
+                    var studentImage = document.getElementById("studentImage");
+                    studentImage.removeAttribute("src");
                 })
             }
         }
-
 
         function editStudent() {
             customDialog.openConfirmationDialog().then(function() {
@@ -115,7 +110,6 @@
                     };
                 })
             });
-
         }
 
         groupsService.getGroups().then(function(data) {

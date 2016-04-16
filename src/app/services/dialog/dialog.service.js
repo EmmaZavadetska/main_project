@@ -18,12 +18,12 @@
             return openDialog({
                 title: title || "Підтвердження",
                 iconType: "warning",
-                body: "Ви підтверджуєте збереження змін?",
+                body: MESSAGE.EDIT_CONFIRM,
                 buttons: [
                     { label: "Так", type:"success", value: "yes" },
                     { label: "Ні", value: "no", dismiss: true }
                 ]
-            }, { size: "lg" });
+            }, { size: "sm" });
         }
 
         function openInformationDialog(messageBody, title) {
