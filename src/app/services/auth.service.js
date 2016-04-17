@@ -7,12 +7,12 @@
     authService.$inject = ["$http", "BASE_URL","URL"];
 
     function authService ($http, BASE_URL, URL) {
-        
+          
         var service = {
             login: login,
             isLogged: isLogged,
             logout: logout
-        };
+        }; 
 
         return service;
 

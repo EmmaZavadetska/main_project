@@ -4,18 +4,18 @@
     angular.module("app.admin")
         .controller("SpecialitiesController", SpecialitiesController);
 
-    SpecialitiesController.$inject = ["specialitiesService", "PAGINATION", "SPECIALITIES_CONST"];
+    SpecialitiesController.$inject = ["specialitiesService", "PAGINATION", "VALID"];
 
-    function SpecialitiesController (specialitiesService, PAGINATION, SPECIALITIES_CONST) {
+    function SpecialitiesController (specialitiesService, PAGINATION, VALID) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
         vm.saveFormCollapsed = true;
-        vm.headElements = specialitiesService.getHeader();
+        vm.headElements = specialitiesService.getHeader();       
         vm.saveSpeciality = saveSpeciality;
         vm.removeSpeciality = removeSpeciality;
-        vm.minNameLength = SPECIALITIES_CONST.MIN_NAME_LENGTH;
-        vm.maxNameLength = SPECIALITIES_CONST.MAX_NAME_LENGTH;
+        vm.minNameLength = VALID.MIN_NAME_LENGTH;
+        vm.maxNameLength = VALID.MAX_NAME_LENGTH;
         vm.maxSize = PAGINATION.PAGES_SHOWN;
         vm.currentPage =  vm.currentPage = PAGINATION.CURRENT_PAGE;
         vm.currentRecordsRange = 0;

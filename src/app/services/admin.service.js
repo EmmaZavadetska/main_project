@@ -3,7 +3,7 @@
 
     angular.module("app.admin")
         .factory("adminService", adminService);
-
+   
     adminService.$inject = ["$http", "$q", "BASE_URL", "URL", "ENTITIES_UKR"];
 
     function adminService($http, $q, BASE_URL, URL, ENTITIES_UKR) {
@@ -14,7 +14,7 @@
             editAdmin: editAdmin,
             removeAdmin: removeAdmin,
             getAllCountRecords: getAllCountRecords
-        };
+        }; 
 
         return service;
 
@@ -36,7 +36,7 @@
                     },
                     function(res) {
                         deferred.reject(res);
-                    });
+                    }); 
 
             return deferred.promise;
         }
@@ -53,7 +53,7 @@
                 .then(_successCallback, _errorCallback);
         }
 
-        function removeAdmin(admin) {
+        function removeAdmin(admin) {      
 
             return $http.get(BASE_URL + URL.ENTITIES.ADMINS + URL.REMOVE_ENTITY + admin.id)
                 .then(_successCallback, _errorCallback);
@@ -61,7 +61,7 @@
 
         function getHeader() {
 
-            return ["Логін", "E-mail", "Відвідування", "Разів"];
+            return [" ", "Логін", "E-mail", "Останній вхід", "Візитів"];
         }
 
         function getAllCountRecords() {

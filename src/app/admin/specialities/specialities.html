@@ -18,8 +18,8 @@
         <form name="saveForm" class="row" uib-collapse="specialities.saveFormCollapsed" ng-submit="specialities.saveSpeciality()">
             <div class="col-md-3">
                 <input class="form-control" name="specialityName" type="text" ng-model="specialities.speciality.speciality_name"
-                       placeholder="назва (обов'язково!)"  ng-minlength="{{specialities.minNameLength}}"
-                       ng-maxlength="{{specialities.maxNameLength}}" required validate-directive>
+                       placeholder="назва (обов'язково!)"   ng-minlength="{{specialities.minNameLength}}"
+                       ng-maxlength="{{specialities.maxNameLength}}" required validate>
                 <span ng-show="saveForm.specialityName.$error.maxlength"><br>Макс. довжина назви {{specialities.maxNameLength}}!</span>
                 <span ng-show="saveForm.specialityName.$error.minlength"><br>Мін. довжина назви {{specialities.minNameLength}}!</span>
                 <span ng-show="saveForm.specialityName.$error.validText"><br>Назва має містити хоча б одну літеру!</span>
@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-3">
                 <input class="form-control" name="specialityCode" type="text" ng-model="specialities.speciality.speciality_code"
-                       placeholder="код (обов'язково!)" required validate-directive>
+                       placeholder="код (обов'язково!)" required validate>
                 <span ng-show="saveForm.specialityCode.$error.validText"><br>Приклад коду: 6.123456, 7.12345678, 8.12345678</span>
                 <span ng-show="saveForm.specialityCode.$error.alreadyExist && saveForm.specialityCode.$dirty"><br>Такий код вже існує!</span>
             </div>
@@ -53,8 +53,8 @@
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="speciality in specialities.list | orderBy: 'speciality_code' | filter: search">
-                <td>{{speciality.speciality_name}}</td>
-                <td>{{speciality.speciality_code}}</td>
+                <td>{{::speciality.speciality_name}}</td>
+                <td>{{::speciality.speciality_code}}</td>
                 <td class="pull-right">
                     <button class="btn btn-info" ui-sref="admin.groupsByEntity({entity: 'speciality', entity_id: speciality.speciality_id})"
                        title='Перейти до груп спеціальності "{{speciality.speciality_name}}"'><i class="fa fa-list"></i>

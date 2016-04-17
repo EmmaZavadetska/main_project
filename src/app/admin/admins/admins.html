@@ -26,8 +26,9 @@
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="admin in admins.list | orderBy: 'username' | filter: search">
-                <td>{{ admin.username }}</td>
-                <td>{{ admin.email }}</td>
+                <td><span ng-show=admin.logged class="online" title="online">&#9899</span></td>
+                <td>{{ ::admin.username }}</td>
+                <td>{{ ::admin.email }}</td>
                 <td><i>{{ admin.last_login }}</i></td>
                 <td>{{ admin.logins }}</td>
                 <td class="pull-right">

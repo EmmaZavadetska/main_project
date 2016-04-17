@@ -1,24 +1,54 @@
-<div class="modal-header">
-    <h3 class="modal-title">{{ adminSave.kindOfSave }}</h3>
+<div class="admins my-app-name-container">
+    <div class="modal-header">
+        <h3 class="modal-title">{{ adminSave.kindOfSave }}</h3>
+    </div>
+    <form name="saveForm" ng-submit="adminSave.save()">
+        <div class="modal-body">
+            <input type="text"
+                   class="form-control form-group"
+                   name="username"
+                   placeholder="login *"
+                   ng-model="adminSave.admin.username"
+                   ng-maxlength="{{adminSave.maxUsernameLength}}"
+                   validate
+                   required>
+            <input type="email"
+                   class="form-control form-group"
+                   name="email" 
+                   placeholder="e-mail *"
+                   ng-model="adminSave.admin.email"
+                   ng-pattern="/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/"
+                   required>
+            <input type="password"
+                   class="form-control form-group"
+                   name="newPassword"
+                   placeholder="{{adminSave.passwordPlaceholder}}"
+                   ng-model="adminSave.newPassword"
+                   ng-maxlength="{{adminSave.maxPasswordLength}}"
+                   ng-required="adminSave.kindOfSave === 'Реєстрація'">
+            <input type="password"
+                   class="form-control form-group"
+                   name="confirmPassword"
+                   placeholder="{{adminSave.confirmPasswordPlaceholder}}"
+                   ng-model="adminSave.confirmPassword"
+                   ng-required="adminSave.kindOfSave === 'Реєстрація'">
+            <p class="msg-info">*необхідні поля</p>
+            <p class="msg" ng-show="saveForm.username.$error.required && saveForm.username.$touched
+                || saveForm.email.$error.required && saveForm.email.$touched || saveForm.newPassword.$error.required && saveForm.newPassword.$touched
+                || saveForm.confirmPassword.$error.required && saveForm.confirmPassword.$touched">Заповніть необхідні поля</p>
+            <p class="msg" ng-show="saveForm.username.$error.alreadyExist">Такий login вже існує</p>
+            <p class="msg" ng-show="saveForm.username.$error.maxlength">Макс. довжина login {{adminSave.maxUsernameLength}}</p>
+            <p class="msg" ng-show="saveForm.email.$error.pattern && saveForm.email.$touched">Невалідний email</p>
+            <p class="msg" ng-show="saveForm.newPassword.$error.maxlength">Макс. довжина пароля {{adminSave.maxPasswordLength}}</p>            
+            <p class="msg" ng-show="!adminSave.comparePasswords() && saveForm.confirmPassword.$touched">Паролі не співпадають</p>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" title="Зберегти" ng-disabled="!adminSave.comparePasswords() || saveForm.$invalid">
+                <i class="glyphicon glyphicon-floppy-saved"></i> 
+            </button>
+            <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="adminSave.cancel()">
+                <i class="glyphicon glyphicon-floppy-remove"></i>
+            </button>
+        </div>
+    </form>
 </div>
-<form name="saveForm" ng-submit="adminSave.save()">
-    <div class="modal-body">
-        <span ng-show="adminSave.kindOfSave === 'Реєстрація'">Всі поля є обов'язкові</span>
-        <input type="text" class="form-control" name="username" placeholder="login" ng-model="adminSave.admin.username" required>
-        <input type="email" class="form-control" name="email"  placeholder="e-mail" ng-model="adminSave.admin.email" required>
-        <input type="password" class="form-control" name="newPassword" ng-model="adminSave.newPassword"
-               placeholder="введіть новий пароль" ng-required="adminSave.kindOfSave === 'Реєстрація'">
-        <input type="password" class="form-control" name="confirmPassword" ng-model="adminSave.confirmPassword"
-               placeholder="підтвердіть новий пароль" ng-required="adminSave.kindOfSave === 'Реєстрація'">
-        <span ng-show="!adminSave.comparePasswords()">Паролі не співпадають</span>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-success" title="Зберегти"
-                ng-disabled="!adminSave.comparePasswords() || saveForm.$invalid">
-            <i class="glyphicon glyphicon-floppy-saved"></i>
-        </button>
-        <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="adminSave.cancel()">
-            <i class="glyphicon glyphicon-floppy-remove"></i>
-        </button>
-    </div>
-</form>

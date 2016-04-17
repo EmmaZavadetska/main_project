@@ -58,11 +58,16 @@
             CURRENT_PAGE: 1
         })
 
-        .constant("SPECIALITIES_CONST", {
-            MIN_NAME_LENGTH: 2,
-            MAX_NAME_LENGTH: 50,
+        .constant("VALID", {
+            MIN_NAME_LENGTH: 1,
+            MAX_NAME_LENGTH: 120,
+            MAX_USERNAME_LENGTH: 32,
+            MAX_PASSWORD_LENGTH: 64,
             CODE_REGEXP: /^([6-8]\.\d{6,8})$/,
-            NAME_REGEXP: /[a-zа-яіїє]/i
+            NAME_REGEXP: /[a-zа-яіїє]/i,
+            USERNAME_REGEXP: /.*/,
+            PASSWORD_PLACEHOLDER: "введіть новий пароль",
+            CONFIRM_PASSWORD_PLACEHOLDER: "підтвердіть новий пароль"
         })
 
         .constant("FACULTIES_CONST", {
@@ -89,7 +94,8 @@
             SAVE_ERROR: "Помилка. Зміни не збережено",
             DEL_CONFIRM: "Ви підтверджуєте видалення? Дію неможливо відмінити",
             DEL_SUCCESS: "Видалення успішне",
-            DEL_ERROR:"Помилка видалення"
+            DEL_ERROR:"Помилка видалення",
+            DEL_DECLINE: "Неможливо видалити самого себе"
         })
         
         .constant("TYPES_OF_QUESTION", {

@@ -52,7 +52,7 @@
                 function validation(value) {
                     mCtrl.$setValidity("validText", validText(whichInput(attr.name).regexp, value));
                     mCtrl.$setValidity("alreadyExist", !alreadyExist(all, whichInput(attr.name).key, value));
-
+                    
                     return value;
                 }
                 mCtrl.$parsers.push(validation);

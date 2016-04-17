@@ -33,14 +33,32 @@ header .navbar-header .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
 }
-/*  For form validation of specialities  */
+/*  For form validation */
+.admins .msg-info {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+    margin-right: 30px;
+}
+.admins input {
+    margin-left: 25px;
+    width: 90%;
+}
 .specialities input.ng-invalid,
 .admins input.ng-invalid {
-    background-color: #ffc0cb;
+    border-color: #d1332e;
 }
-.specialities input.ng-valid,
-.admins input.ng-valid {
-    background-color: #fff;
+.specialities input.ng-untouched,
+.admins input.ng-untouched {
+    border-color: transparent;
+}
+.admins .msg {
+    margin-left: 30px;
+    color: #d1332e;
+}
+/* Admins */
+.online {
+    color: #00ccff;
 }
 /*  For image load button  */
 .btn-file {

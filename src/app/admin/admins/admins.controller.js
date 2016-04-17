@@ -4,27 +4,31 @@
     angular.module("app.admin")
         .controller("AdminsController", AdminsController);
 
-    AdminsController.$inject = ["adminService", "$uibModal"];
+    AdminsController.$inject = ["adminService", "$uibModal", "customDialog", "authService", "MESSAGE"];
 
-    function AdminsController(adminService, $uibModal) {
+    function AdminsController(adminService, $uibModal, customDialog, authService, MESSAGE) {
         var vm = this;
         vm.headElements = adminService.getHeader();
         vm.showSaveForm = showSaveForm;
         vm.removeAdmin = removeAdmin;
-        vm.animation = true;
+        vm.animation = true;      
+
 
         activate();
 
         function activate() {
             adminService.getAdmins().then(function(data) {
                 vm.list = data;
-                _parseDate(vm.list);
-            });
+                authService.isLogged().then(function(res) {
+                    vm.logged = res.id;
+                    _parseDate(vm.list);
+                });
+            });       
         }
 
         function _parseDate(arrObj) {
             for (var i = 0; i < arrObj.length; i++) {
-                if (arrObj[i].logins != 0) {
+                if (arrObj[i].logins != 0 && arrObj[i].last_login > 20) {
                     var newDate = new Date(arrObj[i].last_login * 1000);
                     newDate = ((newDate.getHours() < 10) ? ("0" + newDate.getHours()) : newDate.getHours()) + ":" +
                         ((newDate.getMinutes() < 10) ? ("0" + newDate.getMinutes()) : newDate.getMinutes()) + " " +
@@ -32,9 +36,10 @@
                         ((((newDate.getMonth() + 1)) < 10) ? ("0" + (newDate.getMonth() + 1)) : ((newDate.getMonth() + 1))) + "." +
                         newDate.getFullYear();
                     arrObj[i].last_login = newDate;
-                }else{
-                    arrObj[i].last_login = "Не було";
+                } else {
+                    arrObj[i].last_login = "невідомо";
                 }
+                arrObj[i].logged = (arrObj[i].id == vm.logged) ? true : false;
             }
         }
 
@@ -70,21 +75,27 @@
         }
 
         function _addAdmin(admin) {
-            adminService.addAdmin(admin).then(function(res){
+            adminService.addAdmin(admin).then(function(res) {
                 activate();
             });
         }
 
         function _editAdmin(admin) {
-            adminService.editAdmin(admin).then(function(res){
+            adminService.editAdmin(admin).then(function(res) {
                 activate();
             });
         }
 
         function removeAdmin(admin) {
-            adminService.removeAdmin(admin).then(function(res){
-                activate();
-            });
+            customDialog.openDeleteDialog(admin.username).then(function() {
+                adminService.removeAdmin(admin).then(function(res) {
+                    if (res.response.indexOf("Error") > -1) {
+                        customDialog.openInformationDialog(MESSAGE.DEL_DECLINE, "Відхилено");
+                    } else {
+                        activate();
+                    }
+                });
+            });   
         }
     }
 })();

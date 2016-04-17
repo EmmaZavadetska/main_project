@@ -33,7 +33,7 @@
                 iconType: "info",
                 body: messageBody,
                 buttons: [
-                    { label: "OK" }
+                    { label: "OK", type: "info"}
                 ]
             }, { size: "sm" });
         }
@@ -45,7 +45,7 @@
                 title: "Видалення",
                 body: MESSAGE.DEL_CONFIRM,
                 buttons: [{ label: "Так", type: "danger" },
-                    { label: "Ні", dismiss: true }]
+                    { label: "Ні", type: "info", dismiss: true }]
             }, { size: "sm" });
         }
 
@@ -56,12 +56,12 @@
                 body: "Бажаєте розпочати тест?",
                 availableTest: availableTest,
                 buttons: [
-                    { label: "Так", type:"success", value: "yessss" },
+                    { label: "Так", type:"success", value: "yessss" },  
                     { label: "Ні", value: "no", dismiss: true }
                 ]
             }, { size: "lg" });
         }
-        
+
         function openDialog(data, customOptions) {
 
             if (data.iconType) {
