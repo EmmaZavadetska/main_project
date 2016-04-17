@@ -15,49 +15,76 @@
             link: function(scope, element) {
                 scope.$watch("duration", function() {
                     if (scope.duration === undefined) {
-                        element.html("00:00:00");
+                        element.html("");
                     } else {
-                        getTimeStamp().then(function(response) {
+                        getTimeStamp().then(function (response) {
                             var timeStamp = response;
-                            var timeDifference, time, hours, mins, secs;
-                            var endTime = +new Date() + 1000 * 60 * scope.duration;
-                            updateTimer();
-                            checkTime();
+                            var endTimeTest, timeDiff, time, hours, mins, secs;
+                            var endTime = new Date().valueOf() + 1000 * 60 * scope.duration;
+                            saveEndTime(timeStamp).then(function (response) {
+                                getEndTime().then(function (response) {
+                                    endTimeTest = response.endTimeTest;
+                                    updateTimer();
+                                });
+                            });
 
                             function updateTimer() {
-                                timeDifference = endTime - (+new Date());
-                                if (timeDifference <= 0) {
-                                    element.html("Час вичерпано");
+                                if (endTimeTest === undefined) {
+                                    timeDiff = endTime - new Date().valueOf();
+                                    setTimer();
                                 } else {
-                                    time = new Date(timeDifference);
+                                    getTimeStamp().then(function (response) {
+                                        timeDiff = (endTimeTest - response.curtime) * 1000;
+                                        setTimer();
+                                    });
+                                }
+                            }
+
+                            function setTimer() {
+                                if (timeDiff <= 0) {
+                                    element.html("Час вичерпано");
+                                    $timeout(endTest, TIME_DELAY * 1000);
+                                } else {
+                                    time = new Date(timeDiff);
                                     hours = time.getUTCHours();
                                     mins = time.getUTCMinutes();
                                     secs = time.getUTCSeconds();
                                     element.html((hours ? (twoDigits(hours) + ":") : "") + twoDigits(mins) + ":" + twoDigits(secs));
-                                    $timeout(updateTimer, time.getUTCMilliseconds() + 500);
+                                    $timeout(updateTimer, 500);
                                 }
-                            }
-
-                            function checkTime() {
-                                getTimeStamp().then(function (response) {
-                                    if ((response.curtime - timeStamp.curtime) <= (60 * scope.duration + TIME_DELAY)) {
-                                        $timeout(checkTime, 2000);
-                                    } else {
-                                        scope.finishTest();
-                                        $state.go("user.results");
-                                    }
-                                });
                             }
                         });
                     }
                 });
                 
+                function endTest() {
+                    scope.finishTest();
+                    $state.go("user.results");
+                }
+
                 function getTimeStamp() {
                     return testPlayerService.getTimeStamp().then(function(response) {
                        return response; 
                     });
                 }
 
+                function getEndTime() {
+                    return testPlayerService.getEndTime().then(function(response) {
+                        return response;
+                    });
+                }
+
+                function saveEndTime(timeStamp) {
+                    var timeForTest = {};
+                    timeForTest.startTimeTest = timeStamp.curtime;
+                    timeForTest.duration = 60 * scope.duration;
+                    timeForTest.endTimeTest = timeStamp.curtime + 60 * scope.duration;
+
+                    return testPlayerService.saveEndTime(angular.toJson(timeForTest)).then(function (response) {
+                        return response;
+                    });
+                }
+                
                 function twoDigits(n) {
                     return (n <= 9 ? "0" + n : n);
                 }

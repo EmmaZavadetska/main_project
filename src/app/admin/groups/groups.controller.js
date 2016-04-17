@@ -19,6 +19,10 @@
             vm.list = Array.isArray(data) ?  data : [];          // to prevent the error if picked speciality or faculty has no groups
             vm.totalItems = data.length;
         }
+    // Restores form to pristine
+        function restoreForm(form) {
+            form.$setPristine();
+        }
     // CRUD
         function activate() {                                    // loads all groups
             groupsService.getGroups().then(_applyDataCallback);
@@ -33,13 +37,14 @@
             });
         };
         // update or create group
-        vm.saveGroup = function() {
+        vm.saveGroup = function(form) {
             customDialog.openConfirmationDialog().then(function() {
                 groupsService.saveGroup(vm.group).then(function(data) {
                     vm.toggleFilterAction();
                     activate();
                 })
             });
+            restoreForm(form);
         };
         // get all the groups from chosen faculty (if faculty is not chosen, get all the groups from database)
         vm.getGroupsByFaculty = function(f_id) {

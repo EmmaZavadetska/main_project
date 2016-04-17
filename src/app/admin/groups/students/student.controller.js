@@ -8,8 +8,11 @@
 
     function StudentController($stateParams, studentsService, groupsService, customDialog, $state) {
         var vm = this;
+        vm.addOrEdit = addOrEdit;
         vm.addNewStudent = addNewStudent;
         vm.editStudent = editStudent;
+        vm.allowAdd = allowAdd;
+        vm.reset = reset;
         vm.expression = false;
         vm.showElements = false;
         vm.getRandomPas = getRandomPas;
@@ -23,14 +26,6 @@
         vm.showAndEditElements = false;
         vm.associativeGroups = {};
         vm.newStudent = getEmptyStudent();
-        
-        if ($stateParams.content_type === "edit") {
-        }
-        if ($stateParams.content_type === "show") {
-        }
-        if ($stateParams.content_type === "add") {
-        }
-
         activate();
 
         function activate() {
@@ -61,6 +56,7 @@
                 });
             }
         }
+
         function getEmptyStudent(){
             return {
                 username: "",
@@ -76,6 +72,7 @@
                 photo: ""
             };
         }
+
         function getRandomPas() {
             var random = Math.random().toString(36).slice(-8);
             vm.newStudent.password = random;
@@ -83,15 +80,27 @@
             vm.newStudent.password_confirm = random;
         }
 
+        function addOrEdit() {
+            console.log("I am working");
+            if (vm.student_id == undefined) {
+                console.log("add");
+                addNewStudent();
+            } else {
+                editStudent();
+                console.log("edit");
+            }
+        }
+
         function addNewStudent() {
             if ($stateParams.content_type === "add") {
                 vm.addElement = $stateParams.content_type === "add";
                 studentsService.addStudent(vm.newStudent).then(function (data) {
                     vm.newStudent = getEmptyStudent();
+                    var studentImage = document.getElementById("studentImage");
+                    studentImage.removeAttribute("src");
                 })
             }
         }
-
 
         function editStudent() {
             customDialog.openConfirmationDialog().then(function() {
@@ -115,7 +124,11 @@
                     };
                 })
             });
+        }
 
+        function allowAdd() {
+            if (vm.newStudent !== undefined) {
+                return !(vm.newStudent.username && vm.newStudent.password && vm.newStudent.email && vm.newStudent.gradebook_id && vm.newStudent.student_surname && vm.newStudent.student_name && vm.newStudent.student_fname && vm.newStudent.group_id && vm.newStudent.photo);}
         }
 
         groupsService.getGroups().then(function(data) {
@@ -124,6 +137,11 @@
                 vm.associativeGroups[+vm.groups[i].group_id] = vm.groups[i].group_name;
             }
         });
+
+        function reset(actionForm) {
+            actionForm.$setPristine();
+        }
+
 
     }
 })();

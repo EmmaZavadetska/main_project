@@ -4,9 +4,11 @@
     angular.module("app")
         .config(configApp);
 
-    configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
+    configApp.$inject = ["$stateProvider", "$urlRouterProvider", "$httpProvider"];
 
-    function configApp($stateProvider, $urlRouterProvider) {
+    function configApp($stateProvider, $urlRouterProvider, $httpProvider) {
+        $httpProvider.interceptors.push('spinnerService');
+        
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
@@ -116,7 +118,7 @@
                 controller: "UserSubjectsController as subjects"
             })
             .state("user.testPlayer", {
-                url: "/subjects/test-player/{test_id:int}",
+                url: "/subjects/test-player",
                 templateUrl: "app/user/subjects/test-player/test-player.html",
                 controller: "TestPlayerController as testPlayer"
             })
