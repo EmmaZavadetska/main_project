@@ -21,7 +21,7 @@
         
         function getTest() {
             return testPlayerService.getData().then(function(response) {
-                console.log(response);
+                // console.log(response);
                 vm.test = response;
                 vm.question = vm.test[0];
                 getTestInfo(vm.test[0].test_id);
@@ -30,7 +30,7 @@
 
         function getTestInfo(test_id) {
             return testPlayerService.getTestInfo(test_id).then(function(response) {
-                console.log(response);
+                // console.log(response);
                 vm.testInfo = response[0];
             });
         }
@@ -61,8 +61,8 @@
         
         function finishTest() {
             return testPlayerService.finishTest(vm.test).then(function(response) {
-                console.log(vm.test);
-                console.log(response);
+                // console.log(vm.test);
+                // console.log(response);
             });
         }
     }

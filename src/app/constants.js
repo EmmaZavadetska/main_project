@@ -99,5 +99,5 @@
             MULTI: {NAME: "Мульти-вибір", VALUE: "2"}
         })
 
-        .constant("TIME_DELAY", 3);
+        .constant("TIME_DELAY", 2);
 })();

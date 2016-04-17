@@ -95,8 +95,7 @@
                             }).indexOf(question_id);
                             test[questionPosition].answers = answersList[(test[questionPosition]).question_id];
                         });
-                        console.log(test);
-                        // getTimeStamp().then();
+                        // console.log(test);
                         return _saveData(test).then(function(response) {
                             return test;
                         }, _errorCallback);
@@ -165,23 +164,15 @@
         function getEndTime() {
             return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_END_TIME)
                 .then(function (response) {
-                    // console.log("success", response);
                     return response.data;
-                }, function(response) {
-                    // console.log("error", response);
-                    return response;
-                });
+                }, _errorCallback);
         }
 
         function saveEndTime(endTime) {
             return $http.post(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.SAVE_END_TIME, endTime)
                 .then(function (response) {
-                    // console.log("success", response);
                     return response.data;
-                }, function(response) {
-                    // console.log("error", response);
-                    return response;
-                });
+                }, _errorCallback);
         }
     }
 
