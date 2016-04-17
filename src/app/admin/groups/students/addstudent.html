@@ -8,9 +8,11 @@
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <div class="form-group">
-                    <label ng-if="student.editElement || student.addElements"  for="picture">Обрати фото</label>
-                    <input ng-if="student.editElement || student.addElements" id="picture" image-load="student.newStudent.photo" ng-model="student.newStudent.photo" type="file"/>
-                    <img ng-src="{{student.newStudent.photo}}" height="250" width="250" alt="Зображення" >
+                    <span ng-if="student.editElement || student.addElements" class="btn btn-info btn-file">
+                        <i class="glyphicon glyphicon-picture"></i> Обрати фото
+                        <input ng-if="student.editElement || student.addElements" image-load="student.newStudent.photo" ng-model="student.newStudent.photo" type="file"/>
+                    </span>
+                    <img ng-src="{{student.newStudent.photo}}" id="studentImage" height="250" width="250" alt="Зображення">
                 </div>
             </div>
             <div class="col-xs-12 col-md-8">
@@ -25,7 +27,6 @@
                     <div class="form-group">
                         <input  ng-disabled="student.disableInputs" class="form-control" type="text" ng-model="student.newStudent.student_fname" placeholder="по-бітькові"/>
                     </div>
-
                 </div>
                 <div class="form-group">
                     <label for="group">Група</label>
