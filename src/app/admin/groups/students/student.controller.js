@@ -8,8 +8,11 @@
 
     function StudentController($stateParams, studentsService, groupsService, customDialog, $state) {
         var vm = this;
+        vm.addOrEdit = addOrEdit;
         vm.addNewStudent = addNewStudent;
         vm.editStudent = editStudent;
+        vm.allowAdd = allowAdd;
+        vm.reset = reset;
         vm.expression = false;
         vm.showElements = false;
         vm.getRandomPas = getRandomPas;
@@ -49,11 +52,11 @@
                         photo: response.photo
                     };
 
-
                     return vm.newStudent;
                 });
             }
         }
+
         function getEmptyStudent(){
             return {
                 username: "",
@@ -75,6 +78,17 @@
             vm.newStudent.password = random;
             vm.newStudent.plain_password = random;
             vm.newStudent.password_confirm = random;
+        }
+
+        function addOrEdit() {
+            console.log("I am working");
+            if (vm.student_id == undefined) {
+                console.log("add");
+                addNewStudent();
+            } else {
+                editStudent();
+                console.log("edit");
+            }
         }
 
         function addNewStudent() {
@@ -112,12 +126,22 @@
             });
         }
 
+        function allowAdd() {
+            if (vm.newStudent !== undefined) {
+                return !(vm.newStudent.username && vm.newStudent.password && vm.newStudent.email && vm.newStudent.gradebook_id && vm.newStudent.student_surname && vm.newStudent.student_name && vm.newStudent.student_fname && vm.newStudent.group_id && vm.newStudent.photo);}
+        }
+
         groupsService.getGroups().then(function(data) {
             vm.groups = data;
             for (var i = 0; i < vm.groups.length; i++) {
                 vm.associativeGroups[+vm.groups[i].group_id] = vm.groups[i].group_name;
             }
         });
+
+        function reset(actionForm) {
+            actionForm.$setPristine();
+        }
+
 
     }
 })();
