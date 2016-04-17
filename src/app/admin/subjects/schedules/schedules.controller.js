@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("SchedulesController", SchedulesController);
 
-    SchedulesController.$inject = ['schedulesService', 'groupsService', 'subjectsService', '$stateParams', 'MESSAGE'];
+    SchedulesController.$inject = ['schedulesService', 'groupsService', 'subjectsService', '$stateParams', 'MESSAGE', 'customDialog'];
 
-    function SchedulesController(schedulesService, groupsService, subjectsService, $stateParams, MESSAGE) {
+    function SchedulesController(schedulesService, groupsService, subjectsService, $stateParams, MESSAGE, customDialog) {
         var vm = this;
         vm.schedule = {};
         vm.associativeGroups = {};
@@ -41,20 +41,23 @@
     // CRUD
             // delete schedule
         vm.removeSchedule = function(schedule_id) {
-            if (confirm(MESSAGE.DEL_CONFIRM)) {
+            customDialog.openDeleteDialog(schedule_id).then(function() {
                 schedulesService.removeSchedule(schedule_id).then(function(data) {
                     console.log(MESSAGE.DEL_SUCCESS);
                     activate();
                 })
-            }
+            });
         };
             // save new or edited
         vm.saveSchedule = function() {
-            vm.schedule.event_date = vm.formData.date.toISOString().substring(0,10);
-            schedulesService.saveSchedule(vm.schedule).then(function(data) {
-                vm.toggleActionForm();
-                activate();
-            })
+            customDialog.openConfirmationDialog().then(function() {
+                vm.formData.date.setDate(vm.formData.date.getDate() + 1);
+                vm.schedule.event_date = vm.formData.date.toISOString().substring(0,10);
+                schedulesService.saveSchedule(vm.schedule).then(function(data) {
+                    vm.toggleActionForm();
+                    activate();
+                })
+            });
         };
     // to make associative groups and subject for convinient select tag
         groupsService.getGroups().then(function(data) {
@@ -73,6 +76,7 @@
         vm.toggleActionForm = function(schedule) {
             if (schedule == null) {
                 vm.schedule = {};
+                vm.formData.date = "";
                 if (vm.entity === 'group') {
                     vm.schedule.group_id = vm.entity_id;
                 } else {

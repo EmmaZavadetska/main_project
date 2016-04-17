@@ -49,7 +49,7 @@
                                    ng-required="true"
                                    ng-pattern="/^[А-ЯІЄЇ]{2,3}[А-ЯІЄЇa-яієї]?-\d{2}[мс]?-?\d{0,2}[мс]?$/"
                                    placeholder="введіть назву групи" name="groupName">
-                            <span class="error message" ng-show="actionForm.groupName.$dirty && actionForm.groupName.$invalid">
+                            <span class="error-message" ng-show="actionForm.groupName.$dirty && actionForm.groupName.$invalid">
                                 Помилка: некоректна назва групи
                             </span>
                         </div>
@@ -65,7 +65,7 @@
                                     ng-options="faculty.faculty_id as faculty.faculty_name for faculty in groups.faculties">
                                 <option value="">Виберіть факультет</option>
                             </select>
-                            <span class="error message" ng-show="actionForm.facultyName.$dirty && (groups.group.faculty_id == undefined)">
+                            <span class="error-message" ng-show="actionForm.facultyName.$dirty && (groups.group.faculty_id == undefined)">
                                 Помилка: виберіть факультет
                             </span>
                         </div>
@@ -76,7 +76,7 @@
                                     ng-options="speciality.speciality_id as speciality.speciality_name for speciality in groups.specialities">
                                 <option value="">Виберіть спецальність</option>
                             </select>
-                            <span class="error message" ng-show="actionForm.specialityName.$dirty && (groups.group.speciality_id == undefined)">
+                            <span class="error-message" ng-show="actionForm.specialityName.$dirty && (groups.group.speciality_id == undefined)">
                                 Помилка: виберіть спеціальність
                             </span>
                         </div>

@@ -4,9 +4,11 @@
     angular.module("app")
         .config(configApp);
 
-    configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
+    configApp.$inject = ["$stateProvider", "$urlRouterProvider", "$httpProvider"];
 
-    function configApp($stateProvider, $urlRouterProvider) {
+    function configApp($stateProvider, $urlRouterProvider, $httpProvider) {
+        $httpProvider.interceptors.push('spinnerService');
+        
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
