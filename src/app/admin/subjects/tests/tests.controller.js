@@ -41,7 +41,7 @@
             });
 
             subjectsService.getOneSubject($stateParams.subject_id).then(function(data){
-                vm.currentSubject = data[0].subject_name;
+                vm.currentSubject = data.subject_name;
             })
         }
 
