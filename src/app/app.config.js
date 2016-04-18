@@ -127,6 +127,12 @@
                 templateUrl: "app/user/results/user-results.html",
                 controller: "UserResultsController as results"
             })
+            .state("user.finishTest", {
+                url: "/subjects/test-player/test-result",
+                templateUrl: "app/user/subjects/test-player/test-result/test-result.html",
+                params: {tests: null, results: null},
+                controller: "TestResultController as testResult"
+            })
     }
 })();
 
