@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("QuestionsController", QuestionsController);
 
-    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "MESSAGE", "TYPES_OF_QUESTION"];
+    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "MESSAGE", "TYPES_OF_QUESTION", "customDialog"];
 
-    function QuestionsController($stateParams, questionsService, PAGINATION, MESSAGE, TYPES_OF_QUESTION) {
+    function QuestionsController($stateParams, questionsService, PAGINATION, MESSAGE, TYPES_OF_QUESTION, customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -76,24 +76,16 @@
                 vm.question.attachment = vm.image;
             }
             questionsService.saveQuestion(vm.question, $stateParams.test_id).then(function(data) {
-                if(data.response === "ok"){
-                    alert(MESSAGE.SAVE_SUCCSES);
-                } else{
-                    alert(MESSAGE.SAVE_ERROR +  " " + data.response);
-                }
                 activate();
                 hideSaveForm();
             });
         }
 
         function removeQuestion(question) {
-            questionsService.removeQuestion(question.question_id).then(function(data) {
-                if (data.response === "ok") {
-                    alert(MESSAGE.DEL_SUCCESS)
-                } else if (data.response === "error 23000") {
-                    alert(MESSAGE.DEL_ERROR);
-                }
-                activate();
+            customDialog.openDeleteDialog().then(function(){
+                questionsService.removeQuestion(question.question_id).then(function(data) {
+                    activate();
+                });
             });
         }
 
