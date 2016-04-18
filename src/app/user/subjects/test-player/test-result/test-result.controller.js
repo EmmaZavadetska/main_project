@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    angular.module("app.user") 
+    angular.module("app.user")
         .controller("TestResultController", TestResultController);
 
     TestResultController.$inject = ["$stateParams", "testPlayerService", "testsService"];
