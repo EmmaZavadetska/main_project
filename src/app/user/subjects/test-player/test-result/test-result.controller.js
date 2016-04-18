@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    angular.module("app.user") 
+    angular.module("app.user")
         .controller("TestResultController", TestResultController);
 
     TestResultController.$inject = ["$stateParams", "testPlayerService", "testsService"];
@@ -22,14 +22,8 @@
                     vm.maxScore += (+detail.tasks) * (+detail.rate);
                     vm.associativeDetails[+detail.level] = detail.rate;
                 })
-
                 for (var i = 0; i < vm.results.length; i++) {
-                    if (vm.results[i].true === 1) {
-
-                        console.log(vm.associativeDetails);
-                        console.log(vm.tests[i].level);
-                        vm.userScore += Number(vm.associativeDetails[vm.tests[i].level]);
-                    }
+                    if (vm.results[i].true === 1) vm.userScore += Number(vm.associativeDetails[vm.tests[i].level]);
                 }
 
             });
