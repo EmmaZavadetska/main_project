@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("TestsController", TestsController);
 
-    TestsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "MESSAGE", "PAGINATION"];
+    TestsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "MESSAGE", "PAGINATION", "customDialog"];
 
-    function TestsController($stateParams, testsService, subjectsService, REGEXP, MESSAGE, PAGINATION) {
+    function TestsController($stateParams, testsService, subjectsService, REGEXP, MESSAGE, PAGINATION, customDialog) {
         var vm = this;
         vm.list = [];
         vm.headElements = testsService.getHeader();
@@ -71,30 +71,21 @@
         }
 
         function saveEntity () {
-            testsService.saveTest(vm.test).then(function (data) {
-                if(data.response === "ok"){
-                    alert(MESSAGE.SAVE_SUCCSES);
-
-                } else{
-                    alert(MESSAGE.SAVE_ERROR +  " " + data.response);
-                }
-                vm.hideForm();
-                activate();
-                vm.test = {};
-            })
+            customDialog.openConfirmationDialog().then(function() {
+                testsService.saveTest(vm.test).then(function (data) {
+                    vm.hideForm();
+                    activate();
+                    vm.test = {};
+                })
+            });
         }
 
         function removeTest(test) {
-            if(confirm(MESSAGE.DEL_CONFIRM)) {
-                testsService.removeTest(test).then(function (res) {
-                    if (res.response === "ok") {
-                        alert(MESSAGE.DEL_SUCCESS)
-                    } else if (res.response === "error 23000") {
-                        alert(MESSAGE.DEL_ERROR);
-                    }
-                    activate();
+            customDialog.openDeleteDialog(test).then(function(){
+            testsService.removeTest(test).then(function (res) {
+                   activate();
                 })
-            }
+            });
         }
 
         function getItemsPerPage() {
