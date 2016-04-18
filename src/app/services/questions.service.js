@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .factory("questionsService", questionsService);
 
-    questionsService.$inject = ["$http", "$q", "BASE_URL", "URL", "PAGINATION", "TYPES_OF_QUESTION"];
+    questionsService.$inject = ["$http", "$q", "BASE_URL", "URL", "PAGINATION", "TYPES_OF_QUESTION", "MESSAGE", "customDialog"];
 
-    function questionsService($http, $q, BASE_URL, URL, PAGINATION, TYPES_OF_QUESTION) {
+    function questionsService($http, $q, BASE_URL, URL, PAGINATION, TYPES_OF_QUESTION, MESSAGE, customDialog) {
         var service = {
             getQuestionsRange: getQuestionsRange,
             getCountQuestionsByTest: getCountQuestionsByTest,
@@ -29,14 +29,22 @@
             return response;
         }
 
+        function _successMessageCallback(response) {
+            return customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES).then();
+        }
+
+        function _errorMessageCallback(response) {
+            return customDialog.openInformationDialog(MESSAGE.SAVE_ERROR).then();
+        }
+        
         function _addQuestion(question) {
             return $http.post(BASE_URL + URL.ENTITIES.QUESTION + URL.ADD_ENTITY, question)
-                .then(_successCallback, _errorCallback);
+                .then(_successMessageCallback, _errorMessageCallback);
         }
 
         function _editQuestion(question) {
             return $http.post(BASE_URL + URL.ENTITIES.QUESTION + URL.EDIT_ENTITY + question.question_id, question)
-                .then(_successCallback, _errorCallback);
+                .then(_successMessageCallback, _errorMessageCallback);
         }
 
         function getQuestionsRange(currentRecordsRange, test_id) {
@@ -90,7 +98,13 @@
 
         function removeQuestion(question_id) {
             return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.REMOVE_ENTITY + question_id)
-                .then(_successCallback, _errorCallback);
+                .then(function(response) {
+                    if (response.data.response === "ok") {
+                        customDialog.openInformationDialog(MESSAGE.DEL_SUCCESS).then();
+                    } else if (response.data.response === "error 23000") {
+                        customDialog.openInformationDialog(MESSAGE.DEL_ERROR).then();
+                    }
+                }, _errorCallback);
         }
 
         function getHeader() {
