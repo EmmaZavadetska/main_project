@@ -105,7 +105,7 @@ gulp.task("inject-default", ["concatCSS", "concatJS"], function() {
 gulp.task("watch-default", function () {
     log("Watching application's css, js");
 
-    $.watch([config.alljs, config.allcss], $.batch(function (events, done) {
+    $.watch([config.alljs[0], config.alljs[1], config.allcss], $.batch(function (events, done) {
         gulp.start("inject-default", done);
     }));
 });

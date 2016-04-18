@@ -1,11 +1,14 @@
 module.exports = function(config) {
 
     config.set({
-        basePath: "./",
+        basePath: "",
 
         frameworks: ["jasmine"],
 
-        files: [],
+        files: ["./bower_components/angular/angular.js",
+            "./node_modules/angular-mocks/angular-mocks.js",
+            ".tmp/js/app.js",
+            "./src/tests/*.js"],
 
         exclude: [],
 
@@ -13,7 +16,7 @@ module.exports = function(config) {
 
         preprocessors: {},
 
-        reporters: ["karma-htmlfile-reporter"],
+        reporters: ["karma-coverage", "karma-htmlfile-reporter"],
 
         port: 9876,
 

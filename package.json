@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/IF-064-webui/main_project#readme",
   "devDependencies": {
+    "angular-mocks": "^1.5.5",
     "buffer-to-vinyl": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-angular-filesort": "^1.1.1",
