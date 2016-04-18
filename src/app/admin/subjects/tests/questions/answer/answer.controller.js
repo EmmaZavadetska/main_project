@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("AnswerController", AnswerController);
 
-    AnswerController.$inject = ["$stateParams","answersService", "questionsService", "MESSAGE"];
+    AnswerController.$inject = ["$stateParams","answersService", "questionsService", "MESSAGE", "customDialog"];
 
-    function AnswerController($stateParams, answersService, questionsService, MESSAGE) {
+    function AnswerController($stateParams, answersService, questionsService, MESSAGE, customDialog) {
         var vm = this;
         vm.headElements = answersService.getHeader();
         vm.trueAnswers = answersService.getTypeOfAnswer();
@@ -58,30 +58,23 @@
             if (vm.image != null) {
                 vm.answerItem.attachment = vm.image;
             }
-            answersService.saveAnswer(vm.answerItem, $stateParams.question_id).then(function(data) {
-                if (data.response === "ok"){
-                    alert(MESSAGE.SAVE_SUCCSES);
-                } else {
-                    alert(MESSAGE.SAVE_ERROR +  " " + data.response);
-                }
-                activate();
-                hideForm();
+            customDialog.openConfirmationDialog().then(function() {
+                answersService.saveAnswer(vm.answerItem, $stateParams.question_id).then(function (data) {
+                    activate();
+                    hideForm();
+                });
             });
         }
 
         function removeAnswer(answer) {
-            if( confirm(MESSAGE.DEL_CONFIRM)) {
+            customDialog.openDeleteDialog(answer).then(function(){
                 answersService.removeAnswer(answer.answer_id).then(function (data) {
-                    if (data.response === "ok") {
-                        alert(MESSAGE.DEL_SUCCESS)
-                    } else {
-                        alert(MESSAGE.DEL_ERROR);
-                    }
                     hideForm();
                     activate();
                 });
-            }
+            });
         }
+
 
         function questionType (searchValue) {
             var questionType = questionsService.getTypes()

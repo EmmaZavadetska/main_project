@@ -17,7 +17,7 @@
         vm.getItemsPerPage = getItemsPerPage;
         vm.group_id = $stateParams.group_id;
         vm.associativeGroups = {};
-        
+
         activate();
 
         function activate() {
@@ -58,3 +58,21 @@
 
     }
 })();
+
+//
+//describe ("Test Students Controller", function () {
+//    beforeEach (module("app.admin.groups"));
+//    var ctrl;
+//    beforeEach (inject(function($controller){
+//        ctrl = $controller ("StudentsController", {
+//            studentsService: mockStudentsService,
+//            groupsService: mockGroupsService,
+//            customDialog: mockCustomDialog
+//        });
+//    }));
+//
+//    it("Should show the list of students", function(){
+//        expect(StudentsController.list).toBeDefined();
+//    })
+//
+//})
