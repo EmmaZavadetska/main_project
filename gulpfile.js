@@ -86,7 +86,7 @@ gulp.task("templateCache", function() {
 gulp.task("concatJS", ["templateCache", "baseUrl"], function() {
     log("Concating application's js-file");
 
-    return gulp.src([config.alljs, config.templateCache.src, config.deploy.src])
+    return gulp.src([config.alljs[0], config.alljs[1], config.templateCache.src, config.deploy.src])
         .pipe($.plumber())
         .pipe($.angularFilesort())
         .pipe($.concat(config.js))
@@ -105,7 +105,7 @@ gulp.task("inject-default", ["concatCSS", "concatJS"], function() {
 gulp.task("watch-default", function () {
     log("Watching application's css, js");
 
-    $.watch([config.alljs, config.allcss], $.batch(function (events, done) {
+    $.watch([config.alljs[0], config.alljs[1], config.allcss], $.batch(function (events, done) {
         gulp.start("inject-default", done);
     }));
 });

@@ -17,7 +17,7 @@ module.exports = function() {
         },
 
         //** Files paths **//
-        alljs: clientApp + "**/*.js",
+        alljs: [clientApp + "**/*.js", "!" + clientApp + "**/*.spec.js"],
         allcss: clientApp + "**/*.css",
         build: "./build/",
         client: client,

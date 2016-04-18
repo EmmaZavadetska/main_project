@@ -148,6 +148,9 @@
 .my-app-name-container fieldset[disabled] .btn-success.focus {
   background-color: #95D097;
 }
+.my-app-name-container .panel-heading .row .col-xs-12.col-md-6.pull-right {
+  padding-right: 40px;
+}
 
 /* class btn-info */
 .my-app-name-container .btn-info {
@@ -309,17 +312,18 @@
             box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
 }
+.my-app-name-container .panel .panel-heading {
+  padding: 15px 20px;
+}
 .my-app-name-container .panel-heading .row {
   border-radius: 0;
-  padding-right: 25px;
+}
+.my-app-name-container .panel-body {
+  padding: 15px 25px;
 }
 .my-app-name-container .panel-primary > .panel-heading {
   background-color: #03588C;
 }
-/* .my-app-name-container .panel-primary > .panel-heading .pull-right {
-  padding-left: 5px;
-  padding-right: 5px;
-}*/
 .my-app-name-container .panel-footer {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -405,6 +409,9 @@
 .my-app-name-container .panel-group .panel {
   border-radius: 0;
 }
+.my-app-name-container .panel-primary .panel-heading .row .col-xs-9.col-md-6 {
+  padding-left: 0;
+}
 .my-app-name-container .panel-body .btn.btn-danger.pull-right,
 .my-app-name-container .panel-body .btn.btn-info.pull-right {
   margin-right: 4px;
@@ -422,11 +429,14 @@
   padding-left: 10px;
 }
 .my-app-name-container .row .btn-success {
-  margin-right: 25px;
+  margin-right: 0;
 }
 .my-app-name-container .panel .table {
   box-shadow: none; /* shadow */
   border-radius: 0;
+}
+.my-app-name-container .col-xs-12.col-md-12.pull-right {
+  padding: 10px 0;
 }
 
 /* form-control */
@@ -437,6 +447,7 @@
  margin-bottom: 10px;
   border-radius: 0;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
+  outline: none;
 }
 .my-app-name-container .form-control:focus {
   border-bottom: 2px solid #218DA6;
@@ -583,7 +594,7 @@
 .my-app-name-container .nav.navbar-nav.navbar-right li:hover,
 .my-app-name-container .nav.navbar-nav.navbar-right li:focus {
   border-bottom: 4px solid #FFFFFF;
-  background-color: #046dAF;
+  background-color: #046DAF;
   box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
 }
 .my-app-name-container .row.hidden-xs .nav.navbar-nav.navbar-right li:hover {
@@ -600,14 +611,13 @@
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open li,
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open a {
-  border-bottom: none;
+  border-bottom: transparent;
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:hover,
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open li:hover,
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open a:hover {
   background-color: #046DAF;
-  border-bottom: none;
-  border: transparent;
+  border: #046DAF;
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:hover {
   box-shadow: 0 7px 7px rgba(0,0,0,0.5); /* shadow */
@@ -652,8 +662,12 @@
 }
 /* select material */
 .my-app-name-container .panel-heading .form-control.select,
-.my-app-name-container #group {
+.my-app-name-container #group, 
+.my-app-name-container.container-fluid .modal-body select {
   width: 100%;
+  height: 36px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
+  border: transparent;
   -webkit-appearance: none;
   background-image: url('../images/arrow.png');
   background-position: right center;
@@ -674,7 +688,7 @@
 }
 
 /* uib-daypicker */
-.my-app-name-container .uib-datepicker-popup.dropdown-menu{
+.my-app-name-container .uib-datepicker-popup.dropdown-menu {
   color: #000000;
 }
 .my-app-name-container .uib-datepicker-popup .btn-group .btn, 
@@ -687,13 +701,42 @@
 .my-app-name-container .uib-datepicker-popup .btn-danger {
   margin-left: 5px;
 }
-/* checkbox */
 
+/* checkbox */
+.my-app-name-container .checkbox input {
+    display: none;
+}
+.my-app-name-container input[type="checkbox"] + label {
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 12px 4px 0 0;
+    vertical-align: middle;
+    padding-left: 30px;
+    background: url(../images/checkbox_empty.png) left 1px no-repeat;
+    cursor: pointer;
+}
+.my-app-name-container input[type="checkbox"]:checked + label {
+  background: url(../images/checkbox_checked.png) left 1px no-repeat;
+}
+/* images testplayer */
+.my-app-name-container .checkbox .img-responsive {
+  border: 1px solid #03588C;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
+} 
 /* timer */
 .my-app-name-container .timer {
   color: #FFFFFF;
-  /*background-color: #218DA6;*/
   font-weight: 900;
   font-family: Verdena, sans-serif;
   font-size: 1.4em;
+}
+.my-app-name-container .glyphicon.glyphicon-time span {
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+.my-app-name-container .container .panel.panel-primary .panel-body .row p {
+  margin-left: 40px;
 }

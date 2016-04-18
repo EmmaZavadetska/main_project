@@ -17,7 +17,7 @@
         vm.getItemsPerPage = getItemsPerPage;
         vm.group_id = $stateParams.group_id;
         vm.associativeGroups = {};
-        
+
         activate();
 
         function activate() {
@@ -58,3 +58,4 @@
 
     }
 })();
+

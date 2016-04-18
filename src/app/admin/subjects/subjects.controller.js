@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("SubjectsController", SubjectsController);
 
-    SubjectsController.$inject = ["subjectsService", "PAGINATION", "MESSAGE"];
+    SubjectsController.$inject = ["subjectsService", "PAGINATION", "MESSAGE", "customDialog"];
 
-    function SubjectsController (subjectsService, PAGINATION, MESSAGE) {
+    function SubjectsController (subjectsService, PAGINATION, MESSAGE ,customDialog) {
         var vm = this;
         vm.headElements = subjectsService.getHeader();
         vm.formCollapsed = true;
@@ -43,17 +43,14 @@
         }
 
         function saveEntity () {
-            subjectsService.saveSubject(vm.subject).then(function (data) {
-                if (data.response === "ok"){
-                    alert(MESSAGE.SAVE_SUCCSES);
+            customDialog.openConfirmationDialog().then(function() {
+                subjectsService.saveSubject(vm.subject).then(function (data) {
 
-                } else {
-                    alert(MESSAGE.SAVE_ERROR);
-                }
-                activate();
-                hideForm();
-                vm.subject = {};
-            })
+                    activate();
+                    hideForm();
+                    vm.subject = {};
+                })
+            });
         }
  
         function showForm(subject) {
@@ -66,18 +63,14 @@
         }
 
         function removeSubject(subject) {
-            if (confirm(MESSAGE.DEL_CONFIRM)){
+            customDialog.openDeleteDialog(subject).then(function(){
                 subjectsService.removeSubject(subject).then(function (res) {
-                    if (res.response === "ok") {
-                        alert(MESSAGE.DEL_SUCCESS)
-                    } else if (res.response = "error 23000") {
-                        alert(MESSAGE.DEL_ERROR);
-                    }
                     activate();
                 })
-            }
+            });
         }
 
+      
         function pageChanged () {
             vm.currentRecordsRange =(vm.currentPage - 1) * vm.entitiesPerPage;
             subjectsService.getSubjects(vm.currentRecordsRange).then(function (data) {
