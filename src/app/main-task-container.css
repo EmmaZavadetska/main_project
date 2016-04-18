@@ -719,8 +719,10 @@
 .my-app-name-container input[type="checkbox"]:checked + label {
   background: url(../images/checkbox_checked.png) left 1px no-repeat;
 }
+/* images testplayer */
 .my-app-name-container .checkbox .img-responsive {
-  border: 10px solid;
+  border: 1px solid #03588C;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
 } 
 /* timer */
 .my-app-name-container .timer {
@@ -735,7 +737,6 @@
   text-align: center;
   margin-top: 12px;
 }
-
-.my-app-name-container .container  .panel.panel-primary .panel-body .row p {
+.my-app-name-container .container .panel.panel-primary .panel-body .row p {
   margin-left: 40px;
 }
