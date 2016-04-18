@@ -662,8 +662,12 @@
 }
 /* select material */
 .my-app-name-container .panel-heading .form-control.select,
-.my-app-name-container #group {
+.my-app-name-container #group, 
+.my-app-name-container.container-fluid .modal-body select {
   width: 100%;
+  height: 36px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
+  border: transparent;
   -webkit-appearance: none;
   background-image: url('../images/arrow.png');
   background-position: right center;
@@ -684,7 +688,7 @@
 }
 
 /* uib-daypicker */
-.my-app-name-container .uib-datepicker-popup.dropdown-menu{
+.my-app-name-container .uib-datepicker-popup.dropdown-menu {
   color: #000000;
 }
 .my-app-name-container .uib-datepicker-popup .btn-group .btn, 
@@ -721,7 +725,6 @@
 /* timer */
 .my-app-name-container .timer {
   color: #FFFFFF;
-  /*background-color: #218DA6;*/
   font-weight: 900;
   font-family: Verdena, sans-serif;
   font-size: 1.4em;
@@ -736,4 +739,3 @@
 .my-app-name-container .container  .panel.panel-primary .panel-body .row p {
   margin-left: 40px;
 }
-
