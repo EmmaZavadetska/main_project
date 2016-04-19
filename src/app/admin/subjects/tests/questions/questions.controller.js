@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("QuestionsController", QuestionsController);
 
-    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "MESSAGE", "TYPES_OF_QUESTION", "customDialog"];
+    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "TYPES_OF_QUESTION", "customDialog"];
 
-    function QuestionsController($stateParams, questionsService, PAGINATION, MESSAGE, TYPES_OF_QUESTION, customDialog) {
+    function QuestionsController($stateParams, questionsService, PAGINATION, TYPES_OF_QUESTION, customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
