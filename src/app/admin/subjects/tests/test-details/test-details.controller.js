@@ -34,7 +34,7 @@
                         vm.summaryRate += (parseInt(item.tasks) * parseInt(item.rate));
                     })
                 }else {
-                    vm.summaryRate = 0;
+                    vm.summaryRate = 0; 
                     vm.list = [];
                 }
             })

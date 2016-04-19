@@ -15,7 +15,8 @@
             getTimeStamp: getTimeStamp,
             saveEndTime: saveEndTime,
             getEndTime: getEndTime,
-            uncheckOtherAnswers: uncheckOtherAnswers
+            uncheckOtherAnswers: uncheckOtherAnswers,
+            getHeaders: getHeaders
         };
 
         return service;
@@ -173,6 +174,10 @@
                 .then(function (response) {
                     return response.data;
                 }, _errorCallback);
+        }
+
+        function getHeaders() {
+            return ["Ваш результат", "Максимальна кількість балів", "Відсоток", ""]
         }
     }
 
