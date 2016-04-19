@@ -20,7 +20,7 @@
         vm.currentRecordsRange = 0;
         vm.pageChanged = pageChanged;
         activate();
-
+     
         function activate() {
             subjectsService.totalItems().then(function (quantity) {
                 vm.totalItems = +quantity;
