@@ -9,14 +9,15 @@ module.exports = function(config) {
         frameworks: ["jasmine"],
 
         // list of files / patterns to load in the browser
-        files: ["./bower_components/angular/angular.js",
-            "./bower_components/angular-ui-router/release/angular-ui-router.js",
-            "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-            "./bower_components/angular-messages/angular-messages.js",
-            "./bower_components/angular-sanitize/angular-sanitize.js",
-            "./node_modules/angular-mocks/angular-mocks.js",
+        files: ["bower_components/angular/angular.js",
+            "bower_components/angular-ui-router/release/angular-ui-router.js",
+            "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+            "bower_components/angular-messages/angular-messages.js",
+            "bower_components/angular-sanitize/angular-sanitize.js",
+            "node_modules/angular-mocks/angular-mocks.js",
             ".tmp/js/app.js",
-            "./src/**/*.spec.js"],
+            "src/**/*.spec.js",
+        "src/app/admin/groups/students/students.controller.spec.js"],
 
         // list of files to exclude
         exclude: [],
