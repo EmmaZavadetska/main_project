@@ -1,13 +1,28 @@
+'use strict';
 describe("QuestionsController Test", function () {
 
     beforeEach(angular.mock.module("app"));
     
-    var controller, scope;
+    var controller, scope, _questionsService_;
 
-    beforeEach(angular.mock.inject(function ($controller, $rootScope) {
-        scope = $rootScope.$new();
+    // beforeEach(angular.mock.inject(function ($controller, $rootScope, questionsService) {
+    //     scope = $rootScope.$new();
+    //     controller = $controller("QuestionsController", {
+    //         $scope: scope
+    //     });
+    //     _questionsService_ = questionsService;
+    //     spyOn(questionsService, "getQuestionsRange").andCallThrough();
+    //     spyOn(questionsService, "getCountQuestionsByTest").andCallThrough();
+    //     spyOn(questionsService, "getOneQuestion").andCallThrough();
+    //     spyOn(questionsService, "getQuestionsByTest").andCallThrough();
+    //     spyOn(questionsService, "saveQuestion").andCallThrough();
+    //     spyOn(questionsService, "removeQuestion").andCallThrough();
+    // }));
+    
+    beforeEach(angular.mock.inject(function ($controller) {
+        // scope = $rootScope.$new();
         controller = $controller("QuestionsController", {
-            $scope: scope
+            _questionsService_: mockQuestionsService
         });
     }));
 

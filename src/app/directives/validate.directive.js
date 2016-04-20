@@ -21,11 +21,12 @@
                         all = data;
                     });
                     break;
-                case "username" : 
+                case "username", "email" : 
                     adminService.getAdmins().then(function(data) {
                         all = data;
                     });
-                //add your cases analogcally, don't forget 'break'//////////////////////////////////////////
+                //add your cases analogcally, your input's names must be different from existing above
+                // and don't forget 'break'
             }
         }
 
@@ -48,6 +49,10 @@
                 case "username" :
                     attr.regexp = VALID.USERNAME_REGEXP;
                     attr.key = "username";
+                    return attr;
+                case "email" :
+                    attr.regexp = VALID.EMAIL_REGEXP;
+                    attr.key = "email";
                     return attr;
                 case "specialityName" :
                     attr.regexp = VALID.NAME_REGEXP;
