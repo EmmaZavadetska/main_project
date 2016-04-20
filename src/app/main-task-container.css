@@ -592,7 +592,10 @@
   margin-top: 0;
 }
 .my-app-name-container .nav.navbar-nav.navbar-right li:hover,
-.my-app-name-container .nav.navbar-nav.navbar-right li:focus {
+.my-app-name-container .nav.navbar-nav.navbar-right li:focus,
+.my-app-name-container .nav.navbar-nav.navbar-right li .active,
+.my-app-name-container .nav.navbar-nav.navbar-right li .active:hover,
+.my-app-name-container .nav.navbar-nav.navbar-right li .active:focus {
   border-bottom: 4px solid #FFFFFF;
   background-color: #046DAF;
   box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
@@ -608,6 +611,8 @@
   box-shadow: 0 5px 5px rgba(0,0,0,0.5); /* shadow */
   border-radius: 0;
   border: transparent;
+  cursor: pointer;
+  padding: 0;
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open li,
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open a {
@@ -630,7 +635,7 @@
 .my-app-name-container .navbar-inverse .navbar-collapse .dropdown.open ul:active {
   box-shadow: 0 9px 9px rgba(0,0,0,0.5); /* shadow */
 }
-.my-app-name-container .navbar-inverse .navbar-collapse .dropdown-menu a {
+.my-app-name-container .navbar-inverse .navbar-collapse .dropdown .dropdown-menu a {
   color: #FFFFFF;
 }
 
