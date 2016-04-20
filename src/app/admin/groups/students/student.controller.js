@@ -128,6 +128,7 @@
 
         function allowAdd() {
             if (vm.newStudent !== undefined) {
+
                 return !(vm.newStudent.username && vm.newStudent.password && vm.newStudent.email && vm.newStudent.gradebook_id && vm.newStudent.student_surname && vm.newStudent.student_name && vm.newStudent.student_fname && vm.newStudent.group_id && vm.newStudent.photo);}
         }
 
@@ -141,7 +142,6 @@
         function reset(actionForm) {
             actionForm.$setPristine();
         }
-
 
     }
 })();
