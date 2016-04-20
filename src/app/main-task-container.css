@@ -438,6 +438,9 @@
 .my-app-name-container .col-xs-12.col-md-12.pull-right {
   padding: 10px 0;
 }
+.my-app-name-container .panel.panel-primary .panel-heading .col-md-8 {
+  padding-left: 0;
+}
 
 /* form-control */
 .my-app-name-container .form-control {
@@ -579,6 +582,13 @@
 /* header navbar */
 .my-app-name-container .nav.navbar-nav.navbar-right li {
   border-bottom: 4px solid transparent;
+}
+.my-app-name-container .nav.navbar-nav.navbar-right .active {
+  border-bottom: 4px solid #046DAF;
+  box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
+}
+.my-app-name-container .nav.navbar-nav.navbar-right .active a {
+  background-color: #046DAF;
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown span {
   display: inline-block;
