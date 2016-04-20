@@ -11,7 +11,7 @@
         vm.headElements = adminService.getHeader();
         vm.showSaveForm = showSaveForm;
         vm.removeAdmin = removeAdmin;
-        vm.animation = true;      
+        vm.animation = true;       
 
 
         activate();
@@ -28,7 +28,7 @@
 
         function _parseDate(arrObj) {
             for (var i = 0; i < arrObj.length; i++) {
-                if (arrObj[i].logins != 0 && arrObj[i].last_login > 20) {
+                if (arrObj[i].logins != 0 && arrObj[i].last_login > 100) {
                     var newDate = new Date(arrObj[i].last_login * 1000);
                     newDate = ((newDate.getHours() < 10) ? ("0" + newDate.getHours()) : newDate.getHours()) + ":" +
                         ((newDate.getMinutes() < 10) ? ("0" + newDate.getMinutes()) : newDate.getMinutes()) + " " +
@@ -75,24 +75,34 @@
         }
 
         function _addAdmin(admin) {
-            adminService.addAdmin(admin).then(function(res) {
-                activate();
+            customDialog.openConfirmationDialog().then(function() {
+                adminService.addAdmin(admin).then(function(res) {
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function() {
+                            activate();
+                    });
+                });
             });
         }
 
         function _editAdmin(admin) {
-            adminService.editAdmin(admin).then(function(res) {
-                activate();
+            customDialog.openConfirmationDialog().then(function() {
+                adminService.editAdmin(admin).then(function(res) {
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function() {
+                        activate();
+                    });
+                });
             });
         }
 
         function removeAdmin(admin) {
-            customDialog.openDeleteDialog(admin.username).then(function() {
+            customDialog.openDeleteDialog().then(function() {
                 adminService.removeAdmin(admin).then(function(res) {
                     if (res.response.indexOf("Error") > -1) {
                         customDialog.openInformationDialog(MESSAGE.DEL_DECLINE, "Відхилено");
                     } else {
-                        activate();
+                        customDialog.openInformationDialog(MESSAGE.DEL_SUCCESS, "Збережено").then(function() {
+                            activate();
+                        });    
                     }
                 });
             });   

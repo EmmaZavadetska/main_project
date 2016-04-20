@@ -18,7 +18,7 @@
             return openDialog({
                 title: title || "Підтвердження",
                 iconType: "warning",
-                body: MESSAGE.EDIT_CONFIRM,
+                body: "Ви підтверджуєте збереження змін?",
                 buttons: [
                     { label: "Так", type:"success", value: "yes" },
                     { label: "Ні", value: "no", dismiss: true }

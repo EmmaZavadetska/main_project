@@ -4,26 +4,21 @@
     angular.module("app.admin")
         .controller("AdminSaveFormController", AdminSaveFormController);
 
-    AdminSaveFormController.$inject = ["$uibModalInstance", "adminService", "admin", "kindOfSave", "VALID"];
+    AdminSaveFormController.$inject = ["$uibModalInstance", "admin", "kindOfSave", "VALID"];
 
-    function AdminSaveFormController($uibModalInstance, adminService, admin, kindOfSave, VALID) {
+    function AdminSaveFormController($uibModalInstance, admin, kindOfSave, VALID) {
         var vm = this;
         vm.admin = (admin === null) ? {} : admin;
-        vm.passwordPlaceholder = (admin === null) ? VALID.PASSWORD_PLACEHOLDER + " *" : VALID.PASSWORD_PLACEHOLDER;
-        vm.confirmPasswordPlaceholder = (admin === null) ? VALID.CONFIRM_PASSWORD_PLACEHOLDER + " *" : VALID.CONFIRM_PASSWORD_PLACEHOLDER;
         vm.kindOfSave = kindOfSave;
-        vm.comparePasswords = comparePasswords;
         vm.maxUsernameLength = VALID.MAX_USERNAME_LENGTH;
         vm.maxPasswordLength = VALID.MAX_PASSWORD_LENGTH;
         vm.save = save;
-        vm.cancel = cancel;
-
-         function comparePasswords(){
-            vm.admin.password = vm.newPassword;
-            return (vm.newPassword === vm.confirmPassword);
-        }
+        vm.cancel = cancel;         
 
         function save() {
+            if (vm.newPassword) {
+                vm.admin.password = vm.newPassword;
+            }
             $uibModalInstance.close(vm.admin);
         }
 
