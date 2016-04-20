@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("AnswerController", AnswerController);
 
-    AnswerController.$inject = ["$stateParams","answersService", "questionsService", "MESSAGE", "customDialog"];
+    AnswerController.$inject = ["$stateParams","answersService", "questionsService", "customDialog"];
 
-    function AnswerController($stateParams, answersService, questionsService, MESSAGE, customDialog) {
+    function AnswerController($stateParams, answersService, questionsService, customDialog) {
         var vm = this;
         vm.headElements = answersService.getHeader();
         vm.trueAnswers = answersService.getTypeOfAnswer();

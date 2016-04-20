@@ -13,6 +13,7 @@
         vm.uncheckOtherAnswers = uncheckOtherAnswers;
         vm.isMultiTypeOfQuestion = isMultiTypeOfQuestion;
         vm.finishTest = finishTest;
+        vm.isTestFinish = false;
         activate();
 
         function activate() {
@@ -21,7 +22,6 @@
         
         function getTest() {
             return testPlayerService.getData().then(function(response) {
-                // console.log(response);
                 vm.test = response;
                 vm.question = vm.test[0];
                 getTestInfo(vm.test[0].test_id);
@@ -30,7 +30,6 @@
 
         function getTestInfo(test_id) {
             return testPlayerService.getTestInfo(test_id).then(function(response) {
-                // console.log(response);
                 vm.testInfo = response[0];
             });
         }
@@ -60,6 +59,7 @@
         }
         
         function finishTest() {
+            vm.isTestFinish = true;
             return testPlayerService.finishTest(vm.test).then(function(response) {
                 $state.go("user.finishTest", {tests: vm.test, results: response});
             });
