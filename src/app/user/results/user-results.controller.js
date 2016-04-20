@@ -23,8 +23,12 @@
         }
         
         function getResults() {
-            return userService.getResults().then(function(response) {
-                vm.resultsList = response;
+            return userService.getResults().then(function(data) {
+                if (Array.isArray(data)) {
+                    vm.resultsList = data;
+                } else {
+                    vm.resultsList = [];
+                }
             });
         }
     }
