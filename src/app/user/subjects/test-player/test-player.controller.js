@@ -4,24 +4,25 @@
     angular.module("app.user")
         .controller("TestPlayerController", TestPlayerController);
 
-    TestPlayerController.$inject = ["testPlayerService", "TYPES_OF_QUESTION", "$state"];
+    TestPlayerController.$inject = ["authService", "studentsService", "testPlayerService", "testsService", "TYPES_OF_QUESTION", "$state"];
 
-    function TestPlayerController(testPlayerService, TYPES_OF_QUESTION, $state) {
+    function TestPlayerController(authService, studentsService, testPlayerService, testsService, TYPES_OF_QUESTION, $state) {
         var vm = this;
         vm.showQuestion = showQuestion;
         vm.isSimpleTypeOfQuestion = isSimpleTypeOfQuestion;
         vm.uncheckOtherAnswers = uncheckOtherAnswers;
         vm.isMultiTypeOfQuestion = isMultiTypeOfQuestion;
         vm.finishTest = finishTest;
+        vm.isTestFinish = false;
         activate();
 
         function activate() {
             getTest();
+            getUser();
         }
-        
+
         function getTest() {
             return testPlayerService.getData().then(function(response) {
-                // console.log(response);
                 vm.test = response;
                 vm.question = vm.test[0];
                 getTestInfo(vm.test[0].test_id);
@@ -30,7 +31,6 @@
 
         function getTestInfo(test_id) {
             return testPlayerService.getTestInfo(test_id).then(function(response) {
-                // console.log(response);
                 vm.testInfo = response[0];
             });
         }
@@ -58,11 +58,67 @@
                 return false;
             }
         }
-        
-        function finishTest() {
-            return testPlayerService.finishTest(vm.test).then(function(response) {
-                $state.go("user.finishTest", {tests: vm.test, results: response});
+
+        // // Oleh
+        function getUser() {
+            return authService.isLogged().then(function(response) {
+                studentsService.getStudentById(response.id).then(function(response) {
+                    vm.user = response;
+                })
             });
         }
+
+        function finishTest() {
+            vm.isTestFinish = true;
+            var userScore = 0;
+            var maxScore = 0;
+            var testResult = {};
+            return testPlayerService.finishTest(vm.test).then(function(response) {
+                vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
+                vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
+                testsService.getTestLevel(vm.test[0].test_id).then(function(data) {
+                    vm.testDetails = Array.isArray(data) ? data : [];
+                    vm.associativeDetails = {};
+                    vm.testDetails.forEach(function(detail) {
+                        maxScore += (+detail.tasks) * (+detail.rate);
+                        vm.associativeDetails[+detail.level] = detail.rate;
+                    })
+                    for (var i = 0; i < vm.results.length; i++) {
+                        if (vm.results[i].true === 1) userScore += Number(vm.associativeDetails[vm.test[i].level]);
+                    }
+                    testPlayerService.getEndTime().then(function(response) {
+                        var testDate = new Date(response.startTimeTest);
+                        testResult = {
+                            student_id: vm.user.user_id,
+                            test_id: vm.test[0].test_id,
+                            session_date: testDate.toISOString().split('T')[0],
+                            start_time: response.startTimeTest,
+                            end_time: response.endTimeTest,
+                            result: userScore,
+                            questions: "",
+                            true_answers: "",
+                            answers: ""
+                        }
+                        submitTest(testResult, userScore, maxScore);
+                    })
+                })
+            });
+        }
+
+
+
+        function submitTest(testResult, userScore, maxScore) {
+            testPlayerService.submitTest(testResult).then(function(data) {
+                console.log("Тест завершено");
+                $state.go("user.finishTest", {userScore: userScore, maxScore: maxScore});
+            })
+        }
+
+        function sortArraysOfObjectsByProperty(property) {
+            return function(first, second) {
+                return Number(first[property]) - Number(second[property]);
+            }
+        }
+        // Oleh
     }
 })();
