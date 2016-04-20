@@ -1,17 +1,14 @@
-<div id="loaderDiv" spinner class="hidden">
-    <img src="images/spinner.gif" class="ajax-loader"/>
-</div>
 <form name="saveform" class="row" uib-collapse="subjects.formCollapsed" ng-submit="subjects.saveEntity()">
     <div class="col-md-8">
-    <div class="col-md-6">
-        <input class="form-control" name="subjectname" type="text" ng-model="subjects.subject.subject_name"
-               placeholder="Введіть назву предмету..."  ng-minlength="3" ng-maxlength="100" required>
-        <span  ng-show="saveform.subjectname.$error.maxlength">Max length 100 symbols!</span>
-    </div>
-    <div class="col-md-6">
-        <input class="form-control" name="subjectdesc" type="text" ng-model="subjects.subject.subject_description"
-               placeholder="Введіть опис предмету..."  ng-minlength="3" required>
-    </div>
+        <div class="col-md-6">
+            <input class="form-control" name="subjectname" type="text" ng-model="subjects.subject.subject_name"
+                   placeholder="Введіть назву предмету..."  ng-minlength="3" ng-maxlength="100" required>
+            <span  ng-show="saveform.subjectname.$error.maxlength">Max length 100 symbols!</span>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" name="subjectdesc" type="text" ng-model="subjects.subject.subject_description"
+                   placeholder="Введіть опис предмету..."  ng-minlength="3" required>
+        </div>
     </div>
 
     <div class="col-md-4 pull-right">

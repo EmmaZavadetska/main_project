@@ -156,36 +156,6 @@
                 }, _errorCallback);
         }
 
-    //     // Start of modified by Oleh
-    //
-    //     function finishTest(test) {
-    //         var checkAnswers = [];
-    //         angular.forEach(test, function (question) {
-    //             var checkQuestion = {};
-    //             checkQuestion.question_id = question.question_id;
-    //             checkQuestion.answer_ids = [];
-    //             angular.forEach(question.answers, function (answer) {
-    //                 if (answer.checked === true) {
-    //                     checkQuestion.answer_ids.push(answer.answer_id);
-    //                 }
-    //             });
-    //             if (checkQuestion.answer_ids.length === 0) {
-    //                 checkQuestion.answer_ids.push(0);
-    //             }
-    //             checkAnswers.push(checkQuestion);
-    //         });
-    //     return _checkAnswers(checkAnswers).then(_successCallback, _errorCallback);
-    // }
-    //
-    //     function _checkAnswers(answers) {
-    //         return $http.post(BASE_URL + URL.ENTITIES.SANSWER + URL.CHECK_ANSWERS, answers)
-    //             .then(function (response) {
-    //                 return response.data;
-    //             }, _errorCallback);
-    //     }
-    //
-    //     // End of modified by Oleh
-
         function getTimeStamp() {
             return $http.post(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.GET_TIME_STAMP)
                 .then(function (response) {
