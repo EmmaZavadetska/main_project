@@ -4,9 +4,9 @@
     angular.module("app.admin")
         .controller("FacultiesController", FacultiesController);
 
-    FacultiesController.$inject = ["facultiesService", "PAGINATION", "FACULTIES_CONST", "MESSAGE", "customDialog"];
+    FacultiesController.$inject = ["facultiesService", "PAGINATION", "VALID", "MESSAGE", "customDialog"];
 
-    function FacultiesController (facultiesService, PAGINATION, FACULTIES_CONST, MESSAGE, customDialog) {
+    function FacultiesController (facultiesService, PAGINATION, VALID, MESSAGE, customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -15,7 +15,7 @@
         vm.saveFaculty = saveFaculty;
         vm.removeFaculty = removeFaculty;
         vm.minNameLength = VALID.MIN_NAME_LENGTH;
-        vm.maxNameLength = VALID.MAX_NAME_LENGTH;;
+        vm.maxNameLength = VALID.MAX_NAME_LENGTH;
         vm.amountEntities = PAGINATION.ENTITIES_RANGE_ON_PAGE;
         vm.maxSize = PAGINATION.PAGES_SHOWN;
         vm.currentPage = PAGINATION.CURRENT_PAGE;

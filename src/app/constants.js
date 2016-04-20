@@ -70,6 +70,7 @@
             USERNAME_REGEXP: /.*/,
             EMAIL_REGEXP: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
         })
+
         .constant("REGEXP", {
             ONLY_NUMBER: /^[0-9]+$/
         })
