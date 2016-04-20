@@ -4,9 +4,9 @@
     angular.module("app.admin")
         .controller("FacultiesController", FacultiesController);
 
-    FacultiesController.$inject = ["facultiesService", "PAGINATION", "FACULTIES_CONST", "MESSAGE"];
+    FacultiesController.$inject = ["facultiesService", "PAGINATION", "FACULTIES_CONST", "MESSAGE", "customDialog"];
 
-    function FacultiesController (facultiesService, PAGINATION, FACULTIES_CONST, MESSAGE) {
+    function FacultiesController (facultiesService, PAGINATION, FACULTIES_CONST, MESSAGE, customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -45,25 +45,21 @@
         }
 
         function saveFaculty() {
-            facultiesService.saveFaculty(vm.faculty).then(function(res) {
-                activate();
-                vm.hideSaveForm();
+            customDialog.openConfirmationDialog().then(function(){
+                facultiesService.saveFaculty(vm.faculty).then(function(data){
+                    activate();
+                    vm.hideSaveForm();
+                    vm.faculty = {};
+                })
             });
         }
 
         function removeFaculty(faculty) {
-            var message;
-            if (confirm( MESSAGE.DEL_CONFIRM + faculty.faculty_name + '"?')){
-                facultiesService.removeFaculty(faculty.faculty_id).then(function(res) {
-                    if (res.response.indexOf("error") >= 0) {
-                        message = "За цим факультетом існують групи. Спочатку видаліть їх.";
-                    } else {
-                        message = 'Факультет "' + faculty.faculty_name + '" видалено';
-                        activate();
-                    }
-                    alert(message);
-                });
-            }
+            customDialog.openDeleteDialog(faculty).then(function(){
+                facultiesService.removeFaculty(faculty).then(function(res){
+                    activate();
+                })
+            });
         }
 
 
