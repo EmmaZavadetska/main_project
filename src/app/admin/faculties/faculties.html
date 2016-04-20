@@ -23,7 +23,7 @@
             <div class="col-md-3">
                 <input class="form-control" name="facultyName" type="text" ng-model="faculties.faculty.faculty_name"
                        placeholder="Назва факультету" ng-minlength="{{faculties.minNameLength}}"
-                       ng-maxlength="{{faculties.maxNameLength}}" required valid-directive>
+                       ng-maxlength="{{faculties.maxNameLength}}" required validate>
                 <span ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}}!</span>
                 <span ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}}!</span>
                 <span ng-show="saveForm.facultyName.$error.validText"><br>Назва має містити хоча б одну літеру!</span>
@@ -32,7 +32,7 @@
             <div class="col-md-3">
                 <input class="form-control" name="facultyDesc" type="text"
                        ng-model="faculties.faculty.faculty_description"
-                       placeholder="Опис факультету" required valid-directive>
+                       placeholder="Опис факультету" required validate>
                 <span ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</span>
                 <span ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</span>
                 <span ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</span>
