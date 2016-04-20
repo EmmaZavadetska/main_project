@@ -45,11 +45,15 @@ header .navbar-header .navbar-brand {
     width: 90%;
 }
 .specialities input.ng-invalid,
-.admins input.ng-invalid {
+.admins input.ng-invalid,
+.auth-container input.ng-invalid,
+.questions textarea.ng-invalid {
     background-color: #ffcccc;
 }
 .specialities input.ng-untouched,
-.admins input.ng-untouched {
+.admins input.ng-untouched,
+.auth-container input.ng-untouched,
+.questions textarea.ng-untouched {
     background-color: #fff;
 }
 .admins .msg {
@@ -98,4 +102,31 @@ header .navbar-header .navbar-brand {
 }
 .panel-heading .btn-toolbar .btn {
     margin-bottom: 5px;
+}
+/* For spinner    */
+#loaderDiv {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1100;
+    background-color: white;
+    opacity: .6;
+}
+.ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px; /* -1 * image height / 2 */
+    display: block;
+}
+.hidden{display:none !important}
+.my-app-name-container .navbar .nav > .active > a,
+.my-app-name-container .navbar .nav > .active > a:hover,
+.my-app-name-container .navbar .nav > .active > a:focus {
+    border-bottom: 4px solid #FFFFFF;
+    background-color: #046DAF;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
 }
