@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("QuestionsController", QuestionsController);
 
-    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "MESSAGE", "TYPES_OF_QUESTION", "customDialog"];
+    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "TYPES_OF_QUESTION", "customDialog"];
 
-    function QuestionsController($stateParams, questionsService, PAGINATION, MESSAGE, TYPES_OF_QUESTION, customDialog) {
+    function QuestionsController($stateParams, questionsService, PAGINATION, TYPES_OF_QUESTION, customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -75,9 +75,11 @@
             if (vm.image != null) {
                 vm.question.attachment = vm.image;
             }
-            questionsService.saveQuestion(vm.question, $stateParams.test_id).then(function(data) {
-                activate();
-                hideSaveForm();
+            customDialog.openConfirmationDialog().then(function() {
+                questionsService.saveQuestion(vm.question, $stateParams.test_id).then(function(data) {
+                    activate();
+                    hideSaveForm();
+                });
             });
         }
 

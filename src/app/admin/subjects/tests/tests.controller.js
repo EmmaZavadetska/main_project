@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("TestsController", TestsController);
 
-    TestsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "MESSAGE", "PAGINATION", "customDialog"];
+    TestsController.$inject = ["$stateParams", "testsService", "subjectsService", "REGEXP", "PAGINATION", "customDialog"];
 
-    function TestsController($stateParams, testsService, subjectsService, REGEXP, MESSAGE, PAGINATION, customDialog) {
+    function TestsController($stateParams, testsService, subjectsService, REGEXP, PAGINATION, customDialog) {
         var vm = this;
         vm.list = [];
         vm.headElements = testsService.getHeader();
@@ -82,9 +82,9 @@
 
         function removeTest(test) {
             customDialog.openDeleteDialog(test).then(function(){
-            testsService.removeTest(test).then(function (res) {
-                   activate();
-                })
+                testsService.removeTest(test).then(function (res) {
+                       activate();
+                    })
             });
         }
 

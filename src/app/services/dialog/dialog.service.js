@@ -20,12 +20,12 @@
                 iconType: "warning",
                 body: MESSAGE.EDIT_CONFIRM,
                 buttons: [
-                    { label: "Так", type:"success", value: "yes" },
-                    { label: "Ні", value: "no", dismiss: true }
+                    {label: "Так", type:"success", value: "yes"},
+                    {label: "Ні", value: "no", dismiss: true}
                 ]
-            }, { size: "sm" });
+            }, {size: "sm"});
         }
-
+       
         function openInformationDialog(messageBody, title) {
 
             return openDialog({
@@ -33,20 +33,22 @@
                 iconType: "info",
                 body: messageBody,
                 buttons: [
-                    { label: "OK", type: "info"}
+                    {label: "OK", type: "info"}
                 ]
-            }, { size: "sm" });
+            }, {size: "sm"});
         }
 
-        function openDeleteDialog(itemName) {
+        function openDeleteDialog() {
 
             return openDialog({
                 iconType: "danger",
                 title: "Видалення",
                 body: MESSAGE.DEL_CONFIRM,
-                buttons: [{ label: "Так", type: "danger" },
-                    { label: "Ні", type: "info", dismiss: true }]
-            }, { size: "sm" });
+                buttons: [
+                    {label: "Так", type: "danger"},
+                    {label: "Ні", type: "info", dismiss: true}
+                ]
+            }, {size: "sm"});
         }
 
         function openChooseTestDialog (subject_name, availableTest) {
@@ -56,10 +58,10 @@
                 body: "Бажаєте розпочати тест?",
                 availableTest: availableTest,
                 buttons: [
-                    { label: "Так", type:"success", value: "yessss" },  
-                    { label: "Ні", value: "no", dismiss: true }
+                    {label: "Так", type:"success", value: "yessss"},
+                    {label: "Ні", value: "no", dismiss: true}
                 ]
-            }, { size: "lg" });
+            }, {size: "lg"});
         }
 
         function openDialog(data, customOptions) {
@@ -67,11 +69,9 @@
             if (data.iconType) {
                 data.iconStyles = defaultIconStyles[data.iconType];
             }
-
             if (!customOptions) {
                 customOptions = {};
             }
-
 
             var options = {};
 
@@ -82,7 +82,12 @@
             };
 
             angular.extend(options, defaultOptions, customOptions);
-            angular.extend(options.resolve, { dialogData: function () { return data; } });
+            angular.extend(options.resolve, {
+                dialogData: function () {
+                    return data;
+                }
+            });
+
             return $uibModal.open(options).result;
         }
 

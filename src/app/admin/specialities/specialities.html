@@ -1,3 +1,6 @@
+<div id="loaderDiv" spinner class="hidden">
+    <img src="images/spinner.gif" class="ajax-loader"/>
+</div>
 <div class="panel panel-primary specialities">
     <div class="panel-heading">
         <!--SEARCH ADD-BUTTON-->
@@ -20,16 +23,16 @@
                 <input class="form-control" name="specialityName" type="text" ng-model="specialities.speciality.speciality_name"
                        placeholder="назва (обов'язково!)"   ng-minlength="{{specialities.minNameLength}}"
                        ng-maxlength="{{specialities.maxNameLength}}" required validate>
-                <span ng-show="saveForm.specialityName.$error.maxlength"><br>Макс. довжина назви {{specialities.maxNameLength}}!</span>
-                <span ng-show="saveForm.specialityName.$error.minlength"><br>Мін. довжина назви {{specialities.minNameLength}}!</span>
-                <span ng-show="saveForm.specialityName.$error.validText"><br>Назва має містити хоча б одну літеру!</span>
-                <span ng-show="saveForm.specialityName.$error.alreadyExist && saveForm.specialityName.$dirty"><br>Така назва вже існує!</span>
+                <p ng-show="saveForm.specialityName.$error.maxlength">Макс. довжина назви {{specialities.maxNameLength}}!</p>
+                <p ng-show="saveForm.specialityName.$error.minlength">Мін. довжина назви {{specialities.minNameLength}}!</p>
+                <p ng-show="saveForm.specialityName.$error.validText">Назва має містити хоча б одну літеру!</p>
+                <p ng-show="saveForm.specialityName.$error.alreadyExist && saveForm.specialityName.$dirty">Така назва вже існує!</p>
             </div>
             <div class="col-md-3">
                 <input class="form-control" name="specialityCode" type="text" ng-model="specialities.speciality.speciality_code"
                        placeholder="код (обов'язково!)" required validate>
-                <span ng-show="saveForm.specialityCode.$error.validText"><br>Приклад коду: 6.123456, 7.12345678, 8.12345678</span>
-                <span ng-show="saveForm.specialityCode.$error.alreadyExist && saveForm.specialityCode.$dirty"><br>Такий код вже існує!</span>
+                <p ng-show="saveForm.specialityCode.$error.validText">Приклад коду: 6.123456, 7.12345678, 8.12345678</p>
+                <p ng-show="saveForm.specialityCode.$error.alreadyExist && saveForm.specialityCode.$dirty">Такий код вже існує!</p>
             </div>
             <div class="col-md-6 pull-right">
                 <button type="submit" class="btn btn-success" title="Зберегти" ng-disabled="saveForm.$invalid">
@@ -71,9 +74,14 @@
             </tr>
             </tbody>
         </table>
-        <uib-pagination total-items="specialities.totalItems" ng-change="specialities.pageChanged()"
-                        ng-model="specialities.currentPage" max-size="specialities.maxSize" class="my-pagination"
-                        boundary-link-numbers="true" rotate="false"
+        <uib-pagination ng-show="specialities.totalItems > specialities.amountRecords"
+                        total-items="specialities.totalItems"
+                        ng-change="specialities.pageChanged()"
+                        ng-model="specialities.currentPage"
+                        max-size="specialities.maxSize"
+                        class="my-pagination"
+                        boundary-link-numbers="true"
+                        rotate="false"
                         first-text="&#xf049;"
                         previous-text="&#xf048;"
                         next-text="&#xf051;"
