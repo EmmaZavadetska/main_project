@@ -8,7 +8,7 @@
         "subjectsService", "schedulesService", "questionsService"];
 
     function reportsService($http, $q, BASE_URL, URL, groupsService, studentsService, testsService, subjectsService,
-                            schedulesService, questionsService) {
+                            schedulesService) {
         var results = [];
         var testName = "";
 
@@ -19,7 +19,9 @@
             getReport: getReport,
             getResultsDetail: getResultsDetail,
             getHeaderOfReport: getHeaderOfReport,
-            getHeaderOfReportDetail: getHeaderOfReportDetail
+            getHeaderOfReportDetail: getHeaderOfReportDetail,
+            uniqueItemsArray: uniqueItemsArray,
+            addToResultsCountTrueAnswers: addToResultsCountTrueAnswers
         };
 
         return service;
@@ -45,18 +47,18 @@
         // update selectpicker Groups in form by choosing subject
         function updateGroupsBySubject(subject) {
             return _getTimesTableBySubject(subject.subject_id).then(function(data) {
-                var uniqueIdGroups = _uniqueItemsArray(data, "group_id");
+                var uniqueIdGroups = uniqueItemsArray(data, "group_id");
                 return _getGroupsBySubject(uniqueIdGroups);
             });
         }
 
-        // get timeTeable by subject
+        // get timeTable by subject
         function _getTimesTableBySubject(subject_id) {
             return schedulesService.getSchedulesForSubject(subject_id)
                 .then(_successCallback, _errorCallback);
         }
 
-        // get gruops by subject
+        // get groups by subject
         function _getGroupsBySubject(arrayOfIdGroups) {
             return groupsService.getGroups().then(function(data) {
                 var groups = data;
@@ -68,7 +70,7 @@
         }
 
         // get array of unique property value of objects in array
-        function _uniqueItemsArray(arrayOfObjects, propertyOfObject) {
+        function uniqueItemsArray(arrayOfObjects, propertyOfObject) {
             var uniqueItemsList = [];
             angular.forEach(arrayOfObjects, function(object) {
                 if(uniqueItemsList.indexOf(object[propertyOfObject]) === -1){
@@ -85,7 +87,7 @@
                 var arrayStudents = data;
                 return _getResultByStudents(arrayStudents, test.test_id).then(function(data) {
                     var report = _addToResultsStudentsName(data, arrayStudents);
-                    report = _addToResultsCountTrueAnswers(report);
+                    report = addToResultsCountTrueAnswers(report);
                     results = report;
                     testName = test.test_name;
                     return report;
@@ -148,7 +150,7 @@
         }
 
         // add to array of results for each object in array property percentTrueAnswers
-        function _addToResultsCountTrueAnswers(arrayResults) {
+        function addToResultsCountTrueAnswers(arrayResults) {
             angular.forEach(arrayResults, function(item) {
                 var trueAnswers = item.true_answers.split("/").map(Number);
                 var countTrueAnswers = trueAnswers.filter(function(item) { return item === 1; }).length;
@@ -192,7 +194,6 @@
 
         // get questions by Test
         function _getQuestionsByTest(test_id) {
-            // return questionsService.getQuestionsByTest(test_id)
             return $http.get(BASE_URL + URL.ENTITIES.QUESTION + URL.GET_RECORDS_RANGE_BY_TEST + test_id + "/100/0/")
                 .then(_successCallback, _errorCallback);
         }

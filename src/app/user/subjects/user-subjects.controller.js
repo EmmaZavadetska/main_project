@@ -8,7 +8,7 @@
 
     function UserSubjectsController(userService, testsService, customDialog, $state, testPlayerService) {
         var vm = this;
-        vm.headElements = userService.getHeader();
+        vm.headElements = userService.getHeaderSubjects();
         vm.showAvailableTests = showAvailableTests;
 
         activate();
