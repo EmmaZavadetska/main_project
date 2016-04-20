@@ -1,3 +1,6 @@
+<div id="loaderDiv" spinner class="hidden">
+    <img src="images/spinner.gif" class="ajax-loader"/>
+</div>
 <div class="my-app-container panel panel-primary">
 <!-- HEADER -->
     <div class="panel-heading">
@@ -59,7 +62,7 @@
                     <td> {{ $index+1 }} </td>
                     <td ng-if="schedules.group"> {{ ::schedules.associativeSubjects[schedule.subject_id] }} </td>
                     <td ng-if="schedules.subject"> {{ ::schedules.associativeGroups[schedule.group_id] }} </td>
-                    <td> {{ ::schedule.event_date }} </td>
+                    <td> {{ ::schedule.event_date  | date: "dd MMMM yyyy"}} </td>
                     <td>
                         <button class="btn btn-warning" title="Змінити дату проведення" ng-click="schedules.toggleActionForm(schedule)">
                             <i class="fa fa-calendar"></i>

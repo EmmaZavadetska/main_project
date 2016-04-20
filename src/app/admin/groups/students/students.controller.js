@@ -17,7 +17,7 @@
         vm.getItemsPerPage = getItemsPerPage;
         vm.group_id = $stateParams.group_id;
         vm.associativeGroups = {};
-        
+        vm.studentRemover = studentRemover;
         activate();
 
         function activate() {
@@ -41,7 +41,7 @@
                 })
             });
         }
-        vm.studentRemover = studentRemover;
+
 
         function getItemsPerPage() {
             vm.currentRecordsRange = (vm.currentPage - 1) * vm.entitiesPerPage;
@@ -58,3 +58,4 @@
 
     }
 })();
+

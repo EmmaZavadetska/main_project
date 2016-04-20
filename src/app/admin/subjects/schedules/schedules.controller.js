@@ -104,11 +104,5 @@
             dateDisabled: disabledSunday,
             minDate: new Date()
         };
-
-        ///////////////////////////
-        vm.test = function() {
-            console.log(vm.schedule);
-        }
-
     }
 })();

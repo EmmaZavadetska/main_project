@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("TestDetailsController", TestDetailsController);
 
-    TestDetailsController.$inject = ["$stateParams", "testsService", "REGEXP", "MESSAGE"];
+    TestDetailsController.$inject = ["$stateParams", "testsService", "REGEXP", "MESSAGE", "customDialog"];
 
-    function TestDetailsController($stateParams, testsService, REGEXP, MESSAGE) {
+    function TestDetailsController($stateParams, testsService, REGEXP, MESSAGE, customDialog) {
         var vm = this;
         vm.availableLevel = [];
 
@@ -34,7 +34,7 @@
                         vm.summaryRate += (parseInt(item.tasks) * parseInt(item.rate));
                     })
                 }else {
-                    vm.summaryRate = 0;
+                    vm.summaryRate = 0; 
                     vm.list = [];
                 }
             })
@@ -68,30 +68,21 @@
 
         function saveEntity () {
             countAvailableTask ();
-            testsService.saveTestLevel(vm.testLevel).then(function (data) {
-                if (data.response === "ok"){
-                    alert(MESSAGE.SAVE_SUCCSES);
-
-                } else {
-                    alert(MESSAGE.SAVE_ERROR +  " " + data.response);
-                }
-                activate();
-                vm.testLevel = {};
-                hideForm();
-            })
+            customDialog.openConfirmationDialog().then(function() {
+                testsService.saveTestLevel(vm.testLevel).then(function (data) {
+                    activate();
+                    vm.testLevel = {};
+                    hideForm();
+                })
+            });
         }
 
         function removeTestLevel(testLevel) {
-            if (confirm(MESSAGE.DEL_CONFIRM)) {
+            customDialog.openDeleteDialog(testLevel).then(function(){
                 testsService.removeTestLevel(testLevel.id).then(function (res) {
-                    if (res.response === "ok") {
-                        alert(MESSAGE.DEL_SUCCESS)
-                    } else if (res.response === "error 23000") {
-                        alert(MESSAGE.DEL_ERROR);
-                    }
                     activate();
                 })
-            }
+            });
         }
 
         function countAvailableTask () {

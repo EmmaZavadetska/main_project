@@ -4,9 +4,9 @@
     angular.module("app.user")
         .controller("TestPlayerController", TestPlayerController);
 
-    TestPlayerController.$inject = ["testPlayerService", "TYPES_OF_QUESTION"];
+    TestPlayerController.$inject = ["testPlayerService", "TYPES_OF_QUESTION", "$state"];
 
-    function TestPlayerController(testPlayerService, TYPES_OF_QUESTION) {
+    function TestPlayerController(testPlayerService, TYPES_OF_QUESTION, $state) {
         var vm = this;
         vm.showQuestion = showQuestion;
         vm.isSimpleTypeOfQuestion = isSimpleTypeOfQuestion;
@@ -61,8 +61,7 @@
         
         function finishTest() {
             return testPlayerService.finishTest(vm.test).then(function(response) {
-                // console.log(vm.test);
-                // console.log(response);
+                $state.go("user.finishTest", {tests: vm.test, results: response});
             });
         }
     }
