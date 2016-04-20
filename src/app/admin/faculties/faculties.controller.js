@@ -4,9 +4,9 @@
     angular.module("app.admin")
         .controller("FacultiesController", FacultiesController);
 
-    FacultiesController.$inject = ["facultiesService", "PAGINATION", "FACULTIES_CONST", "MESSAGE"];
+    FacultiesController.$inject = ["facultiesService", "PAGINATION", "VALID", "MESSAGE", "customDialog"];
 
-    function FacultiesController (facultiesService, PAGINATION, FACULTIES_CONST, MESSAGE) {
+    function FacultiesController (facultiesService, PAGINATION, VALID, MESSAGE, customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -14,8 +14,9 @@
         vm.headElements = facultiesService.getHeader();
         vm.saveFaculty = saveFaculty;
         vm.removeFaculty = removeFaculty;
-        vm.minNameLength = FACULTIES_CONST.MIN_CHAR_LENGTH;
-        vm.maxNameLength = FACULTIES_CONST.MAX_CHAR_LENGTH;
+        vm.minNameLength = VALID.MIN_NAME_LENGTH;
+        vm.maxNameLength = VALID.MAX_NAME_LENGTH;
+        vm.amountEntities = PAGINATION.ENTITIES_RANGE_ON_PAGE;
         vm.maxSize = PAGINATION.PAGES_SHOWN;
         vm.currentPage = PAGINATION.CURRENT_PAGE;
         vm.currentRecordsRange = 0;
@@ -45,27 +46,30 @@
         }
 
         function saveFaculty() {
-            facultiesService.saveFaculty(vm.faculty).then(function(res) {
-                activate();
-                vm.hideSaveForm();
+            customDialog.openConfirmationDialog().then(function() {
+                facultiesService.saveFaculty(vm.faculty).then(function(res) {
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function() {
+                        activate();
+                        vm.hideSaveForm();
+                    });
+                });
             });
         }
 
         function removeFaculty(faculty) {
             var message;
-            if (confirm( MESSAGE.DEL_CONFIRM + faculty.faculty_name + '"?')){
+            customDialog.openDeleteDialog().then(function() {
                 facultiesService.removeFaculty(faculty.faculty_id).then(function(res) {
-                    if (res.response.indexOf("error") >= 0) {
-                        message = "За цим факультетом існують групи. Спочатку видаліть їх.";
+                    if (res.response.indexOf("error") > -1) {
+                        customDialog.openInformationDialog(MESSAGE.DEL_SPEC_ERR, "Відхилено");
                     } else {
-                        message = 'Факультет "' + faculty.faculty_name + '" видалено';
-                        activate();
+                        customDialog.openInformationDialog(MESSAGE.DEL_SUCCESS, "Збережено").then(function() {
+                            activate();
+                        });
                     }
-                    alert(message);
                 });
-            }
+            });
         }
-
 
         function getNextRange() {
             vm.currentRecordsRange =(vm.currentPage - 1) * PAGINATION.ENTITIES_RANGE_ON_PAGE;

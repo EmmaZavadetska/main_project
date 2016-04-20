@@ -71,12 +71,6 @@
             EMAIL_REGEXP: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
         })
 
-        .constant("FACULTIES_CONST", {
-            MIN_CHAR_LENGTH: 2,
-            MAX_CHAR_LENGTH: 300,
-            CHAR_REGEXP: /[a-zа-яіїє]/i
-        })
-
         .constant("REGEXP", {
             ONLY_NUMBER: /^[0-9]+$/
         })
