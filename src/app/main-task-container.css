@@ -53,7 +53,7 @@
 /* class btn-primary */
 .my-app-name-container .btn-primary {
   border: none;
-   background-color: #3F51B5;
+  background-color: #03588C;
 }
 .my-app-name-container .btn-primary:focus,
 .my-app-name-container .btn-primary.focus {
@@ -590,9 +590,10 @@
 .my-app-name-container .nav.navbar-nav.navbar-right .active a {
   background-color: #046DAF;
 }
-.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown span {
+.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown > span {
   display: inline-block;
   margin-top: 15px;
+  width: 100%;
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown {
   height: 54px;
