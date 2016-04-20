@@ -25,7 +25,7 @@
                 ]
             }, {size: "sm"});
         }
-
+       
         function openInformationDialog(messageBody, title) {
 
             return openDialog({
@@ -38,7 +38,7 @@
             }, {size: "sm"});
         }
 
-        function openDeleteDialog(itemName) {
+        function openDeleteDialog() {
 
             return openDialog({
                 iconType: "danger",
