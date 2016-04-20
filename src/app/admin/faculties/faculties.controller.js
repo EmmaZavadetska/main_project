@@ -14,8 +14,8 @@
         vm.headElements = facultiesService.getHeader();
         vm.saveFaculty = saveFaculty;
         vm.removeFaculty = removeFaculty;
-        vm.minNameLength = FACULTIES_CONST.MIN_CHAR_LENGTH;
-        vm.maxNameLength = FACULTIES_CONST.MAX_CHAR_LENGTH;
+        vm.minNameLength = VALID.MIN_NAME_LENGTH;
+        vm.maxNameLength = VALID.MAX_NAME_LENGTH;;
         vm.amountEntities = PAGINATION.ENTITIES_RANGE_ON_PAGE;
         vm.maxSize = PAGINATION.PAGES_SHOWN;
         vm.currentPage = PAGINATION.CURRENT_PAGE;
@@ -46,20 +46,28 @@
         }
 
         function saveFaculty() {
-            customDialog.openConfirmationDialog().then(function(){
-                facultiesService.saveFaculty(vm.faculty).then(function(data){
-                    activate();
-                    vm.hideSaveForm();
-                    vm.faculty = {};
-                })
+            customDialog.openConfirmationDialog().then(function() {
+                facultiesService.saveFaculty(vm.faculty).then(function(res) {
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function() {
+                        activate();
+                        vm.hideSaveForm();
+                    });
+                });
             });
         }
 
         function removeFaculty(faculty) {
-            customDialog.openDeleteDialog(faculty).then(function(){
-                facultiesService.removeFaculty(faculty).then(function(res){
-                    activate();
-                })
+            var message;
+            customDialog.openDeleteDialog().then(function() {
+                facultiesService.removeFaculty(faculty.faculty_id).then(function(res) {
+                    if (res.response.indexOf("error") > -1) {
+                        customDialog.openInformationDialog(MESSAGE.DEL_SPEC_ERR, "Відхилено");
+                    } else {
+                        customDialog.openInformationDialog(MESSAGE.DEL_SUCCESS, "Збережено").then(function() {
+                            activate();
+                        });
+                    }
+                });
             });
         }
 
