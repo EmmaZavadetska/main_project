@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("SubjectsController", SubjectsController);
 
-    SubjectsController.$inject = ["subjectsService", "PAGINATION", "MESSAGE", "customDialog"];
+    SubjectsController.$inject = ["subjectsService", "PAGINATION", "customDialog"];
 
-    function SubjectsController (subjectsService, PAGINATION, MESSAGE ,customDialog) {
+    function SubjectsController (subjectsService, PAGINATION, customDialog) {
         var vm = this;
         vm.headElements = subjectsService.getHeader();
         vm.formCollapsed = true;

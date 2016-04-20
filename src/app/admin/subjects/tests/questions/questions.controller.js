@@ -75,9 +75,11 @@
             if (vm.image != null) {
                 vm.question.attachment = vm.image;
             }
-            questionsService.saveQuestion(vm.question, $stateParams.test_id).then(function(data) {
-                activate();
-                hideSaveForm();
+            customDialog.openConfirmationDialog().then(function() {
+                questionsService.saveQuestion(vm.question, $stateParams.test_id).then(function(data) {
+                    activate();
+                    hideSaveForm();
+                });
             });
         }
 
