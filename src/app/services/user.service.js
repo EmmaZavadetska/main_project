@@ -42,7 +42,8 @@
 
             return deferred.promise
         }
-
+        
+        //For subject's page
         function getSchedules (group_id) {
             var deferred = $q.defer();
 
@@ -83,8 +84,8 @@
 
             return nowDate >= testDate && nowDate <= (testDate + 24*60*60*1000)
         }
-
-
+        
+        // For result's page
         function getResults() {
             return _getStudentIdIsLogged().then(function (student_id) {
                 return _getResultsByStudent(student_id).then(function (data) {
