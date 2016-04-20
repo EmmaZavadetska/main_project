@@ -45,11 +45,11 @@ header .navbar-header .navbar-brand {
     width: 90%;
 }
 .auth-container input.ng-invalid, .panel textarea.ng-invalid,
-.panel input.ng-invalid{
+.panel input.ng-invalid, .admins input.ng-invalid {
     background-color: #ffcccc;
 }
 .auth-container input.ng-untouched, .panel textarea.ng-untouched,
-.panel input.ng-untouched{
+.panel input.ng-untouched, .admins input.ng-untouched {
     background-color: #fff;
 }
 .admins .msg {
