@@ -62,7 +62,6 @@
             });
         }
 
-
         function getNextRange() {
             vm.currentRecordsRange =(vm.currentPage - 1) * PAGINATION.ENTITIES_RANGE_ON_PAGE;
         }
