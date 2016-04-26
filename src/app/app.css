@@ -44,12 +44,12 @@ header .navbar-header .navbar-brand {
     margin-left: 25px;
     width: 90%;
 }
-.auth-container input.ng-invalid, .panel textarea.ng-invalid,
-.panel input.ng-invalid, .admins input.ng-invalid {
+/*.panel textarea.ng-invalid, .panel input.ng-invalid,*/
+.auth-container input.ng-invalid, .admins input.ng-invalid {
     background-color: #ffcccc;
 }
-.auth-container input.ng-untouched, .panel textarea.ng-untouched,
-.panel input.ng-untouched, .admins input.ng-untouched {
+/*.panel textarea.ng-untouched, .panel input.ng-untouched,*/
+.auth-container input.ng-untouched, .admins input.ng-untouched {
     background-color: #ffffff;
 }
 .admins .msg {
