@@ -1,6 +1,6 @@
 "use sctict";
 
-xdescribe("FacultiesController", function(){
+describe("FacultiesController", function(){
     beforeEach(module("app.admin"));
     var ctrl, service;
 
