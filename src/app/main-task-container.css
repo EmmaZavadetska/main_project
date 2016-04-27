@@ -294,6 +294,7 @@
 }
 .my-app-name-container .table td {
   border: none;
+  vertical-align: middle;
 }
 .my-app-name-container .table tr:hover {
   background-color: #EBD0AD;
@@ -314,6 +315,7 @@
 }
 .my-app-name-container .panel .panel-heading {
   padding: 15px 20px;
+  border-radius: 0;
 }
 .my-app-name-container .panel-heading .row {
   border-radius: 0;
