@@ -446,14 +446,14 @@
 .my-app-name-container .form-control {
  border: 1px solid transparent;
  height: 33px;
- border-bottom: 2px solid #03588C;
+ border-bottom: 2px solid transparent;
  margin-bottom: 10px;
   border-radius: 0;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
   outline: none;
 }
 .my-app-name-container .form-control:focus {
-  border-bottom: 2px solid #218DA6;
+  border-bottom: 2px solid transparent;
   background-color: #F2F2F2;
   -webkit-box-shadow: 0 4px 4px rgba(0,0,0,0.5);
           box-shadow: 0 4px 4px rgba(0,0,0,0.5);
