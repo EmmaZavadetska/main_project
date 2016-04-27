@@ -93,10 +93,11 @@ header .navbar-header .navbar-brand {
     padding-left: 15px;
 }
 /*  For testplayer  */
-.timer {
-    text-align: center;
+.panel-body .btn-toolbar .btn {
+    margin-bottom: 5px;
+    padding: 4px 8px;
 }
-.panel-heading .btn-toolbar .btn {
+#finish {
     margin-bottom: 5px;
 }
 /*  For spinner  */
