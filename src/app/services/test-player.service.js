@@ -16,7 +16,8 @@
             saveEndTime: saveEndTime,
             getEndTime: getEndTime,
             uncheckOtherAnswers: uncheckOtherAnswers,
-            getHeaders: getHeaders
+            getHeaders: getHeaders,
+            submitTest: submitTest
         };
 
         return service;
@@ -127,7 +128,7 @@
                 }
             });
         }
-        
+
         function finishTest(test) {
             var checkAnswers = [];
             angular.forEach(test, function (question) {
@@ -178,6 +179,13 @@
 
         function getHeaders() {
             return ["Ваш результат", "Максимальна кількість балів", "Відсоток", ""]
+        }
+
+        function submitTest(testResult) {
+            return $http.post(BASE_URL + URL.ENTITIES.RESULT + URL.ADD_ENTITY, testResult)
+                .then(function (response) {
+                return response.data;
+            }, _errorCallback);
         }
     }
 

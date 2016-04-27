@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-xs-12 col-md-6  pull-right">
                 <div class="col-xs-3 col-md-1 pull-right">
-                    <button class="btn btn-success" ng-click="faculties.showSaveForm()" title="Додати">
+                    <button class="btn btn-success" ng-click="faculties.showSaveForm()" title="Додати факультет">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>
                 <div class="col-xs-9 col-md-6 pull-right">
-                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук">
+                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці">
                 </div>
             </div>
             <h3 class="col-xs-12 col-md-6">Факультети:</h3>
@@ -23,19 +23,19 @@
             <div class="col-md-3">
                 <input class="form-control" name="facultyName" type="text" ng-model="faculties.faculty.faculty_name"
                        placeholder="Назва факультету" ng-minlength="{{faculties.minNameLength}}"
-                       ng-maxlength="{{faculties.maxNameLength}}" required valid-directive>
-                <span ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}}!</span>
-                <span ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}}!</span>
-                <span ng-show="saveForm.facultyName.$error.validText"><br>Назва має містити хоча б одну літеру!</span>
-                <span ng-show="saveForm.facultyName.$error.alreadyExist && saveForm.facultyName.$dirty"><br>Така назва вже існує!</span>
+                       ng-maxlength="{{faculties.maxNameLength}}" required validate>
+                <p ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}}!</p>
+                <p ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}}!</p>
+                <p ng-show="saveForm.facultyName.$error.validText"><br>Назва має містити хоча б одну літеру!</p>
+                <p ng-show="saveForm.facultyName.$error.alreadyExist && saveForm.facultyName.$dirty"><br>Така назва вже існує!</p>
             </div>
             <div class="col-md-3">
                 <input class="form-control" name="facultyDesc" type="text"
                        ng-model="faculties.faculty.faculty_description"
-                       placeholder="Опис факультету" required valid-directive>
-                <span ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</span>
-                <span ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</span>
-                <span ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</span>
+                       placeholder="Опис факультету" required validate>
+                <p ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</p>
+                <p ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</p>
+                <p ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</p>
             </div>
             <div class="col-md-6 pull-right">
                 <button type="submit" class="btn btn-success" title="Зберегти" ng-disabled="saveForm.$invalid">
@@ -61,8 +61,8 @@
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | orderBy: 'faculty_name' | filter: search">
-                <td class="clip">{{faculty.faculty_name}}</td>
-                <td class="clip">{{faculty.faculty_description}}</td>
+                <td class="clip">{{::faculty.faculty_name}}</td>
+                <td class="clip">{{::faculty.faculty_description}}</td>
                 <td class="clip">
                     <button ui-sref="admin.groupsByEntity({entity: 'faculty', entity_id: faculty.faculty_id})"
                             class="btn btn-info" title="Перейти до груп факультету {{::faculty.faculty_name}}">
@@ -81,7 +81,8 @@
             </tbody>
         </table>
         <div class="my-pagination">
-            <uib-pagination total-items="faculties.totalItems"
+            <uib-pagination ng-show="faculties.totalItems > faculties.amountEntities"
+                            total-items="faculties.totalItems"
                             ng-change="faculties.pageChanged()"
                             ng-model="faculties.currentPage"
                             max-size="faculties.maxSize"

@@ -68,14 +68,7 @@
             CODE_REGEXP: /^([6-8]\.\d{6,8})$/,
             NAME_REGEXP: /[a-zа-яіїє]/i,
             USERNAME_REGEXP: /.*/,
-            PASSWORD_PLACEHOLDER: "введіть новий пароль",
-            CONFIRM_PASSWORD_PLACEHOLDER: "підтвердіть новий пароль"
-        })
-
-        .constant("FACULTIES_CONST", {
-            MIN_CHAR_LENGTH: 2,
-            MAX_CHAR_LENGTH: 300,
-            CHAR_REGEXP: /[a-zа-яіїє]/i
+            EMAIL_REGEXP: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
         })
 
         .constant("REGEXP", {
@@ -98,6 +91,7 @@
             EDIT_CONFIRM: "Ви підтверджуєте збереження змін?",
             DEL_SUCCESS: "Видалення успішне",
             DEL_ERROR:"Помилка видалення",
+            DEL_SPEC_ERR: "За цією спеціальністю існують групи. Спочатку видаліть їх.",
             DEL_DECLINE: "Неможливо видалити самого себе"
         })
         

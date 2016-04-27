@@ -4,9 +4,9 @@
     angular.module("app.admin.subjects")
         .controller("TestDetailsController", TestDetailsController);
 
-    TestDetailsController.$inject = ["$stateParams", "testsService", "REGEXP", "MESSAGE", "customDialog"];
+    TestDetailsController.$inject = ["$stateParams", "testsService", "REGEXP", "customDialog"];
 
-    function TestDetailsController($stateParams, testsService, REGEXP, MESSAGE, customDialog) {
+    function TestDetailsController($stateParams, testsService, REGEXP, customDialog) {
         var vm = this;
         vm.availableLevel = [];
 
@@ -51,7 +51,6 @@
          * @param {objject} testLevel get from template. When addfunction used it is undefined*/
 
         function showForm(testLevel) {
-
             vm.availableLevel = testsService.getLevel (vm.list);
             vm.availableTask =  testsService.availableTasks (vm.list, vm.currentTest.tasks);
             vm.formCollapsed = false;

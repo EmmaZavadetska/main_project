@@ -4,23 +4,29 @@
     angular.module("app.admin")
         .directive("validate", validate);
 
-    validate.$inject = ["VALID", "specialitiesService", "adminService"]; //inject your service (and const if it's needed)
+    validate.$inject = ["VALID", "specialitiesService", "adminService", "facultiesService"]; //inject your service (and const if it's needed)
 
-    function validate(VALID, specialitiesService, adminService) {       //inject your service (and const if it's needed)
+    function validate(VALID, specialitiesService, adminService, facultiesService) {       //inject your service (and const if it's needed)
         var all;
 
         function getAll(inputName) {
             switch (inputName) {
-                case "specialityName", "specialityCode" : 
-                    specialitiesService.getSpecialities().then(function(data) { 
+                case "specialityName", "specialityCode" :
+                    specialitiesService.getSpecialities().then(function(data) {
                         all = data;
                     });
                     break;
-                case "username" : 
+                case "facultyName", "facultyDesc" :
+                    facultiesService.getFaculties().then(function(data) {
+                        all = data;
+                    });
+                    break;
+                case "username", "email" : 
                     adminService.getAdmins().then(function(data) {
                         all = data;
                     });
-                //add your cases analogcally, don't forget 'break'//////////////////////////////////////////
+                //add your cases analogcally, your input's names must be different from existing above
+                // and don't forget 'break'
             }
         }
 
@@ -44,6 +50,10 @@
                     attr.regexp = VALID.USERNAME_REGEXP;
                     attr.key = "username";
                     return attr;
+                case "email" :
+                    attr.regexp = VALID.EMAIL_REGEXP;
+                    attr.key = "email";
+                    return attr;
                 case "specialityName" :
                     attr.regexp = VALID.NAME_REGEXP;
                     attr.key = "speciality_name";
@@ -51,6 +61,14 @@
                 case "specialityCode" :
                     attr.regexp = VALID.CODE_REGEXP;
                     attr.key = "speciality_code";
+                    return attr;
+                case "facultyName" :
+                    attr.regexp = VALID.NAME_REGEXP;
+                    attr.key = "faculty_name";
+                    return attr;
+                case "facultyDesc" :
+                    attr.regexp = VALID.NAME_REGEXP;
+                    attr.key = "faculty_description";
                     return attr;
                 //your cases here analogically////////////////////////////////////////////
             }

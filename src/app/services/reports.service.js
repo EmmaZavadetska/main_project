@@ -20,8 +20,7 @@
             getResultsDetail: getResultsDetail,
             getHeaderOfReport: getHeaderOfReport,
             getHeaderOfReportDetail: getHeaderOfReportDetail,
-            uniqueItemsArray: uniqueItemsArray,
-            addToResultsCountTrueAnswers: addToResultsCountTrueAnswers
+            uniqueItemsArray: uniqueItemsArray
         };
 
         return service;
@@ -87,7 +86,7 @@
                 var arrayStudents = data;
                 return _getResultByStudents(arrayStudents, test.test_id).then(function(data) {
                     var report = _addToResultsStudentsName(data, arrayStudents);
-                    report = addToResultsCountTrueAnswers(report);
+                    report = _addToResultsCountTrueAnswers(report);
                     results = report;
                     testName = test.test_name;
                     return report;
@@ -150,7 +149,7 @@
         }
 
         // add to array of results for each object in array property percentTrueAnswers
-        function addToResultsCountTrueAnswers(arrayResults) {
+        function _addToResultsCountTrueAnswers(arrayResults) {
             angular.forEach(arrayResults, function(item) {
                 var trueAnswers = item.true_answers.split("/").map(Number);
                 var countTrueAnswers = trueAnswers.filter(function(item) { return item === 1; }).length;

@@ -4,16 +4,17 @@
     angular.module("app.user")
         .directive("timer", timer);
 
-    timer.$inject = ["$timeout", "$state", "TIME_DELAY", "testPlayerService"];
+    timer.$inject = ["$timeout", "TIME_DELAY", "testPlayerService"];
 
-    function timer($timeout, $state, TIME_DELAY, testPlayerService) {
+    function timer($timeout, TIME_DELAY, testPlayerService) {
         var directive = {
             scope: {
                 duration: "=",
-                finishTest: "&"
+                finishTest: "&",
+                isTestFinish: "="
             },
             link: function(scope, element) {
-                scope.$watch("duration", function() {
+                var listener = scope.$watch("duration", function() {
                     if (scope.duration === undefined) {
                         element.html("");
                     } else {
@@ -41,16 +42,19 @@
                             }
 
                             function setTimer() {
-                                if (timeDiff <= 0) {
-                                    element.html("Час вичерпано");
-                                    $timeout(endTest, TIME_DELAY * 1000);
-                                } else {
-                                    time = new Date(timeDiff);
-                                    hours = time.getUTCHours();
-                                    mins = time.getUTCMinutes();
-                                    secs = time.getUTCSeconds();
-                                    element.html((hours ? (twoDigits(hours) + ":") : "") + twoDigits(mins) + ":" + twoDigits(secs));
-                                    $timeout(updateTimer, 500);
+                                if (!scope.isTestFinish) {
+                                    if (timeDiff <= 0) {
+                                        element.html("Час вичерпано");
+                                        listener();
+                                        $timeout(endTest, TIME_DELAY * 1000);
+                                    } else {
+                                        time = new Date(timeDiff);
+                                        hours = time.getUTCHours();
+                                        mins = time.getUTCMinutes();
+                                        secs = time.getUTCSeconds();
+                                        element.html((hours ? (twoDigits(hours) + ":") : "") + twoDigits(mins) + ":" + twoDigits(secs));
+                                        $timeout(updateTimer, 500);
+                                    }
                                 }
                             }
                         });
@@ -59,7 +63,6 @@
                 
                 function endTest() {
                     scope.finishTest();
-                    $state.go("user.results");
                 }
 
                 function getTimeStamp() {

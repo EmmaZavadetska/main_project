@@ -91,7 +91,6 @@
                 return _getResultsByStudent(student_id).then(function (data) {
                     var results = data;
                     if (!results.hasOwnProperty("response")) {
-                        results = reportsService.addToResultsCountTrueAnswers(results);
                         var testIds = reportsService.uniqueItemsArray(results, "test_id");
                         return _getTestsByIds(testIds).then(function (response) {
                             results = _addToResultsTestsName(results, response);
@@ -136,7 +135,7 @@
         }
         
         function getHeaderResults() {
-            return ["Назва тесту", "Дата тестування", "Результат", "Якість"];
+            return ["Назва тесту", "Дата тестування", "Результат"];
         }
     }
 })();

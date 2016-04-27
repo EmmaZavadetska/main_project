@@ -110,7 +110,12 @@
             .state("user", {
                 url: "/user",
                 templateUrl: "app/user/home-user.html",
-                controller: "HomeUserController as user"
+                controller: "HomeUserController as user",
+                resolve: {
+                    testDays: function(testDayService) {
+                        return testDayService.getTestDays();
+                    }
+                }
             })
             .state("user.subjects", {
                 url: "/subjects",
@@ -130,7 +135,7 @@
             .state("user.finishTest", {
                 url: "/subjects/test-player/test-result",
                 templateUrl: "app/user/subjects/test-player/test-result/test-result.html",
-                params: {tests: null, results: null},
+                params: {userScore: null, maxScore: null},
                 controller: "TestResultController as testResult"
             })
     }

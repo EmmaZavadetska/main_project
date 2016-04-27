@@ -4,9 +4,9 @@
     angular.module("app.admin.groups")
         .controller("StudentController", StudentController);
 
-    StudentController.$inject = ["$stateParams", "studentsService", "groupsService", "customDialog", "$state"];
+    StudentController.$inject = ["$stateParams", "studentsService", "groupsService", "customDialog", "$state", "MESSAGE"];
 
-    function StudentController($stateParams, studentsService, groupsService, customDialog, $state) {
+    function StudentController($stateParams, studentsService, groupsService, customDialog, $state, MESSAGE) {
         var vm = this;
         vm.addOrEdit = addOrEdit;
         vm.addNewStudent = addNewStudent;
@@ -81,13 +81,10 @@
         }
 
         function addOrEdit() {
-            console.log("I am working");
             if (vm.student_id == undefined) {
-                console.log("add");
                 addNewStudent();
             } else {
                 editStudent();
-                console.log("edit");
             }
         }
 
@@ -95,9 +92,11 @@
             if ($stateParams.content_type === "add") {
                 vm.addElement = $stateParams.content_type === "add";
                 studentsService.addStudent(vm.newStudent).then(function (data) {
-                    vm.newStudent = getEmptyStudent();
-                    var studentImage = document.getElementById("studentImage");
-                    studentImage.removeAttribute("src");
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function () {
+                        vm.newStudent = getEmptyStudent();
+                        var studentImage = document.getElementById("studentImage");
+                        studentImage.removeAttribute("src");
+                    })
                 })
             }
         }
@@ -105,23 +104,29 @@
         function editStudent() {
             customDialog.openConfirmationDialog().then(function() {
                 studentsService.editStudent(vm.newStudent, $stateParams.student_id).then(function (response) {
-                    $state.go("admin.student", {group_id: vm.group_id, content_type: 'show', student_id: vm.student_id});
-                    vm.editElements = true;
-                    vm.addElements = false;
-                    vm.additionalInputs = true;
-                    vm.newStudent = {
-                        username: response.username,
-                        password: response.password,
-                        password_confirm: response.password_confirm,
-                        email: response.email,
-                        gradebook_id: response.gradebook_id,
-                        student_surname: response.student_surname,
-                        student_name: response.student_name,
-                        student_fname: response.student_fname,
-                        group_id: response.group_id,
-                        plain_password: response.plain_password,
-                        photo: response.photo
-                    };
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function () {
+                        $state.go("admin.student", {
+                            group_id: vm.group_id,
+                            content_type: 'show',
+                            student_id: vm.student_id
+                        });
+                        vm.editElements = true;
+                        vm.addElements = false;
+                        vm.additionalInputs = true;
+                        vm.newStudent = {
+                            username: response.username,
+                            password: response.password,
+                            password_confirm: response.password_confirm,
+                            email: response.email,
+                            gradebook_id: response.gradebook_id,
+                            student_surname: response.student_surname,
+                            student_name: response.student_name,
+                            student_fname: response.student_fname,
+                            group_id: response.group_id,
+                            plain_password: response.plain_password,
+                            photo: response.photo
+                        };
+                    })
                 })
             });
         }

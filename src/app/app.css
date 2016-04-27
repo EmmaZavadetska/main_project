@@ -11,7 +11,7 @@ html, body, body>div, .auth-container{
     align-items: center;
 }
 .title{
-    font-size: 42px;
+    font-size: 26px;
 }
 .form-container{
     margin-right:15%;
@@ -44,19 +44,19 @@ header .navbar-header .navbar-brand {
     margin-left: 25px;
     width: 90%;
 }
-.specialities input.ng-invalid,
-.admins input.ng-invalid {
-    border-color: #d1332e;
+/*.panel textarea.ng-invalid, .panel input.ng-invalid,*/
+.auth-container input.ng-invalid, .admins input.ng-invalid {
+    background-color: #ffcccc;
 }
-.specialities input.ng-untouched,
-.admins input.ng-untouched {
-    border-color: transparent;
+/*.panel textarea.ng-untouched, .panel input.ng-untouched,*/
+.auth-container input.ng-untouched, .admins input.ng-untouched {
+    background-color: #ffffff;
 }
 .admins .msg {
     margin-left: 30px;
     color: #d1332e;
 }
-/* Admins */
+/*  Admins  */
 .online {
     color: #00ccff;
 }
@@ -99,7 +99,7 @@ header .navbar-header .navbar-brand {
 .panel-heading .btn-toolbar .btn {
     margin-bottom: 5px;
 }
-/* For spinner    */
+/*  For spinner  */
 #loaderDiv {
     position: fixed;
     top: 0;
@@ -119,3 +119,15 @@ header .navbar-header .navbar-brand {
     display: block;
 }
 .hidden{display:none !important}
+/* For datepicker */
+.full button span {
+    background-color: limegreen;
+    border-radius: 12px;
+    color: black;
+}
+.partially button span {
+    background-color: orange;
+    border-radius: 12px;
+    color: black;
+}
+

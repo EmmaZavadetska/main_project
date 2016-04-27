@@ -51,9 +51,9 @@
                 // create/update
             function saveGroup(group) {
                 if (group.group_id === undefined) {
-                    return $http.post(BASE_URL + URL.ENTITIES.GROUP + URL.ADD_ENTITY, group).then([_successCallback, console.log("Групу додано до бази даних")], _errorCallback)
+                    return $http.post(BASE_URL + URL.ENTITIES.GROUP + URL.ADD_ENTITY, group).then(_successCallback, _errorCallback)
                 } else {
-                    return $http.post(BASE_URL + URL.ENTITIES.GROUP + URL.EDIT_ENTITY + group.group_id, group).then([_successCallback, console.log("Зміни внесено до бази даних")], _errorCallback)
+                    return $http.post(BASE_URL + URL.ENTITIES.GROUP + URL.EDIT_ENTITY + group.group_id, group).then(_successCallback, _errorCallback)
                 }
             }
             // HEADERS OF THE GROUPS TABLE

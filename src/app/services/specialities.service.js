@@ -13,7 +13,7 @@
             totalItems: totalItems,
             saveSpeciality: saveSpeciality,
             removeSpeciality: removeSpeciality,
-            getHeader: getHeader
+            getHeader: getHeader 
         };
 
         return service;

@@ -4,22 +4,24 @@
     angular.module("app.admin")
         .controller("SpecialitiesController", SpecialitiesController);
 
-    SpecialitiesController.$inject = ["specialitiesService", "PAGINATION", "VALID"];
+    SpecialitiesController.$inject = ["specialitiesService", "customDialog", "PAGINATION", "VALID", "MESSAGE"];
 
-    function SpecialitiesController (specialitiesService, PAGINATION, VALID) {
+    function SpecialitiesController (specialitiesService, customDialog, PAGINATION, VALID, MESSAGE) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
         vm.saveFormCollapsed = true;
-        vm.headElements = specialitiesService.getHeader();       
         vm.saveSpeciality = saveSpeciality;
+        vm.headElements = specialitiesService.getHeader();       
         vm.removeSpeciality = removeSpeciality;
         vm.minNameLength = VALID.MIN_NAME_LENGTH;
         vm.maxNameLength = VALID.MAX_NAME_LENGTH;
+        vm.amountRecords = PAGINATION.ENTITIES_RANGE_ON_PAGE;
         vm.maxSize = PAGINATION.PAGES_SHOWN;
-        vm.currentPage =  vm.currentPage = PAGINATION.CURRENT_PAGE;
+        vm.currentPage = PAGINATION.CURRENT_PAGE;
         vm.currentRecordsRange = 0;
         vm.pageChanged = pageChanged;
+        
         activate();
 
         function activate() {
@@ -33,46 +35,42 @@
 
         function showSaveForm(speciality) {
             vm.saveFormCollapsed = false;
-            if (speciality === null) {
-                vm.speciality = {};
-            } else {
-                vm.speciality = speciality;
-            }
+            vm.speciality = (speciality === null) ? {} : speciality;
         }
+        
         function hideSaveForm() {
             vm.saveFormCollapsed = true;
             vm.speciality = {};
         }
 
         function saveSpeciality() {
-            specialitiesService.saveSpeciality(vm.speciality).then(function(res) {
-                activate();
-                vm.hideSaveForm();
+            customDialog.openConfirmationDialog().then(function() {
+                specialitiesService.saveSpeciality(vm.speciality).then(function(res) {
+                    customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function() {
+                        activate();
+                        vm.hideSaveForm();
+                    });    
+                });
             });
         }
 
         function removeSpeciality(speciality) {
             var message;
-            if (confirm('Ви впевнені, що бажаєте видалити спеціальність "' + speciality.speciality_name + '"?')){
+            customDialog.openDeleteDialog().then(function() {
                 specialitiesService.removeSpeciality(speciality.speciality_id).then(function(res) {
-                    if (res.response.indexOf("error") >= 0) {
-                        message = "За цією спеціальністю існують групи. Спочатку видаліть їх.";
+                    if (res.response.indexOf("error") > -1) {
+                        customDialog.openInformationDialog(MESSAGE.DEL_SPEC_ERR, "Відхилено");
                     } else {
-                        message = 'Спеціальність "' + speciality.speciality_name + '" видалена';
-                        activate();
+                        customDialog.openInformationDialog(MESSAGE.DEL_SUCCESS, "Збережено").then(function() {
+                            activate();
+                        });  
                     }
-                    alert(message);
                 });
-            }
-        }
-
-
-        function getNextRange() {
-            vm.currentRecordsRange =(vm.currentPage - 1) * PAGINATION.ENTITIES_RANGE_ON_PAGE;
+            });
         }
 
         function pageChanged(){
-            getNextRange();
+            vm.currentRecordsRange =(vm.currentPage - 1) * vm.amountRecords;
             specialitiesService.getSpecialitiesRange(vm.currentRecordsRange).then(function(data) {
                 vm.list = data;
             });
