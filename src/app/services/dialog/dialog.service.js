@@ -13,12 +13,12 @@
             danger: ["fa fa-exclamation-triangle", "text-danger"]
         };
 
-        function openConfirmationDialog(title) {
+        function openConfirmationDialog(messageBody, title) {
 
             return openDialog({
                 title: title || "Підтвердження",
                 iconType: "warning",
-                body: MESSAGE.EDIT_CONFIRM,
+                body: messageBody || MESSAGE.EDIT_CONFIRM,
                 buttons: [
                     {label: "Так", type:"success", value: "yes"},
                     {label: "Ні", value: "no", dismiss: true}
@@ -61,7 +61,7 @@
                     {label: "Так", type:"success", value: "yessss"},
                     {label: "Ні", value: "no", dismiss: true}
                 ]
-            }, {size: "lg"});
+            }, {size: "sm"});
         }
 
         function openDialog(data, customOptions) {
