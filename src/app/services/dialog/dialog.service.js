@@ -53,9 +53,9 @@
 
         function openChooseTestDialog (subject_name, availableTest) {
             return openDialog({
-                title: subject_name || "Тестування",
+                title: "Бажаєте розпочати тест?",
                 iconType: "warning",
-                body: "Бажаєте розпочати тест?",
+                body: subject_name,
                 availableTest: availableTest,
                 buttons: [
                     {label: "Так", type:"success", value: "yessss"},

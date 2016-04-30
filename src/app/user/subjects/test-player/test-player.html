@@ -18,17 +18,19 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-3">
-                <div class="col-xs-12">
+                <div>
                     <button id="finish" class="btn btn-success btn-block" ng-click="testPlayer.confirmFinishTest()"
                             title="Завершити тестування">
                         <i class="fa fa-check-square-o"> Завершити</i>
                     </button>
                 </div>
-                <div class="btn-toolbar">
-                    <button class="btn btn-info btn-group" ng-repeat="question in testPlayer.test"
-                            ng-click="testPlayer.showQuestion(question)" button-style>
-                        {{$index + 1}}
-                    </button>
+                <div>
+                    <div class="btn-toolbar">
+                        <button class="btn btn-info btn-group-sm" ng-repeat="question in testPlayer.test"
+                                ng-click="testPlayer.showQuestion(question)" button-style>
+                            {{$index + 1}}
+                        </button>
+                    </div>
                 </div>
             </div>
 
