@@ -37,7 +37,7 @@
                 <td class="clip">{{::question.level}}</td>
                 <td class="clip" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
                 <td class="clip" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
-                <td class="clip">
+                <td class="clip pull-right">
                     <button class="btn btn-info" title="Варіанти відповідей"
                             ui-sref="admin.answer({subject_id: questions.subject_id, test_id: question.test_id,
                             question_id: question.question_id})">
