@@ -33,7 +33,7 @@
                 <td class="clip">{{::student.student_fname}}</td>
                 <td class="clip">{{::student.gradebook_id}}</td>
                 <td class="clip">{{::students.associativeGroups[student.group_id]}}</td>
-                <td class="clip">
+                <td class="clip pull-right">
                     <button ui-sref="admin.student({group_id: student.group_id, content_type: 'show', student_id: student.user_id})"
                             class="btn btn-info"
                             title="Переглянути інформацію студента">

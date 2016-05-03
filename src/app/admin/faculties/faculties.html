@@ -63,7 +63,7 @@
             <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | orderBy: 'faculty_name' | filter: search">
                 <td class="clip">{{::faculty.faculty_name}}</td>
                 <td class="clip">{{::faculty.faculty_description}}</td>
-                <td class="clip">
+                <td class="clip pull-right">
                     <button ui-sref="admin.groupsByEntity({entity: 'faculty', entity_id: faculty.faculty_id})"
                             class="btn btn-info" title="Перейти до груп факультету {{::faculty.faculty_name}}">
                         <i class="fa fa-list"></i>
