@@ -138,4 +138,8 @@ header .navbar-header .navbar-brand {
     border-radius: 12px;
     color: black;
 }
+/*  For select in test-player */
+.modal-body select {
+    padding-left: 10px;
+}
 
