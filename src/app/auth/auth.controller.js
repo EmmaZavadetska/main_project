@@ -8,7 +8,7 @@
 
     function AuthController(authService, $state) {
         var vm = this;
-        vm.credentials ={};
+        vm.credentials = {};
         vm.authentication = authentication;
         vm.isCollapsed = true;
         vm.checkResponse = checkResponse;
@@ -19,7 +19,7 @@
             })
         }
 
-        function checkResponse (data) {
+        function checkResponse(data) {
             if (data.response === "ok" && data.roles[1] === "admin") { 
                 $state.go("admin");
             } else if (data.response === "ok" && data.roles[1] === "student") {
