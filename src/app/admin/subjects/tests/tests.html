@@ -18,16 +18,16 @@
             <tbody>
             <thead>
             <tr>
-                <th class="clip header text-center" ng-repeat="headElement in tests.headElements">{{::headElement}}</th>
+                <th class="clip header" ng-repeat="headElement in tests.headElements">{{::headElement}}</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="test in tests.list | orderBy:'test_name'">
-                <td class="clip text-center">{{::test.test_name}}</td>
-                <td class="clip text-center">{{::test.tasks}}</a></td>
-                <td class="clip text-center">{{::test.time_for_test}} хв</td>
-                <td class="clip text-center">{{::tests.status[test.enabled].enabled}}</td>
+                <td class="clip">{{::test.test_name}}</td>
+                <td class="clip">{{::test.tasks}}</a></td>
+                <td class="clip">{{::test.time_for_test}} хв</td>
+                <td class="clip">{{::tests.status[test.enabled].enabled}}</td>
                 <td class="pull-right">
                     <button class="btn btn-info"  ui-sref="admin.questions({subject_id: test.subject_id, test_id: test.test_id})"
                             title="Переглянути завдання">
