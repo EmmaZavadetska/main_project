@@ -11,8 +11,8 @@
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
-                <div class="col-xs-9 col-sm-8 pull-right">
-                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці...">
+                <div class="col-xs-9 col-sm-4 pull-right">
+                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці">
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <tbody>
                 <thead>
                     <tr>
-                        <th class="clip header text-center" ng-repeat="headerElement in questions.headElements">
+                        <th class="clip header" ng-repeat="headerElement in questions.headElements">
                             {{::headerElement}}
                         </th>
                         <th></th>
@@ -33,10 +33,10 @@
                 </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="question in questions.questionsList | orderBy:'text' | filter: search">
-                <td class="clip text-center">{{::question.question_text}}</td>
-                <td class="clip text-center">{{::question.level}}</td>
-                <td class="clip text-center" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
-                <td class="clip text-center" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
+                <td class="clip">{{::question.question_text}}</td>
+                <td class="clip">{{::question.level}}</td>
+                <td class="clip" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
+                <td class="clip" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
                 <td class="clip pull-right">
                     <button class="btn btn-info" title="Варіанти відповідей"
                             ui-sref="admin.answer({subject_id: questions.subject_id, test_id: question.test_id,

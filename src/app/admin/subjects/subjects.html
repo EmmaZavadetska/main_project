@@ -11,8 +11,8 @@
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>
-                <div class="col-xs-9 col-sm-8 pull-right">
-                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці...">
+                <div class="col-xs-9 col-sm-4 pull-right">
+                    <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці">
                 </div>
             </div>
         </div>
@@ -24,14 +24,14 @@
             <tbody>
             <thead>
             <tr>
-                <th class="clip header text-center" ng-repeat="headerElement in subjects.headElements">{{::headerElement}}</th>
+                <th class="clip header" ng-repeat="headerElement in subjects.headElements">{{::headerElement}}</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="subject in subjects.list | orderBy:subject_name | filter:search">
-                <td class="clip text-center">{{::subject.subject_name}}</td>
-                <td class="clip text-center">{{::subject.subject_description}}</a></td>
+                <td class="clip">{{::subject.subject_name}}</td>
+                <td class="clip">{{::subject.subject_description}}</a></td>
                 <td class="pull-right">
                     <button class="btn btn-info"  ui-sref="admin.tests({subject_id: subject.subject_id})"
                             title="Перейти до управління тестами"><i class="fa fa-list"></i> Tести
