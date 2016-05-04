@@ -4,7 +4,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <h3 class="col-xs-12 col-sm-3 title">Завдання</h3>
+            <div class="col-xs-12 col-sm-3 title">Завдання</div>
             <div class="col-xs-12 col-sm-9 pull-right">
                 <div class="col-xs-2 col-sm-1 pull-right">
                     <button class="btn btn-success" ng-click="questions.showSaveForm()" title="Додати завдання">
@@ -25,18 +25,18 @@
             <tbody>
                 <thead>
                     <tr>
-                        <th class="clip" class="header" ng-repeat="headerElement in questions.headElements">
+                        <th class="clip header text-center" ng-repeat="headerElement in questions.headElements">
                             {{::headerElement}}
                         </th>
-                        <th colspan="2"></th>
+                        <th></th>
                     </tr>
                 </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="question in questions.questionsList | orderBy:'text' | filter: search">
-                <td class="clip">{{::question.question_text}}</td>
-                <td class="clip">{{::question.level}}</td>
-                <td class="clip" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
-                <td class="clip" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
+                <td class="clip text-center">{{::question.question_text}}</td>
+                <td class="clip text-center">{{::question.level}}</td>
+                <td class="clip text-center" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
+                <td class="clip text-center" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
                 <td class="clip pull-right">
                     <button class="btn btn-info" title="Варіанти відповідей"
                             ui-sref="admin.answer({subject_id: questions.subject_id, test_id: question.test_id,

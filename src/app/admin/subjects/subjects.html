@@ -4,14 +4,14 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <h3 class="col-xs-12 col-md-6">Предмети</h3>
-            <div class="col-xs-12 col-md-6  pull-right">
-                <div class="col-xs-3 col-md-1 pull-right">
+            <div class="col-xs-12 col-sm-3 title">Предмети</div>
+            <div class="col-xs-12 col-sm-9  pull-right">
+                <div class="col-xs-3 col-sm-1 pull-right">
                     <button class="btn btn-success"  ng-click="subjects.showForm()"  title="Додати предмет">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>
-                <div class="col-xs-9 col-md-6 pull-right">
+                <div class="col-xs-9 col-sm-8 pull-right">
                     <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці...">
                 </div>
             </div>
@@ -24,16 +24,15 @@
             <tbody>
             <thead>
             <tr>
-                <th class="clip" class="header" ng-repeat="headerElement in subjects.headElements">{{::headerElement}}</th>
-                <th></th>
+                <th class="clip header text-center" ng-repeat="headerElement in subjects.headElements">{{::headerElement}}</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="subject in subjects.list | orderBy:subject_name | filter:search">
-                <td>{{::subject.subject_name}}</td>
-                <td>{{::subject.subject_description}}</a></td>
-                <td>
+                <td class="clip text-center">{{::subject.subject_name}}</td>
+                <td class="clip text-center">{{::subject.subject_description}}</a></td>
+                <td class="pull-right">
                     <button class="btn btn-info"  ui-sref="admin.tests({subject_id: subject.subject_id})"
                             title="Перейти до управління тестами"><i class="fa fa-list"></i> Tести
                     </button>
@@ -41,8 +40,6 @@
                             title="Розклад тестування">
                         <i class="fa fa-calendar-check-o"></i>
                     </button>
-                </td>
-                <td class="pull-right">
                     <button class="btn btn-warning" ng-click="subjects.showForm(subject)"
                             title="Редагувати {{::subject.subject_name}}">
                         <i class="glyphicon glyphicon-pencil"></i>
@@ -50,7 +47,7 @@
                     <button class="btn btn-danger"  ng-click="subjects.removeSubject(subject)"
                                      title="Видалити {{::subject.subject_name}}">
                     <i class="glyphicon glyphicon-remove"></i>
-                </button>
+                    </button>
                 </td>
             </tr>
             </tbody>

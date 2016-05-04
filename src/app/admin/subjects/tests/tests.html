@@ -4,40 +4,39 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <h3 class="col-xs-12 col-md-11">Тести предмету: {{::tests.currentSubject}}</h3>
-            <div class="col-xs-12 col-md-1">
-                <button class="btn btn-success"  ng-click="tests.showForm()"  title="Додати тест">
+            <div class="col-xs-10 col-md-11 title">Тести предмету: {{::tests.currentSubject}}</div>
+            <div class="col-xs-2 col-md-1">
+                <button class="btn btn-success"  ng-click="tests.showForm()" title="Додати тест">
                     <i class="glyphicon glyphicon-plus"></i>
                 </button>
             </div>
         </div>
-        <div ng-include="'app/admin/subjects/tests/save-test.html'" ></div>
+        <div ng-include="'app/admin/subjects/tests/save-test.html'"></div>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-condensed">
             <tbody>
             <thead>
             <tr>
-                <th class="clip" class="header" ng-repeat="headElement in tests.headElements">{{::headElement}}</th>
-                <th class="text-center" colspan="3">Управління</th>
+                <th class="clip header text-center" ng-repeat="headElement in tests.headElements">{{::headElement}}</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="test in tests.list | orderBy:'test_name'">
-                <td>{{::test.test_name}}</td>
-                <td>{{::test.tasks}}</a></td>
-                <td>{{::test.time_for_test}} хв</td>
-                <td>{{::tests.status[test.enabled].enabled}}</td>
-                <td><button class="btn btn-info"  ui-sref="admin.questions({subject_id: test.subject_id, test_id: test.test_id})"
+                <td class="clip text-center">{{::test.test_name}}</td>
+                <td class="clip text-center">{{::test.tasks}}</a></td>
+                <td class="clip text-center">{{::test.time_for_test}} хв</td>
+                <td class="clip text-center">{{::tests.status[test.enabled].enabled}}</td>
+                <td class="pull-right">
+                    <button class="btn btn-info"  ui-sref="admin.questions({subject_id: test.subject_id, test_id: test.test_id})"
                             title="Переглянути завдання">
-                    <i class="glyphicon glyphicon-list-alt"></i> Завдання
-                </button></td>
-                <td>
+                        <i class="glyphicon glyphicon-list-alt"></i> Завдання
+                    </button>
                     <button class="btn btn-info" ui-sref="admin.testDetails({subject_id: test.subject_id, test_id: test.test_id})"
                             title="Деталі тесту">
                         <i class="glyphicon glyphicon-wrench"></i> Деталі
-                    </button></td>
-                <td class="pull-right">
+                    </button>
                     <button class="btn btn-warning" ng-click="tests.showForm(test)"
                             title="Редагувати {{test.test_name}}">
                         <i class="glyphicon glyphicon-pencil"></i>

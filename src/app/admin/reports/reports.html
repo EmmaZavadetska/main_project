@@ -16,7 +16,7 @@
             <tbody>
                 <thead>
                     <tr>
-                        <th class="clip" class="header" ng-repeat="headerElement in reports.headElements">
+                        <th class="clip text-center header" ng-repeat="headerElement in reports.headElements">
                             {{::headerElement}}
                         </th>
                         <th></th>
@@ -24,13 +24,13 @@
                 </thead>
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="result in reports.results">
-                <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}
+                <td class="clip text-center">{{::result.student_surname}}&nbsp{{::result.student_name}}
                     &nbsp{{::result.student_fname}}</td>
-                <td class="clip">{{::result.result}}</td>
-                <td class="clip">{{::result.percentTrueAnswers}}%</td>
-                <td class="clip">{{::result.session_date}}</td>
-                <td class="clip">{{::result.start_time}}</td>
-                <td class="clip">{{::result.end_time}}</td>
+                <td class="clip text-center">{{::result.result}}</td>
+                <td class="clip text-center">{{::result.percentTrueAnswers}}%</td>
+                <td class="clip text-center">{{::result.session_date}}</td>
+                <td class="clip text-center">{{::result.start_time}}</td>
+                <td class="clip text-center">{{::result.end_time}}</td>
                 <td class="clip">
                     <button class="btn btn-info" title="Більше інформації"
                             ui-sref="admin.reportDetails({session_id: result.session_id, student_id: result.student_id,
