@@ -316,6 +316,8 @@
 .my-app-name-container .panel .panel-heading {
   padding: 15px 20px;
   border-radius: 0;
+  border-right: 1px solid transparent;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5);
 }
 .my-app-name-container .panel-heading .row {
   border-radius: 0;
@@ -323,6 +325,7 @@
 .my-app-name-container .panel-body {
   padding: 15px 25px;
   background-color: #CEE3F6;
+  border: 1px solid transparent;
 }
 .my-app-name-container .panel-primary > .panel-heading {
   background-color: #03588C;
@@ -427,6 +430,9 @@
 }
 .my-app-name-container .panel-primary .pull-right .row .col-md-12 .btn-success {
   margin-bottom: 10px;
+}
+.my-app-name-container .panel-primary .panel-heading .row .btn-success {
+  height: 33px;
 }
 .my-app-name-container .row {
   padding-left: 10px;
@@ -684,7 +690,7 @@
 .my-app-name-container #group, 
 .my-app-name-container.container-fluid .modal-body select {
   width: 100%;
-  height: 36px;
+  height: 33px;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
   border: transparent;
   -webkit-appearance: none;
