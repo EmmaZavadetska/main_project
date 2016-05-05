@@ -15,6 +15,7 @@
             getTimeStamp: getTimeStamp,
             saveEndTime: saveEndTime,
             getEndTime: getEndTime,
+            resetSessionData: resetSessionData,
             uncheckOtherAnswers: uncheckOtherAnswers,
             getHeaders: getHeaders,
             submitTest: submitTest
@@ -154,6 +155,11 @@
                 .then(function (response) {
                     return response.data;
                 }, _errorCallback);
+        }
+
+        function resetSessionData() {
+            return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.RESET_SESSION_DATA)
+                .then(_successCallback, _errorCallback);
         }
 
         function getTimeStamp() {
