@@ -151,6 +151,9 @@
 .my-app-name-container .panel-heading .row .col-xs-12.col-md-6.pull-right {
   padding-right: 40px;
 }
+.my-app-name-container #finish {
+  max-width: 240px;
+}
 
 /* class btn-info */
 .my-app-name-container .btn-info {
@@ -450,7 +453,10 @@
 .my-app-name-container .panel.panel-primary .panel-heading .col-md-8 {
   padding-left: 0;
 }
-
+.my-app-name-container .panel.panel-primary .panel-heading .row .col-md-7 .col-md-4,
+.my-app-name-container .panel-primary .panel-heading .row .col-md-9 .col-md-12 .row  {
+  padding-left: 0;
+}
 /* form-control */
 .my-app-name-container .form-control {
  border: 1px solid transparent;
