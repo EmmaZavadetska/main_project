@@ -1,4 +1,4 @@
-describe("HeaderDirective Test", function () {
+xdescribe("HeaderDirective Test", function () {
 
     beforeEach(angular.mock.module("app"));
 

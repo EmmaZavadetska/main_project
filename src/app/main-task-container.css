@@ -53,7 +53,7 @@
 /* class btn-primary */
 .my-app-name-container .btn-primary {
   border: none;
-   background-color: #3F51B5;
+  background-color: #03588C;
 }
 .my-app-name-container .btn-primary:focus,
 .my-app-name-container .btn-primary.focus {
@@ -150,6 +150,9 @@
 }
 .my-app-name-container .panel-heading .row .col-xs-12.col-md-6.pull-right {
   padding-right: 40px;
+}
+.my-app-name-container #finish {
+  max-width: 240px;
 }
 
 /* class btn-info */
@@ -290,13 +293,14 @@
 /* table */
 .my-app-name-container .table {
   box-shadow: 0 3px 3px rgba(0,0,0,0.5); /* shadow */
-  background-color: #F2E0C9;
+  background-color: #CEE3F6;
 }
 .my-app-name-container .table td {
   border: none;
+  vertical-align: middle;
 }
 .my-app-name-container .table tr:hover {
-  background-color: #EBD0AD;
+  background-color: #A9D0F5;
 }
 /* buttons in table */
 .my-app-name-container .table .btn {
@@ -314,12 +318,17 @@
 }
 .my-app-name-container .panel .panel-heading {
   padding: 15px 20px;
+  border-radius: 0;
+  border-right: 1px solid transparent;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5);
 }
 .my-app-name-container .panel-heading .row {
   border-radius: 0;
 }
 .my-app-name-container .panel-body {
   padding: 15px 25px;
+  background-color: #CEE3F6;
+  border: 1px solid transparent;
 }
 .my-app-name-container .panel-primary > .panel-heading {
   background-color: #03588C;
@@ -425,6 +434,9 @@
 .my-app-name-container .panel-primary .pull-right .row .col-md-12 .btn-success {
   margin-bottom: 10px;
 }
+.my-app-name-container .panel-primary .panel-heading .row .btn-success {
+  height: 33px;
+}
 .my-app-name-container .row {
   padding-left: 10px;
 }
@@ -441,19 +453,22 @@
 .my-app-name-container .panel.panel-primary .panel-heading .col-md-8 {
   padding-left: 0;
 }
-
+.my-app-name-container .panel.panel-primary .panel-heading .row .col-md-7 .col-md-4,
+.my-app-name-container .panel-primary .panel-heading .row .col-md-9 .col-md-12 .row  {
+  padding-left: 0;
+}
 /* form-control */
 .my-app-name-container .form-control {
  border: 1px solid transparent;
  height: 33px;
- border-bottom: 2px solid #03588C;
+ border-bottom: 2px solid transparent;
  margin-bottom: 10px;
   border-radius: 0;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
   outline: none;
 }
 .my-app-name-container .form-control:focus {
-  border-bottom: 2px solid #218DA6;
+  border-bottom: 2px solid transparent;
   background-color: #F2F2F2;
   -webkit-box-shadow: 0 4px 4px rgba(0,0,0,0.5);
           box-shadow: 0 4px 4px rgba(0,0,0,0.5);
@@ -590,9 +605,10 @@
 .my-app-name-container .nav.navbar-nav.navbar-right .active a {
   background-color: #046DAF;
 }
-.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown span {
+.my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown > span {
   display: inline-block;
   margin-top: 15px;
+  width: 100%;
 }
 .my-app-name-container .navbar-inverse .navbar-collapse .navbar-right .dropdown {
   height: 54px;
@@ -680,7 +696,7 @@
 .my-app-name-container #group, 
 .my-app-name-container.container-fluid .modal-body select {
   width: 100%;
-  height: 36px;
+  height: 33px;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5); /* shadow */
   border: transparent;
   -webkit-appearance: none;
@@ -703,6 +719,9 @@
 }
 
 /* uib-daypicker */
+.my-app-name-container .uib-datepicker-popup {
+  color: red;
+}
 .my-app-name-container .uib-datepicker-popup.dropdown-menu {
   color: #000000;
 }
@@ -712,11 +731,31 @@
   margin-left: 5px;
   margin-right: 5px;
 }
-
+.my-app-name-container .uib-datepicker-popup .btn.btn-sm.btn-success.pull-right {
+  height: 28px;
+}
 .my-app-name-container .uib-datepicker-popup .btn-danger {
   margin-left: 5px;
 }
-
+.my-app-name-container .uib-datepicker-popup .btn-default,
+.my-app-name-container .uib-daypicker .btn-default,
+.my-app-name-container .uib-monthpicker .btn-default,
+.my-app-name-container .uib-yearpicker .btn-default {
+  background-color: #A9D0F5;
+}
+.my-app-name-container .uib-datepicker-popup .btn-default:hover 
+.my-app-name-container .uib-daypicker .btn-default:hover,
+.my-app-name-container .uib-monthpicker .btn-default:hover,
+.my-app-name-container .uib-yearpicker .btn-default:hover {
+  background-color: #CEE3F6;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+.my-app-name-container .uib-daypicker .btn-default:active,
+ .my-app-name-container .uib-monthpicker .btn-default:active,
+ .my-app-name-container .uib-yearpicker .btn-default:active {
+  background-color: #CEE3F6;
+  box-shadow: 0 7px 7px rgba(0,0,0,0.5);
+}
 /* checkbox */
 .my-app-name-container .checkbox input {
     display: none;
@@ -750,7 +789,6 @@
   display: inline-block;
   height: 100%;
   text-align: center;
-  margin-top: 12px;
 }
 .my-app-name-container .container .panel.panel-primary .panel-body .row p {
   margin-left: 40px;

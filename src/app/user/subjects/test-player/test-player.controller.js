@@ -4,14 +4,17 @@
     angular.module("app.user")
         .controller("TestPlayerController", TestPlayerController);
 
-    TestPlayerController.$inject = ["authService", "studentsService", "testPlayerService", "testsService", "TYPES_OF_QUESTION", "$state"];
+    TestPlayerController.$inject = ["authService", "studentsService", "testPlayerService", "testsService", 
+        "TYPES_OF_QUESTION", "$state", "MESSAGE", "customDialog"];
 
-    function TestPlayerController(authService, studentsService, testPlayerService, testsService, TYPES_OF_QUESTION, $state) {
+    function TestPlayerController(authService, studentsService, testPlayerService, testsService, 
+                                  TYPES_OF_QUESTION, $state, MESSAGE, customDialog) {
         var vm = this;
         vm.showQuestion = showQuestion;
         vm.isSimpleTypeOfQuestion = isSimpleTypeOfQuestion;
         vm.uncheckOtherAnswers = uncheckOtherAnswers;
         vm.isMultiTypeOfQuestion = isMultiTypeOfQuestion;
+        vm.confirmFinishTest = confirmFinishTest;
         vm.finishTest = finishTest;
         vm.isTestFinish = false;
         activate();
@@ -59,6 +62,12 @@
             }
         }
 
+        function confirmFinishTest() {
+            customDialog.openConfirmationDialog(MESSAGE.END_TEST_CONFIRM).then(function() {
+                finishTest();
+            });
+        }
+        
         // // Oleh
         function getUser() {
             return authService.isLogged().then(function(response) {
@@ -73,16 +82,16 @@
             var userScore = 0;
             var maxScore = 0;
             var testResult = {};
-            return testPlayerService.finishTest(vm.test).then(function(response) {
+            return testPlayerService.finishTest(vm.test).then(function (response) {
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
-                testsService.getTestLevel(vm.test[0].test_id).then(function(data) {
+                testsService.getTestLevel(vm.test[0].test_id).then(function (data) {
                     vm.testDetails = Array.isArray(data) ? data : [];
                     vm.associativeDetails = {};
-                    vm.testDetails.forEach(function(detail) {
+                    vm.testDetails.forEach(function (detail) {
                         maxScore += (+detail.tasks) * (+detail.rate);
                         vm.associativeDetails[+detail.level] = detail.rate;
-                    })
+                    });
                     for (var i = 0; i < vm.results.length; i++) {
                         if (vm.results[i].true === 1) userScore += Number(vm.associativeDetails[vm.test[i].level]);
                     }
@@ -98,15 +107,13 @@
                             questions: "",
                             true_answers: "",
                             answers: ""
-                        }
+                        };
                         submitTest(testResult, userScore, maxScore);
                     })
                 })
             });
         }
-
-
-
+        
         function submitTest(testResult, userScore, maxScore) {
             testPlayerService.submitTest(testResult).then(function(data) {
                 console.log("Тест завершено");
