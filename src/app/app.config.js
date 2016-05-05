@@ -167,11 +167,6 @@
                 controller: "HomeUserController as user",
                 data: {
                     authorizedRole: USER_ROLES.USER
-                },
-                resolve: {
-                    testDays: function(testDayService) {
-                        return testDayService.getTestDays();
-                    }
                 }
             })
             .state("user.subjects", {

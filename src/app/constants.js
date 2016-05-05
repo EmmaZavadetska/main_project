@@ -50,6 +50,7 @@
             GET_SCHEDULE_FOR_GROUP: "/getTimeTablesForGroup/",
             GET_SCHEDULE_FOR_SUBJECT: "/getTimeTablesForSubject/",
             REMOVE_ENTITY: "/del/",
+            RESET_SESSION_DATA: "/resetSessionData/",
             SAVE_DATA: "/saveData/",
             SAVE_END_TIME: "/saveEndTime/"
         })

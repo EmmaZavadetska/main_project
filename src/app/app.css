@@ -40,9 +40,9 @@ header .navbar-header .navbar-brand {
     text-align: right;
     margin-right: 30px;
 }
-.admins input {
-    margin-left: 25px;
-    width: 90%;
+.admins .msg {
+    margin-left: 30px;
+    color: #d1332e;
 }
 /*.panel textarea.ng-invalid, .panel input.ng-invalid,*/
 .auth-container input.ng-invalid, .admins input.ng-invalid {
@@ -52,13 +52,19 @@ header .navbar-header .navbar-brand {
 .auth-container input.ng-untouched, .admins input.ng-untouched {
     background-color: #ffffff;
 }
-.admins .msg {
-    margin-left: 30px;
-    color: #d1332e;
-}
 /*  Admins  */
 .online {
     color: #00ccff;
+}
+.admins .add-entity , .specialities .add-entity  {
+	margin-right: 25px !important;
+}
+.admins .panel-heading .search, .specialities .panel-heading .search {
+	padding-right: 5px;
+}
+.admins .modal-body input {
+    margin-left: 25px;
+    width: 90%;
 }
 /*  For image load button  */
 .btn-file {
@@ -96,7 +102,7 @@ header .navbar-header .navbar-brand {
 .panel-body .btn-toolbar .btn {
     margin-bottom: 5px;
     padding: 4px 8px;
-    width: 36px;
+    width: 44px;
 }
 #finish {
     margin-bottom: 5px;
@@ -132,4 +138,16 @@ header .navbar-header .navbar-brand {
     border-radius: 12px;
     color: black;
 }
+/*  For select in test-player */
+.modal-body select {
+    padding-left: 10px;
+}
 
+.students .search {
+    padding-right: 0;
+}
+
+.students .plus {
+    padding-left: 5px;
+
+}

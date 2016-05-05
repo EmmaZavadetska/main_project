@@ -15,6 +15,7 @@
             getTimeStamp: getTimeStamp,
             saveEndTime: saveEndTime,
             getEndTime: getEndTime,
+            resetSessionData: resetSessionData,
             uncheckOtherAnswers: uncheckOtherAnswers,
             getHeaders: getHeaders,
             submitTest: submitTest
@@ -71,7 +72,7 @@
                 angular.forEach(response, function (AnswersByQuestion) {
                     if (!AnswersByQuestion.data.response) {
                         var i = +(AnswersByQuestion.data[0]).question_id;
-                        answersList[i] = AnswersByQuestion.data;
+                        answersList[i] = _shuffleArray(AnswersByQuestion.data);
                         angular.forEach(answersList[i], function (answer) {
                             answer.checked = false;
                         });
@@ -83,6 +84,20 @@
             });
 
             return deferred.promise;
+        }
+
+        function _shuffleArray(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
         }
 
         function getTest(test_id) {
@@ -154,6 +169,11 @@
                 .then(function (response) {
                     return response.data;
                 }, _errorCallback);
+        }
+
+        function resetSessionData() {
+            return $http.get(BASE_URL + URL.ENTITIES.TEST_PLAYER + URL.RESET_SESSION_DATA)
+                .then(_successCallback, _errorCallback);
         }
 
         function getTimeStamp() {

@@ -85,6 +85,13 @@
             return testPlayerService.finishTest(vm.test).then(function (response) {
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
+                var questions = [], answers = [];
+                for (var i = 0; i < vm.results.length; i++) {
+                    questions.push(vm.results[i].question_id);
+                    answers.push(vm.results[i].true);
+                }
+                questions = questions.join('/');
+                answers = answers.join('/');
                 testsService.getTestLevel(vm.test[0].test_id).then(function (data) {
                     vm.testDetails = Array.isArray(data) ? data : [];
                     vm.associativeDetails = {};
@@ -95,27 +102,26 @@
                     for (var i = 0; i < vm.results.length; i++) {
                         if (vm.results[i].true === 1) userScore += Number(vm.associativeDetails[vm.test[i].level]);
                     }
-                    testPlayerService.getEndTime().then(function (response) {
-                        var testDate = new Date(response.startTimeTest);
+                    testPlayerService.getEndTime().then(function(response) {
+                        var testDate = new Date(response.startTimeTest*1000);
                         testResult = {
                             student_id: vm.user.user_id,
                             test_id: vm.test[0].test_id,
                             session_date: testDate.toISOString().split('T')[0],
-                            start_time: response.startTimeTest,
-                            end_time: response.endTimeTest,
+                            start_time: new Date(response.startTimeTest*1000).toISOString().substr(11,8),
+                            end_time: new Date(response.endTimeTest*1000).toISOString().substr(11,8),
                             result: userScore,
-                            questions: "",
-                            true_answers: "",
-                            answers: ""
+                            questions: questions,
+                            true_answers: answers,
+                            answers: answers
                         };
                         submitTest(testResult, userScore, maxScore);
+                        testPlayerService.resetSessionData().then();
                     })
                 })
             });
         }
-
-
-
+        
         function submitTest(testResult, userScore, maxScore) {
             testPlayerService.submitTest(testResult).then(function(data) {
                 console.log("Тест завершено");

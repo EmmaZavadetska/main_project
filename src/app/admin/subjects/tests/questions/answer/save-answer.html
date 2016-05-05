@@ -1,22 +1,23 @@
 <form name="saveForm" class="row" uib-collapse="answer.formCollapsed" ng-submit="answer.saveAnswer()">
     <div class="col-md-3">
-                    <span class="btn btn-info btn-file">
-                        <i class="glyphicon glyphicon-picture"></i> Вибрати
-                        <input type="file" image-load="answer.image"/>
-                    </span>
+        <span class="btn btn-info btn-file">
+            <i class="glyphicon glyphicon-picture"></i> Вибрати зображення
+            <input type="file" image-load="answer.image"/>
+        </span>
         <img ng-show="answer.image" ng-src="{{answer.image}}" class="img-responsive img-thumbnail"
              width="100" height="50" alt="Зображення">
     </div>
 
     <div class="col-md-7">
         <div class="col-md-8">
-                    <textarea rows="3" class="form-control" name="answerText" ng-model="answer.answerItem.answer_text"
-                              placeholder="Введіть варіант відповіді..." ng-minlength="5" required>
-                    </textarea>
+            <textarea rows="3" class="form-control" name="answerText" ng-model="answer.answerItem.answer_text"
+                      placeholder="Введіть варіант відповіді..." required>
+            </textarea>
         </div>
         <div class="col-md-4">
             <select class="form-control select" ng-model="answer.answerItem.true_answer"
-                    ng-options="trueAnswer.value as trueAnswer.name disable when trueAnswer.disabled for trueAnswer in answer.trueAnswers" required>
+                    ng-options="trueAnswer.value as trueAnswer.name disable when trueAnswer.disabled for trueAnswer in answer.trueAnswers"
+                    required>
                 <option value="" disabled>Правильність</option>
             </select>
         </div>
