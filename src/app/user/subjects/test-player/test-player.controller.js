@@ -109,6 +109,7 @@
                             answers: ""
                         };
                         submitTest(testResult, userScore, maxScore);
+                        testPlayerService.resetSessionData().then();
                     })
                 })
             });
