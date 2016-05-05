@@ -86,7 +86,6 @@
                 var arrayStudents = data;
                 return _getResultByStudents(arrayStudents, test.test_id).then(function(data) {
                     var report = _addToResultsStudentsName(data, arrayStudents);
-                    report = _addToResultsCountTrueAnswers(report);
                     results = report;
                     testName = test.test_name;
                     return report;
@@ -148,19 +147,8 @@
             return resultsWithStudentName;
         }
 
-        // add to array of results for each object in array property percentTrueAnswers
-        function _addToResultsCountTrueAnswers(arrayResults) {
-            angular.forEach(arrayResults, function(item) {
-                var trueAnswers = item.true_answers.split("/").map(Number);
-                var countTrueAnswers = trueAnswers.filter(function(item) { return item === 1; }).length;
-                item.percentTrueAnswers = Math.round(countTrueAnswers * 100/ trueAnswers.length).toFixed(2);
-            });
-            
-            return arrayResults;
-        }
-
         function getHeaderOfReport() {
-            return ["Студент", "Рейтинг", "Якість", "Дата", "Початок тесту", "Кінець тесту"];
+            return ["Студент", "Рейтинг", "Дата", "Початок тесту", "Кінець тесту"];
         }
 
 
