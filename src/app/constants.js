@@ -102,5 +102,10 @@
             MULTI: {NAME: "Мульти-вибір", VALUE: "2"}
         })
 
-        .constant("TIME_DELAY", 2);
+        .constant("TIME_DELAY", 2)
+
+        .constant("USER_ROLES", {
+            ADMIN: "admin",
+            USER: "student"
+        });
 })();

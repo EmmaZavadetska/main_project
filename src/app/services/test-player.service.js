@@ -72,8 +72,7 @@
                 angular.forEach(response, function (AnswersByQuestion) {
                     if (!AnswersByQuestion.data.response) {
                         var i = +(AnswersByQuestion.data[0]).question_id;
-                        answersList[i] = AnswersByQuestion.data;
-                        answersList[i] = _shuffleArray(answersList[i]);
+                        answersList[i] = _shuffleArray(AnswersByQuestion.data);
                         angular.forEach(answersList[i], function (answer) {
                             answer.checked = false;
                         });
