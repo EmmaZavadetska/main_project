@@ -60,7 +60,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | orderBy: 'faculty_name' | filter: search">
+            <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | filter: search">
                 <td class="clip">{{::faculty.faculty_name}}</td>
                 <td class="clip">{{::faculty.faculty_description}}</td>
                 <td class="clip pull-right">
