@@ -719,6 +719,9 @@
 }
 
 /* uib-daypicker */
+.my-app-name-container .uib-datepicker-popup {
+  color: red;
+}
 .my-app-name-container .uib-datepicker-popup.dropdown-menu {
   color: #000000;
 }
@@ -728,11 +731,19 @@
   margin-left: 5px;
   margin-right: 5px;
 }
-
+.my-app-name-container .uib-datepicker-popup .btn.btn-sm.btn-success.pull-right {
+  height: 28px;
+}
 .my-app-name-container .uib-datepicker-popup .btn-danger {
   margin-left: 5px;
 }
-
+.my-app-name-container .uib-datepicker-popup .btn-default {
+  background-color: #A9D0F5;
+}
+.my-app-name-container .uib-datepicker-popup .btn-default:hover {
+  background-color: #CEE3F6;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
 /* checkbox */
 .my-app-name-container .checkbox input {
     display: none;
