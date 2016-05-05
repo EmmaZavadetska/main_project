@@ -1,23 +1,19 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <div class="row">
-            <div class="col-xs-9">
-                <p>{{testPlayer.testInfo.test_name}}</p>
+            <div class="title">
+                {{testPlayer.testInfo.test_name}}
             </div>
-            <div class="col-xs-3">
-                <div class="pull-right">
-                    <span class="glyphicon glyphicon-time">
-                <span class="timer" timer duration="testPlayer.testInfo.time_for_test" is-test-finish="testPlayer.isTestFinish"
-                      finish-test="testPlayer.finishTest()"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-3">
+                <div class="text-center">
+                    <span class="glyphicon glyphicon-time">
+                        <span class="timer" timer duration="testPlayer.testInfo.time_for_test"
+                              is-test-finish="testPlayer.isTestFinish" finish-test="testPlayer.finishTest()"></span>
+                    </span>
+                </div>
                 <div>
                     <button id="finish" class="btn btn-success btn-block" ng-click="testPlayer.confirmFinishTest()"
                             title="Завершити тестування">

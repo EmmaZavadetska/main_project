@@ -785,10 +785,16 @@
   font-family: Verdena, sans-serif;
   font-size: 1.4em;
 }
-.my-app-name-container .glyphicon.glyphicon-time span {
+.my-app-name-container .panel-body .text-center>span::before {
+  color: #FFFFFF;
+}
+.my-app-name-container .glyphicon.glyphicon-time {
   display: inline-block;
   height: 100%;
   text-align: center;
+}
+.my-app-name-container .panel-body .text-center {
+  margin-bottom: 10px;
 }
 .my-app-name-container .container .panel.panel-primary .panel-body .row p {
   margin-left: 40px;
