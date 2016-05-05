@@ -21,7 +21,6 @@
 
             return $http.post(BASE_URL + URL.LOGIN, credentials)
                 .then(function(res) {
-                    console.log(res);
                     localStorage.userRole = res.data.roles[1];
                     return res.data;
                     }, function (res) {
@@ -33,7 +32,6 @@
             return $http.get(BASE_URL + URL.IS_LOGGED)
                 .then(function(res) {
                         if (res.data.response === "logged") {
-                            console.log("logged", res);
                             return res.data;
                         }
                     }, function (res) {
