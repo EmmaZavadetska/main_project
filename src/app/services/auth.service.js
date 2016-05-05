@@ -42,7 +42,7 @@
         function logout(){
             return $http.get(BASE_URL + URL.LOGOUT)
                 .then(function(res) {
-                    localStorage.clear();
+                    localStorage.removeItem("userRole");
                         return res;
                     }, function (res) {
                         return res;

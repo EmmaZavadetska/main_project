@@ -16,10 +16,9 @@
                             $state.go(toState, toParams);
                     } else {
                         event.preventDefault();
-                        $state.go("auth");
+                        $state.go(fromState, fromParams);
                     }
                 });
-
             }
         });
     }
