@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module("app.admin.groups")
-        .controller("StudentController", StudentController);
+        .controller("StudentController", StudentController); 
 
     StudentController.$inject = ["$stateParams", "studentsService", "groupsService", "customDialog", "$state", "MESSAGE"];
 
