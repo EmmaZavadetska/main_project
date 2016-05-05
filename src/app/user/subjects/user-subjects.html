@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="subject in subjects.list | orderBy:'+event_date'">
+                <tr ng-repeat="subject in subjects.list">
                     <td>{{::subject.subject_name}}</td>
                     <td>{{::subject.event_date | date: "dd MMMM yyyy"}}</td>
                     <td class="pull-right">

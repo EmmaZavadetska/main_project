@@ -4,11 +4,12 @@
     angular.module("app.user")
         .controller("HomeUserController", HomeUserController);
     
-    HomeUserController.$inject = ["$scope","authService", "studentsService", "groupsService", "testDays"];
+    HomeUserController.$inject = ["$scope","authService", "studentsService", "groupsService", "testDayService"];
 
-    function HomeUserController($scope, authService, studentsService, groupsService, testDays) {
+    function HomeUserController($scope, authService, studentsService, groupsService, testDayService) {
         var vm = this;
-        vm.testDays = testDays;
+        vm.showCalendar = true;
+        vm.calendarLoaded = false;
         activate();
 
         function activate() {
@@ -21,6 +22,11 @@
                 })
             });
         }
+
+        testDayService.getTestDays().then(function(response) {
+            vm.testDays = response;
+            vm.calendarLoaded = true;
+        })
 
         vm.options = {
             customClass: getDayClass,

@@ -87,13 +87,13 @@
                         if (vm.results[i].true === 1) userScore += Number(vm.associativeDetails[vm.test[i].level]);
                     }
                     testPlayerService.getEndTime().then(function(response) {
-                        var testDate = new Date(response.startTimeTest);
+                        var testDate = new Date(response.startTimeTest*1000);
                         testResult = {
                             student_id: vm.user.user_id,
                             test_id: vm.test[0].test_id,
                             session_date: testDate.toISOString().split('T')[0],
-                            start_time: response.startTimeTest,
-                            end_time: response.endTimeTest,
+                            start_time: new Date(response.startTimeTest*1000).toISOString().substr(11,8),
+                            end_time: new Date(response.endTimeTest*1000).toISOString().substr(11,8),
                             result: userScore,
                             questions: "",
                             true_answers: "",

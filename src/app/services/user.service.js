@@ -48,6 +48,9 @@
             var deferred = $q.defer();
 
             schedulesService.getSchedulesForGroup(group_id).then(function (response) {
+                    response.sort(function(first, second) {
+                        return Number(first.subject_id) - Number(second.subject_id);
+                    });
                     return response;
                 })
                 .then(function (schedule) {
