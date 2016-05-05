@@ -21,9 +21,8 @@
 
             return $http.post(BASE_URL + URL.LOGIN, credentials)
                 .then(function(res) {
-                    console.log(res);
-                    localStorage.userRole = res.data.roles[1];
-                    return res.data;
+                        localStorage.userRole = res.data.roles[1];
+                        return res.data;
                     }, function (res) {
                         return res;
                     });
@@ -33,7 +32,6 @@
             return $http.get(BASE_URL + URL.IS_LOGGED)
                 .then(function(res) {
                         if (res.data.response === "logged") {
-                            console.log("logged", res);
                             return res.data;
                         }
                     }, function (res) {
@@ -44,7 +42,7 @@
         function logout(){
             return $http.get(BASE_URL + URL.LOGOUT)
                 .then(function(res) {
-                    localStorage.clear();
+                    localStorage.removeItem("userRole");
                         return res;
                     }, function (res) {
                         return res;
