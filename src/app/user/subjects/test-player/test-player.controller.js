@@ -85,12 +85,18 @@
             return testPlayerService.finishTest(vm.test).then(function (response) {
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
-                var questions = [], answers = [];
+                var questions = [], trueAnswers = [], answers = [];
                 for (var i = 0; i < vm.results.length; i++) {
                     questions.push(vm.results[i].question_id);
-                    answers.push(vm.results[i].true);
+                    trueAnswers.push(vm.results[i].true);
+                    var answersOnQuestion = [];
+                    for (var j = 0; j < vm.test[i].answers.length; j++) {
+                        answersOnQuestion.push(vm.test[i].answers[j].answer_id);
+                    }
+                    answers.push(answersOnQuestion.join('*'));
                 }
                 questions = questions.join('/');
+                trueAnswers = trueAnswers.join('/');
                 answers = answers.join('/');
                 testsService.getTestLevel(vm.test[0].test_id).then(function (data) {
                     vm.testDetails = Array.isArray(data) ? data : [];
@@ -112,7 +118,7 @@
                             end_time: new Date(response.endTimeTest*1000).toISOString().substr(11,8),
                             result: userScore,
                             questions: questions,
-                            true_answers: answers,
+                            true_answers: trueAnswers,
                             answers: answers
                         };
                         submitTest(testResult, userScore, maxScore);
