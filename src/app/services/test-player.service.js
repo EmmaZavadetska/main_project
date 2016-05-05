@@ -73,6 +73,7 @@
                     if (!AnswersByQuestion.data.response) {
                         var i = +(AnswersByQuestion.data[0]).question_id;
                         answersList[i] = AnswersByQuestion.data;
+                        answersList[i] = _shuffleArray(answersList[i]);
                         angular.forEach(answersList[i], function (answer) {
                             answer.checked = false;
                         });
@@ -84,6 +85,20 @@
             });
 
             return deferred.promise;
+        }
+
+        function _shuffleArray(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
         }
 
         function getTest(test_id) {
