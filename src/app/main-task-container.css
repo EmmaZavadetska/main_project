@@ -737,12 +737,24 @@
 .my-app-name-container .uib-datepicker-popup .btn-danger {
   margin-left: 5px;
 }
-.my-app-name-container .uib-datepicker-popup .btn-default {
+.my-app-name-container .uib-datepicker-popup .btn-default,
+.my-app-name-container .uib-daypicker .btn-default,
+.my-app-name-container .uib-monthpicker .btn-default,
+.my-app-name-container .uib-yearpicker .btn-default {
   background-color: #A9D0F5;
 }
-.my-app-name-container .uib-datepicker-popup .btn-default:hover {
+.my-app-name-container .uib-datepicker-popup .btn-default:hover 
+.my-app-name-container .uib-daypicker .btn-default:hover,
+.my-app-name-container .uib-monthpicker .btn-default:hover,
+.my-app-name-container .uib-yearpicker .btn-default:hover {
   background-color: #CEE3F6;
   box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+.my-app-name-container .uib-daypicker .btn-default:active,
+ .my-app-name-container .uib-monthpicker .btn-default:active,
+ .my-app-name-container .uib-yearpicker .btn-default:active {
+  background-color: #CEE3F6;
+  box-shadow: 0 7px 7px rgba(0,0,0,0.5);
 }
 /* checkbox */
 .my-app-name-container .checkbox input {
