@@ -457,6 +457,9 @@
 .my-app-name-container .panel-primary .panel-heading .row .col-md-9 .col-md-12 .row  {
   padding-left: 0;
 }
+/*.my-app-name-container .panel.panel-primary .panel-heading .row {
+  border: 2px dashed yellow;
+}*/
 /* form-control */
 .my-app-name-container .form-control {
  border: 1px solid transparent;
@@ -738,12 +741,13 @@
   margin-left: 5px;
 }
 .my-app-name-container .uib-datepicker-popup .btn-default,
+.my-app-name-container .uib-datepicker .btn-default.active,
 .my-app-name-container .uib-daypicker .btn-default,
 .my-app-name-container .uib-monthpicker .btn-default,
 .my-app-name-container .uib-yearpicker .btn-default {
   background-color: #A9D0F5;
 }
-.my-app-name-container .uib-datepicker-popup .btn-default:hover 
+.my-app-name-container .uib-datepicker-popup .btn-default:hover,
 .my-app-name-container .uib-daypicker .btn-default:hover,
 .my-app-name-container .uib-monthpicker .btn-default:hover,
 .my-app-name-container .uib-yearpicker .btn-default:hover {
