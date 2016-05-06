@@ -457,9 +457,9 @@
 .my-app-name-container .panel-primary .panel-heading .row .col-md-9 .col-md-12 .row  {
   padding-left: 0;
 }
-/*.my-app-name-container .panel.panel-primary .panel-heading .row {
-  border: 2px dashed yellow;
-}*/
+.my-app-name-container .panel.panel-primary .panel-heading .row.row-user {
+  padding-left: 25px;
+}
 /* form-control */
 .my-app-name-container .form-control {
  border: 1px solid transparent;
