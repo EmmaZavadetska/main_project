@@ -64,10 +64,10 @@
                     <td ng-if="schedules.subject"> {{ ::schedules.associativeGroups[schedule.group_id] }} </td>
                     <td> {{ ::schedule.event_date  | date: "dd MMMM yyyy"}} </td>
                     <td class="pull-right">
-                        <button class="btn btn-warning" title="Змінити дату проведення" ng-click="schedules.toggleActionForm(schedule)">
+                        <button class="btn btn-info" title="Змінити дату проведення" ng-click="schedules.toggleActionForm(schedule)">
                             <i class="fa fa-calendar"></i>
                         </button>
-                        <button class="btn btn-danger" title="Відмінити екзамен" ng-click="schedules.removeSchedule(schedule.timetable_id)">
+                        <button class="btn btn-info" title="Відмінити екзамен" ng-click="schedules.removeSchedule(schedule.timetable_id)">
                             <i class="fa fa-calendar-times-o"></i>
                         </button>
                     </td>

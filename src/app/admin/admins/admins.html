@@ -33,11 +33,11 @@
 					<td><i>{{ admin.last_login }}</i></td>
 					<td>{{ admin.logins }}</td>
 					<td class="pull-right">
-						<button class="btn btn-warning" ng-click="admins.showSaveForm(admin, 'Редагування')"
+						<button class="btn btn-info" ng-click="admins.showSaveForm(admin, 'Редагування')"
 								title="Редагувати {{ ::admin.username }}">
 							<i class="glyphicon glyphicon-pencil"></i>
 						</button>
-						<button class="btn btn-danger"  ng-click="admins.removeAdmin(admin)"
+						<button class="btn btn-info"  ng-click="admins.removeAdmin(admin)"
 								title="Видалити {{ ::admin.username }}">
 							<i class="glyphicon glyphicon-remove"></i>
 						</button>

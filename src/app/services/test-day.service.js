@@ -20,6 +20,7 @@
             })
             .then(function(loggedUser) {
                 var testDays = [];
+
                 return studentsService.getStudentById(loggedUser.id).then(function(student) {
                     return student;
                 }).then(function(student) {
@@ -33,7 +34,8 @@
                                 status: status
                             }
                         })
-                        return testDays;
+                        
+                        return [testDays, student];
                     })
                 })
             })

@@ -10,22 +10,16 @@
         var vm = this;
         vm.showCalendar = true;
         vm.calendarLoaded = false;
-        activate();
-
-        function activate() {
-            return authService.isLogged().then(function (response) {
-                studentsService.getStudentById(response.id).then(function (response) {
-                    vm.user = response;
-                    groupsService.getGroup(vm.user.group_id).then(function (response) {
-                        vm.group = response;
-                    })
-                })
-            });
-        }
 
         testDayService.getTestDays().then(function(response) {
-            vm.testDays = response;
+            vm.testDays = response[0];
             vm.calendarLoaded = true;
+            return response[1];
+        }).then(function(user) {
+            vm.user = user;
+            groupsService.getGroup(vm.user.group_id).then(function(response) {
+                vm.group = response;
+            })
         })
 
         vm.options = {

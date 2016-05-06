@@ -81,7 +81,6 @@
             vm.isTestFinish = true;
             var userScore = 0;
             var maxScore = 0;
-            var testResult = {};
             return testPlayerService.finishTest(vm.test).then(function (response) {
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
@@ -105,12 +104,14 @@
                         maxScore += (+detail.tasks) * (+detail.rate);
                         vm.associativeDetails[+detail.level] = detail.rate;
                     });
+
+                    // можна пересунути вгору
                     for (var i = 0; i < vm.results.length; i++) {
                         if (vm.results[i].true === 1) userScore += Number(vm.associativeDetails[vm.test[i].level]);
                     }
                     testPlayerService.getEndTime().then(function(response) {
                         var testDate = new Date(response.startTimeTest*1000);
-                        testResult = {
+                        var testResult = {
                             student_id: vm.user.user_id,
                             test_id: vm.test[0].test_id,
                             session_date: testDate.toISOString().split('T')[0],
@@ -130,7 +131,6 @@
         
         function submitTest(testResult, userScore, maxScore) {
             testPlayerService.submitTest(testResult).then(function(data) {
-                console.log("Тест завершено");
                 $state.go("user.finishTest", {userScore: userScore, maxScore: maxScore});
             })
         }
