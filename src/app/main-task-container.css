@@ -460,6 +460,19 @@
 .my-app-name-container .panel.panel-primary .panel-heading .row.row-user {
   padding-left: 25px;
 }
+.my-app-name-container h4.title,
+ .my-app-name-container .panel-primary .panel-heading .row h4 {
+  padding-left: 15px;
+}
+.my-app-name-container .test-detailes-enforce {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.my-app-name-container .panel-primary .panel-heading .col-md-10 .col-md-12 .row,
+.my-app-name-container .panel-primary .panel-heading .col-md-10 .col-md-12 .col-md-4.form-group:first-child,
+ .my-app-name-container .panel-primary .panel-heading .row .col-md-9 {
+  padding-left: 0;
+}
 /* form-control */
 .my-app-name-container .form-control {
  border: 1px solid transparent;
@@ -524,6 +537,7 @@
 .my-app-name-container .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #FFFFFF;
   cursor: pointer;
+  height: 100%;
 }
 .my-app-name-container .navbar-text,
 .my-app-name-container .navbar-inverse .navbar-text  {
@@ -628,6 +642,7 @@
   border-bottom: 4px solid #FFFFFF;
   background-color: #046DAF;
   box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
+  cursor: pointer;
 }
 .my-app-name-container .row.hidden-xs .nav.navbar-nav.navbar-right li:hover {
   border-bottom: 4px solid transparent;
