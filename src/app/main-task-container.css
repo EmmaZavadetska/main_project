@@ -473,6 +473,10 @@
  .my-app-name-container .panel-primary .panel-heading .row .col-md-9 {
   padding-left: 0;
 }
+.my-app-name-container.panel-primary .panel-heading .pull-right .row .col-md-12 .col-md-10.form-group {
+  padding-left: 10px;
+}
+
 /* form-control */
 .my-app-name-container .form-control {
  border: 1px solid transparent;
@@ -817,4 +821,13 @@
 }
 .my-app-name-container .container .panel.panel-primary .panel-body .row p {
   margin-left: 40px;
+}
+
+/* test image select buttom */ 
+.my-app-name-container .panel-primary .panel-heading .row .col-md-3 .col-md-12.form-group {
+  padding-left: 0;
+}
+/* image in answers for admin */ 
+.my-app-name-container .img-responsive.img-thumbnail {
+  border-radius: 0;
 }
