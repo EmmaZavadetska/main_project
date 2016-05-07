@@ -82,6 +82,8 @@
             var userScore   = 0;
             var maxScore    = 0;
             return testPlayerService.finishTest(vm.test).then(function (response) {
+                console.log(response);
+                console.log(vm.test);
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
                 var questions = [], trueAnswers = [], answers = [];
@@ -90,7 +92,7 @@
                     trueAnswers.push(vm.results[i].true);
                     var answersOnQuestion = [];
                     for (var j = 0; j < vm.test[i].answers.length; j++) {
-                        answersOnQuestion.push(vm.test[i].answers[j].answer_id);
+                        if (vm.test[i].answers[j].checked === true) answersOnQuestion.push(vm.test[i].answers[j].answer_id);
                     }
                     answers.push(answersOnQuestion.join('*'));
                 }
@@ -113,13 +115,13 @@
                             test_id:      vm.test[0].test_id,
                             session_date: new Date(response.startTimeTest*1000).toISOString().split('T')[0],
                             start_time:   new Date(response.startTimeTest*1000).toISOString().substr(11,8),
-                            // end_time:     new Date(response.endTimeTest*1000).toISOString().substr(11,8),
                             end_time:     new Date().toString().substr(16,8),
                             result:       userScore,
                             questions:    questions,
                             true_answers: trueAnswers,
                             answers:      answers
                         };
+                        console.log(testResult);
                         submitTest(testResult, userScore, maxScore);
                         testPlayerService.resetSessionData().then();
                     })
