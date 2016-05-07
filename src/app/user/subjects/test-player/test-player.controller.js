@@ -82,8 +82,6 @@
             var userScore   = 0;
             var maxScore    = 0;
             return testPlayerService.finishTest(vm.test).then(function (response) {
-                console.log(response);
-                console.log(vm.test);
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
                 var questions = [], trueAnswers = [], answers = [];
@@ -96,9 +94,9 @@
                     }
                     answers.push(answersOnQuestion.join('*'));
                 }
-                questions   = questions.join('/');
+                questions   =   questions.join('/');
                 trueAnswers = trueAnswers.join('/');
-                answers     = answers.join('/');
+                answers     =     answers.join('/');
                 testsService.getTestLevel(vm.test[0].test_id).then(function (data) {
                     vm.testDetails = Array.isArray(data) ? data : [];
                     vm.associativeDetails = {};
@@ -121,7 +119,6 @@
                             true_answers: trueAnswers,
                             answers:      answers
                         };
-                        console.log(testResult);
                         submitTest(testResult, userScore, maxScore);
                         testPlayerService.resetSessionData().then();
                     })

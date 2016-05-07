@@ -40,9 +40,9 @@
             // create/update
         function saveSchedule(schedule) {
             if (schedule.timetable_id === undefined) {
-                return $http.post(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.ADD_ENTITY, schedule).then([_successCallback, console.log("Додано до бази даних")], _errorCallback)
+                return $http.post(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.ADD_ENTITY, schedule).then(_successCallback, _errorCallback)
             } else {
-                return $http.post(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.EDIT_ENTITY + schedule.timetable_id, schedule).then([_successCallback, console.log("Зміни внесено до бази даних")], _errorCallback)
+                return $http.post(BASE_URL + URL.ENTITIES.TIME_TABLE + URL.EDIT_ENTITY + schedule.timetable_id, schedule).then(_successCallback, _errorCallback)
             }
         }
     }
