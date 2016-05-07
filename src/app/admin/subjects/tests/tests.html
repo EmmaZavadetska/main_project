@@ -6,9 +6,11 @@
         <div class="row">
             <div class="col-xs-10 col-md-11 title">Тести предмету: {{::tests.currentSubject}}</div>
             <div class="col-xs-2 col-md-1">
-                <button class="btn btn-success"  ng-click="tests.showForm()" title="Додати тест">
-                    <i class="glyphicon glyphicon-plus"></i>
-                </button>
+                <div class="col-xs-1 col-md-1">
+                    <button class="btn btn-success" ng-click="tests.showForm()" title="Додати тест">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                </div>
             </div>
         </div>
         <div ng-include="'app/admin/subjects/tests/save-test.html'"></div>
@@ -25,23 +27,24 @@
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="test in tests.list | orderBy:'test_name'">
                 <td class="clip">{{::test.test_name}}</td>
-                <td class="clip">{{::test.tasks}}</a></td>
+                <td class="clip">{{::test.tasks}}</td>
                 <td class="clip">{{::test.time_for_test}} хв</td>
                 <td class="clip">{{::tests.status[test.enabled].enabled}}</td>
+                <td class="clip">{{::test.attempts}}</td>
                 <td class="pull-right">
-                    <button class="btn btn-info"  ui-sref="admin.questions({subject_id: test.subject_id, test_id: test.test_id})"
-                            title="Переглянути завдання">
+                    <button ui-sref="admin.questions({subject_id: test.subject_id, test_id: test.test_id})"
+                            class="btn btn-info" title="Переглянути завдання">
                         <i class="glyphicon glyphicon-list-alt"></i> Завдання
                     </button>
-                    <button class="btn btn-info" ui-sref="admin.testDetails({subject_id: test.subject_id, test_id: test.test_id})"
-                            title="Деталі тесту">
+                    <button ui-sref="admin.testDetails({subject_id: test.subject_id, test_id: test.test_id})"
+                            class="btn btn-info" title="Деталі тесту">
                         <i class="glyphicon glyphicon-wrench"></i> Деталі
                     </button>
                     <button class="btn btn-info" ng-click="tests.showForm(test)"
                             title="Редагувати {{test.test_name}}">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </button>
-                    <button class="btn btn-info"  ng-click="tests.removeTest(test)"
+                    <button class="btn btn-info" ng-click="tests.removeTest(test)"
                             title="Видалити {{test.test_name}}">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>

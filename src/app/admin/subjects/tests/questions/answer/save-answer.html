@@ -13,12 +13,14 @@
             <textarea rows="3" class="form-control" name="answerText" ng-model="answer.answerItem.answer_text"
                       placeholder="Введіть варіант відповіді..." required>
             </textarea>
+            <span ng-show="saveForm.answerText.$invalid && saveForm.answerText.$dirty">Обов'язково для заповнення</span>
         </div>
         <div class="col-md-4">
-            <select class="form-control select" ng-model="answer.answerItem.true_answer"
+            <select class="form-control select" ng-model="answer.answerItem.true_answer" name="answerItem"
                     ng-options="trueAnswer.value as trueAnswer.name disable when trueAnswer.disabled for trueAnswer in answer.trueAnswers"
                     required>
                 <option value="" disabled>Правильність</option>
+                <span ng-show="saveForm.answerItem.$invalid && saveForm.answerItem.$dirty">Обов'язково для заповнення</span>
             </select>
         </div>
     </div>
