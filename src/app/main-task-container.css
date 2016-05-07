@@ -476,6 +476,9 @@
 .my-app-name-container.panel-primary .panel-heading .pull-right .row .col-md-12 .col-md-10.form-group {
   padding-left: 10px;
 }
+.my-app-name-container .panel-primary .panel-heading .row .search.pull-right {
+  padding-right: 30px;
+}
 
 /* form-control */
 .my-app-name-container .form-control {
