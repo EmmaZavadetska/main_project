@@ -46,13 +46,14 @@
         }
 
         function getTests () {
+
             return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.GET_ENTITIES)
                 .then(_successCallback, _errorCallback);
         }
 
         function getTestsBySubject (subjectId) {
 
-            return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.GET_TEST_BY_SUBJECT + "/" + subjectId)
+            return $http.get(BASE_URL + URL.ENTITIES.TEST + URL.GET_TEST_BY_SUBJECT + subjectId)
                 .then(_successCallback, _errorCallback);
         }
 

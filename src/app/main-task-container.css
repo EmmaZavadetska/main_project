@@ -808,7 +808,7 @@
   font-family: Verdena, sans-serif;
   font-size: 1.4em;
 }
-.my-app-name-container .panel-body .text-center>span::before {
+.my-app-name-container .panel-body .text-center>span {
   color: #FFFFFF;
 }
 .my-app-name-container .glyphicon.glyphicon-time {

@@ -54,7 +54,6 @@
         function openChooseTestDialog (subject_name, availableTest) {
             return openDialog({
                 title: "Бажаєте розпочати тест?",
-                iconType: "warning",
                 body: subject_name,
                 availableTest: availableTest,
                 buttons: [
