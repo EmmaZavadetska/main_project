@@ -5,8 +5,9 @@
     <div class="panel-heading">
         <!--SEARCH ADD-BUTTON-->
         <div class="row">
+            <div class="title col-md-3 col-sm-4 col-xs-6">Факультети</div>
             <div class="col-xs-12 col-md-6  pull-right">
-                <div class="col-xs-3 col-md-1 pull-right">
+                <div class="col-xs-3 col-md-1 pull-right plus">
                     <button class="btn btn-success" ng-click="faculties.showSaveForm()" title="Додати факультет">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
@@ -15,7 +16,6 @@
                     <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці">
                 </div>
             </div>
-            <h3 class="col-xs-12 col-md-6">Факультети:</h3>
         </div>
         <!--SAVE FORM-->
         <form name="saveForm" class="row" uib-collapse="faculties.saveFormCollapsed"
@@ -33,7 +33,6 @@
                 <input class="form-control" name="facultyDesc" type="text"
                        ng-model="faculties.faculty.faculty_description"
                        placeholder="Опис факультету" required validate>
-                <p ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</p>
                 <p ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</p>
                 <p ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</p>
             </div>
@@ -89,8 +88,8 @@
                             boundary-link-numbers="true"
                             rotate="false"
                             previous-text="&#xf048;"
-                            next-text="&#xf051;"
-            ></uib-pagination>
+                            next-text="&#xf051;">
+            </uib-pagination>
         </div>
     </div>
 </div>
