@@ -31,9 +31,9 @@
             <tbody>
             <tr ng-class-odd="'odd'" ng-repeat="question in details.detail.questionsList | orderBy:'question_text'">
                 <td class="clip col-xs-10">
-                    <ul>
-                        <span>{{::question.question.question_text}}</span>
-                        <li ng-repeat="answer in question.answers | orderBy:'answer_text'">
+                    <ul class="test-report-data">
+                        <span class="test-report-question">{{::question.question.question_text}}</span>
+                        <li class="test-report-answer" ng-repeat="answer in question.answers | orderBy:'answer_text'">
                             <span>{{::answer.answer_text}}</span>
                             <img ng-hide="answer.attachment==='' || answer.attachment==='added'" class="img-responsive"
                                  ng-src="{{answer.attachment}}" width="400" height="200" alt="Зображення"/>
