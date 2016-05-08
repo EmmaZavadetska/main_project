@@ -73,14 +73,6 @@
                     authorizedRole: USER_ROLES.ADMIN
                 }
             })
-            .state("admin.studentResults", {
-                url: "/groups/{group_id:int}/students/{student_Id:int}/results",
-                templateUrl: "app/admin/groups/students/results/results.html",
-                controller: "ResultsController as results",
-                data: {
-                    authorizedRole: USER_ROLES.ADMIN
-                }
-            })
             .state("admin.reports", {
                 url: "/reports",
                 templateUrl: "app/admin/reports/reports.html",

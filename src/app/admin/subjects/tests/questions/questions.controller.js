@@ -4,9 +4,11 @@
     angular.module("app.admin.subjects")
         .controller("QuestionsController", QuestionsController);
 
-    QuestionsController.$inject = ["$stateParams", "questionsService", "PAGINATION", "TYPES_OF_QUESTION", "customDialog"];
+    QuestionsController.$inject = ["$stateParams", "questionsService", "testsService", "PAGINATION", 
+        "TYPES_OF_QUESTION", "customDialog"];
 
-    function QuestionsController($stateParams, questionsService, PAGINATION, TYPES_OF_QUESTION, customDialog) {
+    function QuestionsController($stateParams, questionsService, testsService, PAGINATION, TYPES_OF_QUESTION, 
+                                 customDialog) {
         var vm = this;
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
@@ -27,8 +29,15 @@
         activate();
 
         function activate() {
+            getCurrentTest();
             getCountQuestionsByTest();
             getQuestionsRange();
+        }
+
+        function getCurrentTest() {
+            testsService.getOneTest($stateParams.test_id).then(function(data) {
+                vm.currentTest = data[0].test_name;
+            });
         }
 
         function getCountQuestionsByTest() {
@@ -95,7 +104,7 @@
             vm.currentRecordsRange = (vm.currentPage - 1) * PAGINATION.ENTITIES_RANGE_ON_PAGE;
         }
 
-        function pageChanged(){
+        function pageChanged() {
             getNextRange();
             getQuestionsRange();
         }

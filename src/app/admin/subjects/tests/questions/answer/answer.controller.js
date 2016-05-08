@@ -76,14 +76,13 @@
         }
 
 
-        function questionType (searchValue) {
+        function questionType(searchValue) {
             var questionType = questionsService.getTypes()
                 .filter (function (obj) {
-
-                    return obj.value === searchValue;
+                    return obj.VALUE === searchValue;
                 });
 
-            return questionType[0].name
+            return questionType[0].NAME;
         }
     }
 })();

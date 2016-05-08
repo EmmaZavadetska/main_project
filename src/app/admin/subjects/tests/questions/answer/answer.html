@@ -4,11 +4,12 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-xs-10 col-md-11 title">Запитання: {{answer.currentQuestion.question_text}} <small ng-show="answer.questionType">(Тип: {{answer.questionType }})</small></div>
+            <div class="col-xs-10 col-md-11 title">Запитання: {{answer.currentQuestion.question_text}}
+                <small ng-show="answer.questionType">(Тип: {{answer.questionType }})</small>
+            </div>
             <div class="col-xs-2 col-md-1">
                 <div class="col-xs-1 col-md-1">
-                    <button class="btn btn-success" ng-click="answer.showForm()"
-                            title="Додати параметри">
+                    <button class="btn btn-success" ng-click="answer.showForm()" title="Додати відповідь">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>

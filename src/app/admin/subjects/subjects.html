@@ -5,9 +5,9 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-xs-12 col-sm-3 title">Предмети</div>
-            <div class="col-xs-12 col-sm-9  pull-right">
+            <div class="col-xs-12 col-sm-9 pull-right">
                 <div class="col-xs-3 col-sm-1 pull-right">
-                    <button class="btn btn-success"  ng-click="subjects.showForm()"  title="Додати предмет">
+                    <button class="btn btn-success" ng-click="subjects.showForm()" title="Додати предмет">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div ng-include="'app/admin/subjects/save-subject.html'" ></div>
+        <div ng-include="'app/admin/subjects/save-subject.html'"></div>
     </div>
     <!--DATA TABLE-->
     <div class="panel-body">
@@ -33,7 +33,7 @@
                 <td class="clip">{{::subject.subject_name}}</td>
                 <td class="clip">{{::subject.subject_description}}</a></td>
                 <td class="pull-right">
-                    <button class="btn btn-info"  ui-sref="admin.tests({subject_id: subject.subject_id})"
+                    <button class="btn btn-info" ui-sref="admin.tests({subject_id: subject.subject_id})"
                             title="Перейти до управління тестами"><i class="fa fa-list"></i> Tести
                     </button>
                     <button class="btn btn-info" ui-sref="admin.scheduleForEntity({entity: 'subject', entity_id: subject.subject_id})"
@@ -44,7 +44,7 @@
                             title="Редагувати {{::subject.subject_name}}">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </button>
-                    <button class="btn btn-info"  ng-click="subjects.removeSubject(subject)"
+                    <button class="btn btn-info" ng-click="subjects.removeSubject(subject)"
                                      title="Видалити {{::subject.subject_name}}">
                     <i class="glyphicon glyphicon-remove"></i>
                     </button>

@@ -90,13 +90,13 @@
                     trueAnswers.push(vm.results[i].true);
                     var answersOnQuestion = [];
                     for (var j = 0; j < vm.test[i].answers.length; j++) {
-                        answersOnQuestion.push(vm.test[i].answers[j].answer_id);
+                        if (vm.test[i].answers[j].checked === true) answersOnQuestion.push(vm.test[i].answers[j].answer_id);
                     }
                     answers.push(answersOnQuestion.join('*'));
                 }
-                questions   = questions.join('/');
+                questions   =   questions.join('/');
                 trueAnswers = trueAnswers.join('/');
-                answers     = answers.join('/');
+                answers     =     answers.join('/');
                 testsService.getTestLevel(vm.test[0].test_id).then(function (data) {
                     vm.testDetails = Array.isArray(data) ? data : [];
                     vm.associativeDetails = {};
@@ -113,7 +113,6 @@
                             test_id:      vm.test[0].test_id,
                             session_date: new Date(response.startTimeTest*1000).toISOString().split('T')[0],
                             start_time:   new Date(response.startTimeTest*1000).toISOString().substr(11,8),
-                            // end_time:     new Date(response.endTimeTest*1000).toISOString().substr(11,8),
                             end_time:     new Date().toString().substr(16,8),
                             result:       userScore,
                             questions:    questions,

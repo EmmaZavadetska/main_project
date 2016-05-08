@@ -1,6 +1,3 @@
-<div id="loaderDiv" spinner class="hidden">
-    <img src="images/spinner.gif" class="ajax-loader"/>
-</div>
 <form name="reportsForm" class="row" ng-submit="reports.createReport()">
     <div class="col-md-10">
         <div class="col-md-12">
@@ -12,7 +9,7 @@
                         <option value="">Виберіть назву предмету</option>
                     </select>
                     <div ng-messages="reportsForm.selectedSubject.$error" ng-if="reportsForm.selectedSubject.$dirty">
-                        <div ng-message="required" class="error-message">
+                        <div ng-message="required">
                             <strong>Поле обов'язкове для заповнення</strong>
                         </div>
                     </div>
@@ -23,7 +20,7 @@
                         <option value="">Виберіть групу</option>
                     </select>
                     <div ng-messages="reportsForm.selectedGroup.$error" ng-if="reportsForm.selectedGroup.$dirty">
-                        <div ng-message="required" class="error-message">
+                        <div ng-message="required">
                             <strong>Поле обов'язкове для заповнення</strong>
                         </div>
                     </div>
@@ -34,7 +31,7 @@
                         <option value="">Виберіть назву тесту</option>
                     </select>
                     <div ng-messages="reportsForm.selectedTest.$error" ng-if="reportsForm.selectedTest.$dirty">
-                        <div ng-message="required" class="error-message">
+                        <div ng-message="required">
                             <strong>Поле обов'язкове для заповнення</strong>
                         </div>
                     </div>
