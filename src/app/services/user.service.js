@@ -96,7 +96,6 @@
                         return item.enabled === "1";
                     });
                     return getResults().then(function(results) {
-                        console.log(results);
                         if (results !== undefined) {
                             var counts = {};
                             results.forEach(function(item) { counts[item.test_id] = (counts[item.test_id] || 0) + 1; });
