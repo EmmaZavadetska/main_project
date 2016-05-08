@@ -23,7 +23,7 @@
                     <div>
                         <label for="PIB">ПІБ</label>
                         <div id="PIB" class="form-group">
-                            <input name="studentSurname" ng-required="true" ng-pattern="/^[А-ЯІЄЇҐ][а-яієїґ]*$/" ng-disabled="student.disableInputs" class="form-control" type="text" ng-model="student.newStudent.student_surname" placeholder="прівзище"/>
+                            <input name="studentSurname" ng-required="true" ng-pattern="/^[А-ЯІЄЇҐ][А-ЯІЄЇҐа-яієїґ'-]*$/" ng-disabled="student.disableInputs" class="form-control" type="text" ng-model="student.newStudent.student_surname" placeholder="прівзище"/>
                                 <span class="error-message" ng-show="actionForm.studentSurname.$dirty && actionForm.studentSurname.$invalid">
                                 Помилка: некоректні дані
                             </span>
