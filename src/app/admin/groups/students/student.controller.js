@@ -62,7 +62,7 @@
                 username: "",
                 password: "",
                 password_confirm: "",
-                email: "",    
+                email: "",
                 gradebook_id: "",
                 student_surname: "",
                 student_name: "",
