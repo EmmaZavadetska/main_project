@@ -24,8 +24,8 @@
                 <input class="form-control" name="facultyName" type="text" ng-model="faculties.faculty.faculty_name"
                        placeholder="Назва факультету" ng-minlength="{{faculties.minNameLength}}"
                        ng-maxlength="{{faculties.maxNameLength}}" required validate>
-                <p ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}}!</p>
-                <p ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}}!</p>
+                <p ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}} символів!</p>
+                <p ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}} символів!</p>
                 <p ng-show="saveForm.facultyName.$error.validText"><br>Назва має містити хоча б одну літеру!</p>
                 <p ng-show="saveForm.facultyName.$error.alreadyExist && saveForm.facultyName.$dirty"><br>Така назва вже існує!</p>
             </div>
@@ -33,7 +33,7 @@
                 <input class="form-control" name="facultyDesc" type="text"
                        ng-model="faculties.faculty.faculty_description"
                        placeholder="Опис факультету" required validate>
-                <p ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</p>
+                <p ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}} символів!</p>
                 <p ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</p>
             </div>
             <div class="col-md-6 pull-right">
