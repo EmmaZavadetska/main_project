@@ -57,7 +57,7 @@
             }
         }
 
-        function getEmptyStudent(){
+        function getEmptyStudent(){ 
             return {
                 username: "",
                 password: "",
@@ -74,14 +74,11 @@
         }
 
         function getRandomPas() {
-            var random = Math.random().toString(36).slice(-8);
-            vm.newStudent.password = random;
-            vm.newStudent.plain_password = random;
-            vm.newStudent.password_confirm = random;
+            vm.newStudent.plain_password = Math.random().toString(36).slice(-8);
         }
 
         function addOrEdit() {
-            if (vm.student_id == undefined) {
+            if (angular.isUndefined(vm.student_id)) {
                 addNewStudent();
             } else {
                 editStudent();
@@ -91,6 +88,8 @@
         function addNewStudent() {
             if ($stateParams.content_type === "add") {
                 vm.addElement = $stateParams.content_type === "add";
+                vm.newStudent.password = vm.newStudent.plain_password;
+                vm.newStudent.password_confirm = vm.newStudent.plain_password;
                 studentsService.addStudent(vm.newStudent).then(function (data) {
                     customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function () {
                         vm.newStudent = getEmptyStudent();
@@ -103,6 +102,8 @@
 
         function editStudent() {
             customDialog.openConfirmationDialog().then(function() {
+                vm.newStudent.password = vm.newStudent.plain_password;
+                vm.newStudent.password_confirm = vm.newStudent.plain_password;
                 studentsService.editStudent(vm.newStudent, $stateParams.student_id).then(function (response) {
                     customDialog.openInformationDialog(MESSAGE.SAVE_SUCCSES, "Збережено").then(function () {
                         $state.go("admin.student", {
@@ -134,7 +135,8 @@
         function allowAdd() {
             if (vm.newStudent !== undefined) {
 
-                return !(vm.newStudent.username && vm.newStudent.password && vm.newStudent.email && vm.newStudent.gradebook_id && vm.newStudent.student_surname && vm.newStudent.student_name && vm.newStudent.student_fname && vm.newStudent.group_id && vm.newStudent.photo);}
+                return !(vm.newStudent.username && vm.newStudent.plain_password && vm.newStudent.email && vm.newStudent.gradebook_id && vm.newStudent.student_surname && vm.newStudent.student_name && vm.newStudent.student_fname && vm.newStudent.group_id && vm.newStudent.photo);
+            }
         }
 
         groupsService.getGroups().then(function(data) {
