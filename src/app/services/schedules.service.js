@@ -8,10 +8,10 @@
 
     function schedulesService($http, BASE_URL, URL) {
         var service = {
-            getSchedulesForGroup: getSchedulesForGroup,
+            getSchedulesForGroup:   getSchedulesForGroup,
             getSchedulesForSubject: getSchedulesForSubject,
-            removeSchedule: removeSchedule,
-            saveSchedule: saveSchedule
+            removeSchedule:         removeSchedule,
+            saveSchedule:           saveSchedule
         };
 
         return service;

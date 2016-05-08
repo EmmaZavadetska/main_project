@@ -8,13 +8,13 @@
 
         function groupsService($http, URL, BASE_URL, MESSAGE) {
             var groupsService = {
-                getGroups: getGroups,
-                getGroup: getGroup,
-                getGroupsByFaculty: getGroupsByFaculty,
-                getGroupsBySpeciality: getGroupsBySpeciality,
-                removeGroup: removeGroup,
-                saveGroup: saveGroup,
-                headers: headers
+                getGroups:              getGroups,
+                getGroup:               getGroup,
+                getGroupsByFaculty:     getGroupsByFaculty,
+                getGroupsBySpeciality:  getGroupsBySpeciality,
+                removeGroup:            removeGroup,
+                saveGroup:              saveGroup,
+                headers:                headers
             };
             return groupsService;
 
