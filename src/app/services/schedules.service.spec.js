@@ -8,10 +8,10 @@ describe('Test-suit for schedules.service', function() {
     beforeEach(function() {
         module('app');
         inject(function(_$httpBackend_, _schedulesService_, _URL_, _BASE_URL_) {
-            $httpBackend  = _$httpBackend_;
+            $httpBackend     = _$httpBackend_;
             schedulesService = _schedulesService_;
-            URL           = _URL_;
-            BASE_URL      = _BASE_URL_;
+            URL              = _URL_;
+            BASE_URL         = _BASE_URL_;
         });
         var baseSchedules = BASE_URL + URL.ENTITIES.TIME_TABLE;
         url = [
