@@ -57,12 +57,12 @@
             }
         }
 
-        function getEmptyStudent(){ 
+        function getEmptyStudent(){
             return {
                 username: "",
                 password: "",
                 password_confirm: "",
-                email: "",
+                email: "",    
                 gradebook_id: "",
                 student_surname: "",
                 student_name: "",
