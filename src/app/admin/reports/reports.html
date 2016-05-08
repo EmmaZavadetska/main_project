@@ -4,7 +4,8 @@
 <div class="panel panel-primary reports">
     <div class="panel-heading">
         <div class="row">
-            <h4 class="title">Формування результатів тестування</h4>
+            <div class="title col-xs-12">Формування результатів тестування</div>
+            <br/><br/>
         </div>
 
         <div ng-include="'app/admin/reports/form-reports.html'" ></div>
@@ -27,8 +28,7 @@
                 <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}
                     &nbsp{{::result.student_fname}}</td>
                 <td class="clip">{{::result.result}}</td>
-                <td class="clip">{{::result.percentTrueAnswers}}%</td>
-                <td class="clip">{{::result.session_date}}</td>
+                <td class="clip">{{::result.session_date | date: "dd MMMM yyyy"}}</td>
                 <td class="clip">{{::result.start_time}}</td>
                 <td class="clip">{{::result.end_time}}</td>
                 <td class="clip">

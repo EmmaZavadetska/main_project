@@ -5,15 +5,16 @@
         .factory("userService", userService);
 
     userService.$inject = ["$http", "$q", "authService", "studentsService", "schedulesService", "entityService", 
-        "reportsService", "BASE_URL", "URL"];
+        "reportsService", "testsService", "BASE_URL", "URL"];
 
-    function userService($http, $q, authService, studentsService, schedulesService, entityService, reportsService, 
-                         BASE_URL, URL) {
+    function userService($http, $q, authService, studentsService, schedulesService, entityService, reportsService,
+                         testsService, BASE_URL, URL) {
 
         var service = {
             getCurrentUser: getCurrentUser,
             getSchedules: getSchedules,
             getHeaderSubjects: getHeaderSubjects,
+            getAvailableTests: getAvailableTests,
             getResults: getResults,
             getHeaderResults: getHeaderResults
         };
@@ -48,6 +49,9 @@
             var deferred = $q.defer();
 
             schedulesService.getSchedulesForGroup(group_id).then(function (response) {
+                    response.sort(function(first, second) {
+                        return Number(first.subject_id) - Number(second.subject_id);
+                    });
                     return response;
                 })
                 .then(function (schedule) {
@@ -83,6 +87,24 @@
             var nowDate = new Date();
 
             return nowDate >= testDate && nowDate <= (testDate + 24*60*60*1000)
+        }
+        
+        function getAvailableTests(subject_id) {
+            return testsService.getTestsBySubject(subject_id).then(function(response) {
+                if(angular.isArray(response)) {
+                    var availableTests = response.filter(function(item) {
+                        return item.enabled === "1";
+                    });
+                    return getResults().then(function(results) {
+                        var counts = {};
+                        results.forEach(function(item) { counts[item.test_id] = (counts[item.test_id] || 0) + 1; });
+                        availableTests = availableTests.filter(function (test) {
+                            return ((counts.hasOwnProperty(test.test_id)) && (counts[test.test_id]) < test.attempts);
+                        });
+                        return availableTests;
+                    });
+                }
+            });
         }
         
         // For result's page

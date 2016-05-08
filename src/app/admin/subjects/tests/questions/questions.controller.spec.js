@@ -17,20 +17,25 @@ describe("QuestionsController", function () {
     // }));
 
     beforeEach(angular.mock.inject(function ($controller, questionsService) {
-        spyOn(questionsService, "getTypes").andCallThrough();
         _questionsService_ = questionsService;
+        spyOn(_questionsService_, "getTypes").and.returnValues([{NAME: "Простий вибір", VALUE: "1"}, {NAME: "Мульти-вибір", VALUE: "2"}]);
         controller = $controller("QuestionsController");
+        _questionsService_.getTypes();
     }));
 
-    it("should have functions and property defined in conrtoller", function () {
+    it("should have functions and property defined in controller", function () {
         expect(controller.saveQuestion).toBeDefined();
         expect(controller.removeQuestion).toBeDefined();
         expect(controller.saveFormCollapsed).toBe(true);
     });
 
-    xit("should have types of questions", function () {
+    it("should have types of questions", function () {
         var types = [{NAME: "Простий вибір", VALUE: "1"}, {NAME: "Мульти-вибір", VALUE: "2"}];
         expect(controller.types).toContain(types[0], types[1]);
         
+    });
+    
+    it("tracks that the spy was called", function() {
+        expect(_questionsService_.getTypes).toHaveBeenCalled();
     });
 });

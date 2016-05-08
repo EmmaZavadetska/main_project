@@ -1,13 +1,15 @@
 <div id="loaderDiv" spinner class="hidden">
     <img src="images/spinner.gif" class="ajax-loader"/>
 </div>
-<div class="my-app-name-container panel panel-primary">
+<div class="panel panel-primary reports">
     <div class="panel-heading">
-        <h3>
-            Групи
-            <span ng-if="groups.showFacultyTitle"> факультету "{{ groups.associativeFaculty[groups.state_id] }}"</span>
-            <span ng-if="groups.showSpecialityTitle"> спеціальності "{{ groups.associativeSpeciality[groups.state_id] }}"</span>
-        </h3>
+        <div class="row">
+            <div class="title col-xs-12">
+                Групи
+                <span ng-if="groups.showFacultyTitle"> факультету "{{ groups.associativeFaculty[groups.state_id] }}"</span>
+                <span ng-if="groups.showSpecialityTitle"> спеціальності "{{ groups.associativeSpeciality[groups.state_id] }}"</span>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12 col-md-12 pull-right">
 <!--SEARCH, FILTER-->
@@ -35,7 +37,7 @@
                             <option value="">Виберіть спецальність</option>
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1 pull-right">
                         <button class="btn btn-success" ng-if="!groups.hideSelect" ng-click="groups.toggleFilterAction()" title="Додати нову групу">
                             <i class="glyphicon glyphicon-plus"></i>
                         </button>
@@ -99,6 +101,7 @@
             <thead>
                 <tr>
                     <th ng-repeat="header in groups.headers">{{ ::header }}</th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody id="table">
@@ -117,10 +120,10 @@
                                 <i class="fa fa-calendar-check-o"></i>
                             </a>
                         <!--</button>-->
-                        <button ng-if="!groups.hideSelect" title="Редагувати атрибути групи" class="btn btn-warning" ng-click="groups.toggleFilterAction(group)">
+                        <button ng-if="!groups.hideSelect" title="Редагувати атрибути групи" class="btn btn-info" ng-click="groups.toggleFilterAction(group)">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </button>
-                        <button ng-if="!groups.hideSelect" title="Видалити групу" class="btn btn-danger" ng-click="groups.removeGroup(group)">
+                        <button ng-if="!groups.hideSelect" title="Видалити групу" class="btn btn-info" ng-click="groups.removeGroup(group)">
                             <i class="glyphicon glyphicon-remove"></i>
                         </button>
                     </td>

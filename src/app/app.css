@@ -86,10 +86,6 @@ header .navbar-header .navbar-brand {
     cursor: inherit;
     display: block;
 }
-/*  For form validate with ngMessages  */
-.error-message {
-    color: #8B0000;
-}
 /*  For report form  */
 .panel .panel-heading h4 {
     padding-left: 10px;
@@ -102,7 +98,7 @@ header .navbar-header .navbar-brand {
 .panel-body .btn-toolbar .btn {
     margin-bottom: 5px;
     padding: 4px 8px;
-    width: 36px;
+    width: 44px;
 }
 #finish {
     margin-bottom: 5px;
@@ -143,3 +139,11 @@ header .navbar-header .navbar-brand {
     padding-left: 10px;
 }
 
+.students .search {
+    padding-right: 0;
+}
+
+.students .plus {
+    padding-left: 5px;
+
+}

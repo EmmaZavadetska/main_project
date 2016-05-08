@@ -5,8 +5,9 @@
     <div class="panel-heading">
         <!--SEARCH ADD-BUTTON-->
         <div class="row">
+            <div class="title col-md-3 col-sm-4 col-xs-6">Факультети</div>
             <div class="col-xs-12 col-md-6  pull-right">
-                <div class="col-xs-3 col-md-1 pull-right">
+                <div class="col-xs-3 col-md-1 pull-right plus">
                     <button class="btn btn-success" ng-click="faculties.showSaveForm()" title="Додати факультет">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
@@ -15,7 +16,6 @@
                     <input class="form-control" type="text" ng-model="search" placeholder="Пошук на сторінці">
                 </div>
             </div>
-            <h3 class="col-xs-12 col-md-6">Факультети:</h3>
         </div>
         <!--SAVE FORM-->
         <form name="saveForm" class="row" uib-collapse="faculties.saveFormCollapsed"
@@ -24,8 +24,8 @@
                 <input class="form-control" name="facultyName" type="text" ng-model="faculties.faculty.faculty_name"
                        placeholder="Назва факультету" ng-minlength="{{faculties.minNameLength}}"
                        ng-maxlength="{{faculties.maxNameLength}}" required validate>
-                <p ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}}!</p>
-                <p ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}}!</p>
+                <p ng-show="saveForm.facultyName.$error.maxlength"><br>Макс. довжина назви {{faculties.maxNameLength}} символів!</p>
+                <p ng-show="saveForm.facultyName.$error.minlength"><br>Мін. довжина назви {{faculties.minNameLength}} символів!</p>
                 <p ng-show="saveForm.facultyName.$error.validText"><br>Назва має містити хоча б одну літеру!</p>
                 <p ng-show="saveForm.facultyName.$error.alreadyExist && saveForm.facultyName.$dirty"><br>Така назва вже існує!</p>
             </div>
@@ -33,8 +33,7 @@
                 <input class="form-control" name="facultyDesc" type="text"
                        ng-model="faculties.faculty.faculty_description"
                        placeholder="Опис факультету" required validate>
-                <p ng-show="saveForm.facultyDesc.$error.maxlength"><br>Макс. довжина опису {{faculties.maxNameLength}}!</p>
-                <p ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}}!</p>
+                <p ng-show="saveForm.facultyDesc.$error.minlength"><br>Мін. довжина опису {{faculties.minNameLength}} символів!</p>
                 <p ng-show="saveForm.facultyDesc.$error.validText"><br>Опис має містити хоча б одну літеру!</p>
             </div>
             <div class="col-md-6 pull-right">
@@ -60,7 +59,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | orderBy: 'faculty_name' | filter: search">
+            <tr ng-class-odd="'odd'" ng-repeat="faculty in faculties.list | filter: search">
                 <td class="clip">{{::faculty.faculty_name}}</td>
                 <td class="clip">{{::faculty.faculty_description}}</td>
                 <td class="clip pull-right">
@@ -68,11 +67,11 @@
                             class="btn btn-info" title="Перейти до груп факультету {{::faculty.faculty_name}}">
                         <i class="fa fa-list"></i>
                     </button>
-                    <button class="btn btn-warning" ng-click="faculties.showSaveForm(faculty)"
+                    <button class="btn btn-info" ng-click="faculties.showSaveForm(faculty)"
                             title="Редагувати {{::faculty.faculty_name}}">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </button>
-                    <button class="btn btn-danger" ng-click="faculties.removeFaculty(faculty)"
+                    <button class="btn btn-info" ng-click="faculties.removeFaculty(faculty)"
                             title="Видалити {{::faculty.faculty_name}}">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
@@ -89,8 +88,8 @@
                             boundary-link-numbers="true"
                             rotate="false"
                             previous-text="&#xf048;"
-                            next-text="&#xf051;"
-            ></uib-pagination>
+                            next-text="&#xf051;">
+            </uib-pagination>
         </div>
     </div>
 </div>

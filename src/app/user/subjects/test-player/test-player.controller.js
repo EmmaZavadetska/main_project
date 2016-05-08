@@ -79,12 +79,24 @@
 
         function finishTest() {
             vm.isTestFinish = true;
-            var userScore = 0;
-            var maxScore = 0;
-            var testResult = {};
+            var userScore   = 0;
+            var maxScore    = 0;
             return testPlayerService.finishTest(vm.test).then(function (response) {
                 vm.test.sort(sortArraysOfObjectsByProperty("question_id"));
                 vm.results = response.sort(sortArraysOfObjectsByProperty("question_id"));
+                var questions = [], trueAnswers = [], answers = [];
+                for (var i = 0; i < vm.results.length; i++) {
+                    questions.push(vm.results[i].question_id);
+                    trueAnswers.push(vm.results[i].true);
+                    var answersOnQuestion = [];
+                    for (var j = 0; j < vm.test[i].answers.length; j++) {
+                        if (vm.test[i].answers[j].checked === true) answersOnQuestion.push(vm.test[i].answers[j].answer_id);
+                    }
+                    answers.push(answersOnQuestion.join('*'));
+                }
+                questions   =   questions.join('/');
+                trueAnswers = trueAnswers.join('/');
+                answers     =     answers.join('/');
                 testsService.getTestLevel(vm.test[0].test_id).then(function (data) {
                     vm.testDetails = Array.isArray(data) ? data : [];
                     vm.associativeDetails = {};
@@ -95,30 +107,27 @@
                     for (var i = 0; i < vm.results.length; i++) {
                         if (vm.results[i].true === 1) userScore += Number(vm.associativeDetails[vm.test[i].level]);
                     }
-                    testPlayerService.getEndTime().then(function (response) {
-                        var testDate = new Date(response.startTimeTest);
-                        testResult = {
-                            student_id: vm.user.user_id,
-                            test_id: vm.test[0].test_id,
-                            session_date: testDate.toISOString().split('T')[0],
-                            start_time: response.startTimeTest,
-                            end_time: response.endTimeTest,
-                            result: userScore,
-                            questions: "",
-                            true_answers: "",
-                            answers: ""
+                    testPlayerService.getEndTime().then(function(response) {
+                        var testResult = {
+                            student_id:   vm.user.user_id,
+                            test_id:      vm.test[0].test_id,
+                            session_date: new Date(response.startTimeTest*1000).toISOString().split('T')[0],
+                            start_time:   new Date(response.startTimeTest*1000).toISOString().substr(11,8),
+                            end_time:     new Date().toString().substr(16,8),
+                            result:       userScore,
+                            questions:    questions,
+                            true_answers: trueAnswers,
+                            answers:      answers
                         };
                         submitTest(testResult, userScore, maxScore);
+                        testPlayerService.resetSessionData().then();
                     })
                 })
             });
         }
-
-
-
+        
         function submitTest(testResult, userScore, maxScore) {
             testPlayerService.submitTest(testResult).then(function(data) {
-                console.log("Тест завершено");
                 $state.go("user.finishTest", {userScore: userScore, maxScore: maxScore});
             })
         }

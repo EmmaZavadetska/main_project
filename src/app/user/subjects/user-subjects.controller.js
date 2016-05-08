@@ -4,9 +4,9 @@
     angular.module("app.user")
         .controller("UserSubjectsController", UserSubjectsController);
 
-    UserSubjectsController.$inject = ["userService", "testsService", "customDialog", "$state", "testPlayerService"];
+    UserSubjectsController.$inject = ["userService", "customDialog", "$state", "testPlayerService"];
 
-    function UserSubjectsController(userService, testsService, customDialog, $state, testPlayerService) {
+    function UserSubjectsController(userService, customDialog, $state, testPlayerService) {
         var vm = this;
         vm.headElements = userService.getHeaderSubjects();
         vm.showAvailableTests = showAvailableTests;
@@ -20,30 +20,27 @@
                     return user;
                 })
                 .then(function(user) {
-                    userService.getSchedules(user.group_id).then(function(res) {
-                        vm.list = res;
+                    userService.getSchedules(user.group_id).then(function(response) {
+                        vm.list = response;
                     })
                 })
         }
 
         function showAvailableTests(subject) {
             vm.currentSubject = subject;
-            testsService.getTestsBySubject(subject.subject_id).then(function(res) {
-                if(angular.isArray(res)) {
-                    vm.availableTest = res.filter(function(item) {
-                        return item.enabled === "1";
-                    })
-                } else {
-                    vm.availableTest =[]
-                }
-            }).then(function() {
-                customDialog.openChooseTestDialog(vm.currentSubject.subject_name, vm.availableTest)
-                    .then(function(res) {
-                        testPlayerService.getTest(+res).then(function(res) {
-                            $state.go("user.testPlayer");
+            userService.getAvailableTests(subject.subject_id).then(function(response) {
+                vm.availableTest = response;
+                if (vm.availableTest.length !== 0) {
+                    customDialog.openChooseTestDialog(vm.currentSubject.subject_name, vm.availableTest)
+                        .then(function(response) {
+                            testPlayerService.getTest(+response).then(function(response) {
+                                $state.go("user.testPlayer");
+                            });
                         });
-                    });
-            })
+                } else {
+                    customDialog.openInformationDialog("Ви використали усі спроби здачі тесту з цього предмету!").then();
+                }
+            });
         }
     }
 })();

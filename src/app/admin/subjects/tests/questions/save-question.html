@@ -17,10 +17,10 @@
                       ng-minlength="5" ng-maxlength="100" required>
             </textarea>
             <div ng-messages="saveForm.questionText.$error" ng-if="saveForm.questionText.$dirty">
-                <div ng-message="required" class="error-message">
+                <div ng-message="required">
                     <strong>Поле обов'язкове для заповнення</strong>
                 </div>
-                <div ng-message-exp="['minlength', 'maxlength']" class="error-message">
+                <div ng-message-exp="['minlength', 'maxlength']">
                     <strong>Кількість символів від 5 до 100</strong>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         <option value="">Виберіть рівень</option>
                     </select>
                     <div ng-messages="saveForm.levelSelected.$error" ng-if="saveForm.levelSelected.$dirty">
-                        <div ng-message="required" class="error-message">
+                        <div ng-message="required">
                             <strong>Поле обов'язкове для заповнення</strong>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <option value="">Виберіть тип завдання</option>
                     </select>
                     <div ng-messages="saveForm.typeSelected.$error" ng-if="saveForm.typeSelected.$dirty">
-                        <div ng-message="required" class="error-message">
+                        <div ng-message="required">
                             <strong>Поле обов'язкове для заповнення</strong>
                         </div>
                     </div>

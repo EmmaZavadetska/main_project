@@ -4,18 +4,19 @@
 <div class="my-app-name-container panel panel-primary students">
     <div class="panel-heading">
         <div class="row">
-            <h3 class="col-xs-12 col-md-6">Студенти</h3>
-            <div class="col-xs-12 col-md-6 plus">
-                <div class="col-xs-3 col-md-1 pull-right">
+            <div class="title col-md-3 col-sm-4 col-xs-6">Студенти</div>
+            <div class="col-xs-12 col-md-6 pull-right">
+                <div class="col-xs-3 col-md-1 pull-right plus">
                     <button ui-sref="admin.addStudent({group_id: students.group_id, content_type: 'add'})"
-                            title="Додати нового студента" class="btn btn-success">
+                            title="Додати нового студента" class="add-entity btn btn-success">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>
-                <div class="col-md-6 pull-right">
+                <div class="col-xs-9 col-md-6 pull-right pull-right">
                     <input class="form-control" type="text" ng-model="search" placeholder="Пошук...">
                 </div>
             </div>
+
         </div>
     </div>
     <div class="panel-body">
@@ -39,11 +40,11 @@
                             title="Переглянути інформацію студента">
                         <i class="glyphicon glyphicon-info-sign"></i>
                     </button>
-                    <button class="btn btn-warning" ui-sref="admin.student({group_id: student.group_id, content_type: 'edit', student_id: student.user_id})"
+                    <button class="btn btn-info" ui-sref="admin.student({group_id: student.group_id, content_type: 'edit', student_id: student.user_id})"
                             title="Редагувати дані студента">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </button>
-                    <button class="btn btn-danger" ng-click="students.studentRemover(student)" title="Видалити {{::student.student_name}} {{::student.student_surname}}">
+                    <button class="btn btn-info" ng-click="students.studentRemover(student)" title="Видалити {{::student.student_name}} {{::student.student_surname}}">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
 

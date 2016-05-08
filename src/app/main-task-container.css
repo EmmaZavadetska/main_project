@@ -151,6 +151,9 @@
 .my-app-name-container .panel-heading .row .col-xs-12.col-md-6.pull-right {
   padding-right: 40px;
 }
+.my-app-name-container #finish {
+  max-width: 240px;
+}
 
 /* class btn-info */
 .my-app-name-container .btn-info {
@@ -450,6 +453,32 @@
 .my-app-name-container .panel.panel-primary .panel-heading .col-md-8 {
   padding-left: 0;
 }
+.my-app-name-container .panel.panel-primary .panel-heading .row .col-md-7 .col-md-4,
+.my-app-name-container .panel-primary .panel-heading .row .col-md-9 .col-md-12 .row  {
+  padding-left: 0;
+}
+.my-app-name-container .panel.panel-primary .panel-heading .row.row-user {
+  padding-left: 25px;
+}
+.my-app-name-container h4.title,
+ .my-app-name-container .panel-primary .panel-heading .row h4 {
+  padding-left: 15px;
+}
+.my-app-name-container .test-detailes-enforce {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.my-app-name-container .panel-primary .panel-heading .col-md-10 .col-md-12 .row,
+.my-app-name-container .panel-primary .panel-heading .col-md-10 .col-md-12 .col-md-4.form-group:first-child,
+ .my-app-name-container .panel-primary .panel-heading .row .col-md-9 {
+  padding-left: 0;
+}
+.my-app-name-container.panel-primary .panel-heading .pull-right .row .col-md-12 .col-md-10.form-group {
+  padding-left: 10px;
+}
+.my-app-name-container .panel-primary .panel-heading .row .search.pull-right {
+  padding-right: 30px;
+}
 
 /* form-control */
 .my-app-name-container .form-control {
@@ -515,6 +544,7 @@
 .my-app-name-container .navbar-inverse .navbar-nav .dropdown-toggle {
   color: #FFFFFF;
   cursor: pointer;
+  height: 100%;
 }
 .my-app-name-container .navbar-text,
 .my-app-name-container .navbar-inverse .navbar-text  {
@@ -619,6 +649,7 @@
   border-bottom: 4px solid #FFFFFF;
   background-color: #046DAF;
   box-shadow: 0 5px 8px rgba(0,0,0,0.5); /* shadow */
+  cursor: pointer;
 }
 .my-app-name-container .row.hidden-xs .nav.navbar-nav.navbar-right li:hover {
   border-bottom: 4px solid transparent;
@@ -713,6 +744,9 @@
 }
 
 /* uib-daypicker */
+.my-app-name-container .uib-datepicker-popup {
+  color: red;
+}
 .my-app-name-container .uib-datepicker-popup.dropdown-menu {
   color: #000000;
 }
@@ -722,11 +756,32 @@
   margin-left: 5px;
   margin-right: 5px;
 }
-
+.my-app-name-container .uib-datepicker-popup .btn.btn-sm.btn-success.pull-right {
+  height: 28px;
+}
 .my-app-name-container .uib-datepicker-popup .btn-danger {
   margin-left: 5px;
 }
-
+.my-app-name-container .uib-datepicker-popup .btn-default,
+.my-app-name-container .uib-datepicker .btn-default.active,
+.my-app-name-container .uib-daypicker .btn-default,
+.my-app-name-container .uib-monthpicker .btn-default,
+.my-app-name-container .uib-yearpicker .btn-default {
+  background-color: #A9D0F5;
+}
+.my-app-name-container .uib-datepicker-popup .btn-default:hover,
+.my-app-name-container .uib-daypicker .btn-default:hover,
+.my-app-name-container .uib-monthpicker .btn-default:hover,
+.my-app-name-container .uib-yearpicker .btn-default:hover {
+  background-color: #CEE3F6;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+.my-app-name-container .uib-daypicker .btn-default:active,
+ .my-app-name-container .uib-monthpicker .btn-default:active,
+ .my-app-name-container .uib-yearpicker .btn-default:active {
+  background-color: #CEE3F6;
+  box-shadow: 0 7px 7px rgba(0,0,0,0.5);
+}
 /* checkbox */
 .my-app-name-container .checkbox input {
     display: none;
@@ -756,11 +811,26 @@
   font-family: Verdena, sans-serif;
   font-size: 1.4em;
 }
-.my-app-name-container .glyphicon.glyphicon-time span {
+.my-app-name-container .panel-body .text-center>span {
+  color: #FFFFFF;
+}
+.my-app-name-container .glyphicon.glyphicon-time {
   display: inline-block;
   height: 100%;
   text-align: center;
 }
+.my-app-name-container .panel-body .text-center {
+  margin-bottom: 10px;
+}
 .my-app-name-container .container .panel.panel-primary .panel-body .row p {
   margin-left: 40px;
+}
+
+/* test image select buttom */ 
+.my-app-name-container .panel-primary .panel-heading .row .col-md-3 .col-md-12.form-group {
+  padding-left: 0;
+}
+/* image in answers for admin */ 
+.my-app-name-container .img-responsive.img-thumbnail {
+  border-radius: 0;
 }

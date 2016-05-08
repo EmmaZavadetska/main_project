@@ -55,6 +55,10 @@
                                         element.html((hours ? (twoDigits(hours) + ":") : "") + twoDigits(mins) + ":" + twoDigits(secs));
                                         $timeout(updateTimer, 500);
                                     }
+                                    if ((timeDiff <= 60000) && (timeDiff >= 0)) {
+                                        element.css("color", "red");
+                                        element.parent().css("color", "red");
+                                    }
                                 }
                             }
                         });

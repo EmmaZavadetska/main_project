@@ -27,22 +27,22 @@
         activate();
 
 
-        function activate (){
-            testsService.getTestsBySubject($stateParams.subject_id).then(function(data){
+        function activate() {
+            testsService.getTestsBySubject($stateParams.subject_id).then(function(data) {
                 vm.totalList = data;
                 vm.list = [];
                 getItemsPerPage();
                 vm.totalItems = vm.totalList.length;
                 if (vm.totalItems > PAGINATION.ENTITIES_RANGE_ON_PAGE) {
                     vm.showPagination = true;
-                }else {
+                } else {
                     vm.showPagination = false
                 }
             });
 
-            subjectsService.getOneSubject($stateParams.subject_id).then(function(data){
+            subjectsService.getOneSubject($stateParams.subject_id).then(function(data) {
                 vm.currentSubject = data.subject_name;
-            })
+            });
         }
 
         function hideForm() {
@@ -55,7 +55,7 @@
                 vm.test = {
                     subject_id: $stateParams.subject_id
                 }
-            }else{
+            } else{
                 vm.test = test;
             }
         }
@@ -64,7 +64,7 @@
             if (obj !== undefined) {
 
                 return !(obj.attempts && obj.tasks && obj.test_name && obj.time_for_test);
-            }else {
+            } else {
 
                 return true;
             }
@@ -72,7 +72,7 @@
 
         function saveEntity () {
             customDialog.openConfirmationDialog().then(function() {
-                testsService.saveTest(vm.test).then(function (data) {
+                testsService.saveTest(vm.test).then(function(data) {
                     vm.hideForm();
                     activate();
                     vm.test = {};
@@ -81,17 +81,17 @@
         }
 
         function removeTest(test) {
-            customDialog.openDeleteDialog(test).then(function(){
-                testsService.removeTest(test).then(function (res) {
+            customDialog.openDeleteDialog(test).then(function() {
+                testsService.removeTest(test).then(function(res) {
                        activate();
-                    })
+                    });
             });
         }
 
         function getItemsPerPage() {
             vm.currentRecordsRange = (vm.currentPage - 1) * vm.entitiesPerPage;
             var end = vm.currentRecordsRange + vm.entitiesPerPage;
-            if(vm.totalList.length > 0) {
+            if (vm.totalList.length > 0) {
                 vm.list = vm.totalList.slice(vm.currentRecordsRange, end);
             }
         }

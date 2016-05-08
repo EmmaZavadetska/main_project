@@ -3,7 +3,7 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="row">{{::subjects.currentUser.student_name}} {{::subjects.currentUser.student_surname}}</h3>
+        <h3 class="row row-user">{{::subjects.currentUser.student_name}} {{::subjects.currentUser.student_surname}}</h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-condensed">
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="subject in subjects.list | orderBy:'+event_date'">
+                <tr ng-repeat="subject in subjects.list">
                     <td>{{::subject.subject_name}}</td>
                     <td>{{::subject.event_date | date: "dd MMMM yyyy"}}</td>
                     <td class="pull-right">
