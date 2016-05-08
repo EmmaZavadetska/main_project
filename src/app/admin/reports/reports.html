@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
             <tbody>
-            <tr ng-class-odd="'odd'" ng-repeat="result in reports.results">
+            <tr ng-class-odd="'odd'" ng-repeat="result in reports.results | orderBy:'student_surname'">
                 <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}
                     &nbsp{{::result.student_fname}}</td>
                 <td class="clip">{{::result.result}}</td>

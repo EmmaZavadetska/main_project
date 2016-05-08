@@ -29,13 +29,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-class-odd="'odd'" ng-repeat="question in details.detail.questionsList">
-                <td class="clip col-xs-10">{{::question.question.question_text}}</td>
-                <td class="clip col-xs-2" ng-if="question.answer===1">
-                    <span class="glyphicon glyphicon-ok"> Вірно</span>
+            <tr ng-class-odd="'odd'" ng-repeat="question in details.detail.questionsList | orderBy:'question_text'">
+                <td class="clip col-xs-10">
+                    <ul>
+                        <span>{{::question.question.question_text}}</span>
+                        <li ng-repeat="answer in question.answers | orderBy:'answer_text'">
+                            <span>{{::answer.answer_text}}</span>
+                            <img ng-hide="answer.attachment==='' || answer.attachment==='added'" class="img-responsive"
+                                 ng-src="{{answer.attachment}}" width="400" height="200" alt="Зображення"/>
+                        </li>
+                    </ul>
                 </td>
-                <td class="clip col-xs-2" ng-if="question.answer===0">
-                    <span class="glyphicon glyphicon-remove"> Невірно</span>
+                <td class="clip col-xs-2" ng-if="question.trueAnswer===1">
+                    <i class="glyphicon glyphicon-ok"> </i> &nbsp Вірно
+                </td>
+                <td class="clip col-xs-2" ng-if="question.trueAnswer===0">
+                    <i class="glyphicon glyphicon-remove"></i> &nbsp Невірно
                 </td>
             </tr>
             </tbody>

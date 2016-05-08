@@ -112,7 +112,6 @@
                             }).indexOf(question_id);
                             test[questionPosition].answers = answersList[(test[questionPosition]).question_id];
                         });
-                        // console.log(test);
                         return _saveData(test).then(function(response) {
                             return test;
                         }, _errorCallback);
