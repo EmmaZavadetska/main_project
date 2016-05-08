@@ -156,25 +156,80 @@
         function getResultsDetail(session_id) {
             var resultDetail = _getObjectByPropertyValueFromArray(results, "session_id", session_id.toString());
 
-            return _getQuestionsByTest(resultDetail.test_id).then(function(response) {
+            return _getQuestionsByTest(resultDetail.test_id).then(function(questions) {
                 var trueAnswers = resultDetail.true_answers.split("/").map(Number);
                 var questionsId = resultDetail.questions.split("/").map(Number);
+                var selectedAnswers = resultDetail.answers.split("/").map(function(item) {
+                    if (item === "") {
+                        return item;
+                    } else if (item.indexOf("*") !== -1) {
+                        return item.split("*").map(Number);
+                    } else {
+                        return Number(item);
+                    }
+                });
+
                 var i = 0;
                 resultDetail.questionsList = [];
-                angular.forEach(questionsId, function(questionId) {
-                    var question = _getObjectByPropertyValueFromArray(response.data, "question_id", questionId.toString());
-                    var answer = trueAnswers[i];
-                    resultDetail.questionsList.push({question: question, answer: answer});
-                    i++;
-                });
                 resultDetail.test_name = testName;
-                return resultDetail;
+
+                return _getAnswersById(selectedAnswers).then(function(response) {
+                    var answersResponse = response.map(function(item) {
+                        return item.data[0];
+                    });
+                    angular.forEach(questionsId, function(questionId) {
+                        var question = _getObjectByPropertyValueFromArray(questions.data, "question_id", questionId.toString());
+                        var trueAnswer = trueAnswers[i];
+                        var answers = [];
+                        if (selectedAnswers[i] !== "") {
+                            if (angular.isArray(selectedAnswers[i])) {
+                                angular.forEach(selectedAnswers[i], function(item) {
+                                    var temp = _getObjectByPropertyValueFromArray(answersResponse, "answer_id", item.toString());
+                                    answers.push(temp);
+                                });
+                            } else {
+                                var temp = _getObjectByPropertyValueFromArray(answersResponse, "answer_id", selectedAnswers[i].toString());
+                                answers.push(temp);
+                            }
+                        }
+                        resultDetail.questionsList.push({question: question, trueAnswer: trueAnswer, answers: answers});
+                        i++;
+                    });
+                    return resultDetail;
+                });
             });
         }
 
+        // get answers by Id
+        function _getAnswersById(selectedAnswers) {
+            var answersId = [];
+            angular.forEach(selectedAnswers, function(ids) {
+                if (angular.isArray(ids)) {
+                    angular.forEach(ids, function(id) {
+                        answersId.push(id);
+                    });
+                } else if (ids !== "") {
+                    answersId.push(ids);
+                }
+            });
+
+            var deferred = $q.defer();
+            var urlCalls = [];
+            angular.forEach(answersId, function (id) {
+                urlCalls[id] = $http.get(BASE_URL + URL.ENTITIES.ANSWER + URL.GET_ENTITIES + id);
+            });
+            $q.all(urlCalls).then(function(response) {
+                deferred.resolve(response);
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        }
+        
         // get object by property value from array
         function _getObjectByPropertyValueFromArray(arrayOfObjects, property, value) {
-            var filteredResult  = arrayOfObjects.filter(function(item) { return item[property] === value; });
+            var filteredResult = arrayOfObjects.filter(function(item) { return item[property] === value; });
 
             return filteredResult[0];
         }

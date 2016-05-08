@@ -22,7 +22,8 @@
             response: function (response) {
 
                 if ((--numLoadings) === 0) {
-                    // Hide loader
+
+                // Hide loader
                     $rootScope.$broadcast("loader_hide");
                 }
 
@@ -32,7 +33,8 @@
             responseError: function (response) {
 
                 if (!(--numLoadings)) {
-                    // Hide loader
+
+                // Hide loader
                     $rootScope.$broadcast("loader_hide");
                 }
 

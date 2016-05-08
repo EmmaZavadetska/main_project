@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
             <tbody>
-            <tr ng-class-odd="'odd'" ng-repeat="result in reports.results">
+            <tr ng-class-odd="'odd'" ng-repeat="result in reports.results | orderBy:'student_surname'">
                 <td class="clip">{{::result.student_surname}}&nbsp{{::result.student_name}}
                     &nbsp{{::result.student_fname}}</td>
                 <td class="clip">{{::result.result}}</td>
@@ -32,7 +32,7 @@
                 <td class="clip">{{::result.start_time}}</td>
                 <td class="clip">{{::result.end_time}}</td>
                 <td class="clip">
-                    <button class="btn btn-info" title="Більше інформації"
+                    <button class="btn btn-info pull-right" title="Більше інформації"
                             ui-sref="admin.reportDetails({session_id: result.session_id, student_id: result.student_id,
                             test_id: result.test_id})" ng-click="reports.qwerty()">
                         <i class="glyphicon glyphicon-wrench"></i> Деталіше

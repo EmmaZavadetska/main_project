@@ -66,7 +66,6 @@
                 .then(_successCallback, _errorCallback);
         }
 
-
         function getHeader() {
 
             return ["Зображення", "Текст відповіді", "Правильність"];
