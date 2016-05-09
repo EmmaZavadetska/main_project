@@ -1,26 +1,15 @@
 'use strict';
 
-describe("QuestionsController", function () {
-
-    beforeEach(angular.mock.module("app"));
+describe("Testing Questions controller", function () {
+    var controller, questionsService;
     
-    var controller, _questionsService_;
+    beforeEach(module("app"));
 
-    // beforeEach(angular.mock.module(function ($provide) {
-    //     mockQuestionsService = {
-    //         getTypes: function() {
-    //
-    //             return [{NAME: "Простий вибір", VALUE: "1"}, {NAME: "Мульти-вибір", VALUE: "2"}];
-    //         }
-    //     };
-    //     $provide.value('questionsService', mockQuestionsService);
-    // }));
-
-    beforeEach(angular.mock.inject(function ($controller, questionsService) {
-        _questionsService_ = questionsService;
-        spyOn(_questionsService_, "getTypes").and.returnValues([{NAME: "Простий вибір", VALUE: "1"}, {NAME: "Мульти-вибір", VALUE: "2"}]);
-        controller = $controller("QuestionsController");
-        _questionsService_.getTypes();
+    beforeEach(inject(function ($controller, _questionsService_) {
+        questionsService = _questionsService_;
+        controller = $controller("QuestionsController", {
+            questionsService: questionsService
+        });
     }));
 
     it("should have functions and property defined in controller", function () {
@@ -32,10 +21,24 @@ describe("QuestionsController", function () {
     it("should have types of questions", function () {
         var types = [{NAME: "Простий вибір", VALUE: "1"}, {NAME: "Мульти-вибір", VALUE: "2"}];
         expect(controller.types).toContain(types[0], types[1]);
-        
     });
-    
-    it("tracks that the spy was called", function() {
-        expect(_questionsService_.getTypes).toHaveBeenCalled();
+
+    describe("Testing called getTypes", function() {
+        var  deferred, $scope;
+        beforeEach(inject(function ($q, $rootScope) {
+            deferred = $q.defer();
+            $scope = $rootScope.$new();
+            spyOn(questionsService, "getTypes").and.callThrough();
+            spyOn(questionsService, "getQuestionsRange").and.returnValues(deferred.promise);
+            questionsService.getTypes();
+            questionsService.getQuestionsRange();
+        }));
+
+        it("tracks that the spy was called", function() {
+            expect(questionsService.getTypes).toHaveBeenCalled();
+            expect(questionsService.getTypes).toHaveBeenCalledTimes(1);
+            expect(questionsService.getQuestionsRange).toHaveBeenCalled();
+        });
+        
     });
 });

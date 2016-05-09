@@ -15,13 +15,11 @@ module.exports = function(config) {
             "bower_components/angular-messages/angular-messages.js",
             "bower_components/angular-sanitize/angular-sanitize.js",
             "node_modules/angular-mocks/angular-mocks.js",
-             "src/**/*.spec.js",
-             "src/app/**/*.module.js",
-             ".tmp/js/config.js",
-             ".tmp/js/templates.js",
-             "src/app/**/*.js",
-            ".tmp/js/app.js"
-
+            "src/app/**/*.module.js",
+            ".tmp/js/config.js",
+            ".tmp/js/templates.js",
+            "src/app/**/*.js",
+            "src/**/*.spec.js"
         ],
 
         // list of files to exclude

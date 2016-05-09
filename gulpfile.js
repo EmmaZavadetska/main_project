@@ -7,7 +7,7 @@ var argv = require('yargs').argv;
 var $ = require("gulp-load-plugins")({lazy: true});
 
 //******************************************
-// Run Build commands with --dev or --prod
+// Run commands with --dev or --prod
 //******************************************
 
 gulp.task("default", function() {
