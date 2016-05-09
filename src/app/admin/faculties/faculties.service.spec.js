@@ -1,7 +1,10 @@
 describe("facultiesService test", function () {
     var facultiesService, httpBackend, BASE_URL, URL, PAGINATION, faculties = [
         {"faculty_name": "Інститут Геології", "faculty_description": "Корпус ГРФ (5), 20 поверх"},
-        {"faculty_name": "Інститут Інформаційних Технологій", "faculty_description": "ІФНТУНГ, Корпус ФАЕ (1), 4 поверх"}
+        {
+            "faculty_name": "Інститут Інформаційних Технологій",
+            "faculty_description": "ІФНТУНГ, Корпус ФАЕ (1), 4 поверх"
+        }
     ];
 
     beforeEach(module("app.admin"));
@@ -28,5 +31,5 @@ describe("facultiesService test", function () {
             expect(data).toEqual({"numberOfRecords": faculties.length + ""});
         });
     });
- 
+
 });

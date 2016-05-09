@@ -7,7 +7,7 @@ describe("FacultiesController", function () {
     var controller, _facultiesService_;
 
     beforeEach(angular.mock.inject(function ($controller, facultiesService) {
-        controller = $controller("FacultiesController");
+        controller = $controaller("FacultiesController");
     }));
 
     it("should have functions and property defined in controller", function () {
