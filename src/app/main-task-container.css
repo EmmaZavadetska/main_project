@@ -834,3 +834,13 @@
 .my-app-name-container .img-responsive.img-thumbnail {
   border-radius: 0;
 }
+/* test report for admins*/
+.my-app-name-container .panel-body .table-condensed .clip .test-report-data {
+  padding-left: 0;
+}
+.my-app-name-container .panel-body .table-condensed .clip .test-report-answer {
+  margin-left: 20px;
+}
+.my-app-name-container .panel-body .table-condensed .clip .test-report-question  {
+  font-weight: 600;
+}

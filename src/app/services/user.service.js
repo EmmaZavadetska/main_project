@@ -29,13 +29,13 @@
             return response;
         }
         
-        function getCurrentUser () {
+        function getCurrentUser() {
             var deferred = $q.defer();
             authService.isLogged()
-                .then(function (data) {
+                .then(function(data) {
                     return data.id;
                 })
-                .then(function (id) {
+                .then(function(id) {
                     studentsService.getStudentById(id).then(function (response) {
                         deferred.resolve(response);
                     })
@@ -45,7 +45,7 @@
         }
         
         //For subject's page
-        function getSchedules (group_id) {
+        function getSchedules(group_id) {
             var deferred = $q.defer();
 
             schedulesService.getSchedulesForGroup(group_id).then(function (response) {
@@ -73,7 +73,7 @@
             return ["Предмет", "Дата екзамену"];
         }
 
-        function _getSubjectIds (array) {
+        function _getSubjectIds(array) {
             var subjectIds =[];
             array.forEach(function (item) {
                 subjectIds.push(item.subject_id);
@@ -96,11 +96,14 @@
                         return item.enabled === "1";
                     });
                     return getResults().then(function(results) {
-                        var counts = {};
-                        results.forEach(function(item) { counts[item.test_id] = (counts[item.test_id] || 0) + 1; });
-                        availableTests = availableTests.filter(function (test) {
-                            return ((counts.hasOwnProperty(test.test_id)) && (counts[test.test_id]) < test.attempts);
-                        });
+                        if (results !== undefined) {
+                            var counts = {};
+                            results.forEach(function(item) { counts[item.test_id] = (counts[item.test_id] || 0) + 1; });
+                            availableTests = availableTests.filter(function (test) {
+                                return ((!counts.hasOwnProperty(test.test_id)) || 
+                                    ((counts.hasOwnProperty(test.test_id)) && (counts[test.test_id]) < test.attempts));
+                            });
+                        }
                         return availableTests;
                     });
                 }
@@ -110,8 +113,7 @@
         // For result's page
         function getResults() {
             return _getStudentIdIsLogged().then(function (student_id) {
-                return _getResultsByStudent(student_id).then(function (data) {
-                    var results = data;
+                return _getResultsByStudent(student_id).then(function (results) {
                     if (!results.hasOwnProperty("response")) {
                         var testIds = reportsService.uniqueItemsArray(results, "test_id");
                         return _getTestsByIds(testIds).then(function (response) {

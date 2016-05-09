@@ -15,12 +15,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="subject in subjects.list">
+                <tr ng-repeat="subject in subjects.list | orderBy:'subject_name'">
                     <td>{{::subject.subject_name}}</td>
                     <td>{{::subject.event_date | date: "dd MMMM yyyy"}}</td>
                     <td class="pull-right">
-                        <button class="btn btn-info" ng-disabled="!subject.enabled" ng-click="subjects.showAvailableTests(subject)"
-                                title="Розпочати тестування"><i class="fa fa-hourglass-start"></i> Пройти тест
+                        <button class="btn btn-info" ng-disabled="!subject.enabled"  title="Розпочати тестування"
+                                ng-click="subjects.showAvailableTests(subject)">
+                            <i class="fa fa-hourglass-start"></i> Пройти тест
                         </button>
                     </td>
                 </tr>

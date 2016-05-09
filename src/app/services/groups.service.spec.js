@@ -57,7 +57,6 @@ describe('Test-suit for groups.service', function() {
 
     describe('test saveGroup method', function() {
         var group = {
-            // group_id: 1,
             group_name:     'TestGroup',
             speciality_id:  1,
             faculty_id:     1
@@ -80,7 +79,7 @@ describe('Test-suit for groups.service', function() {
         });
     });
 
-    it('headers should return array of headers for table', function() {
+    it('headers should return an array of headers for table', function() {
         expect(groupsService.headers()).toEqual([
             "Назва",
             "Факультет",

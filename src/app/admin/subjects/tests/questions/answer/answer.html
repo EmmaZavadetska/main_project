@@ -28,18 +28,16 @@
             <tbody>
             <tr ng-repeat="answerItem in answer.list | orderBy:'answer_text'">
                 <td class="clip">
-                    <img ng-show="answerItem.attachment" ng-src="{{::answerItem.attachment}}" class="img-responsive img-thumbnail"
-                         width="100" height="50" alt="Зображення">
+                    <img ng-show="answerItem.attachment" ng-src="{{::answerItem.attachment}}"
+                         class="img-responsive img-thumbnail" width="100" height="50" alt="Зображення">
                 </td>
                 <td class="clip">{{::answerItem.answer_text}}</td>
                 <td class="clip">{{::answer.trueAnswers[answerItem.true_answer].name}}</td>
                 <td class="pull-right">
-                    <button class="btn btn-warning" ng-click="answer.showForm(answerItem)"
-                            title="Редагувати">
+                    <button class="btn btn-info" ng-click="answer.showForm(answerItem)" title="Редагувати">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </button>
-                    <button class="btn btn-danger"  ng-click="answer.removeAnswer(answerItem)"
-                            title="Видалити">
+                    <button class="btn btn-info"  ng-click="answer.removeAnswer(answerItem)" title="Видалити">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
                 </td>
