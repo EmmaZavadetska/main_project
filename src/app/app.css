@@ -138,12 +138,15 @@ header .navbar-header .navbar-brand {
 .modal-body select {
     padding-left: 10px;
 }
-
 .students .search {
     padding-right: 0;
 }
-
 .students .plus {
     padding-left: 5px;
-
+}
+.container .row #btn_admins {
+    padding-left: 0;
+}
+.container .row #btn_reports {
+    padding-right: 0;
 }

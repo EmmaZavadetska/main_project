@@ -100,7 +100,8 @@
                             var counts = {};
                             results.forEach(function(item) { counts[item.test_id] = (counts[item.test_id] || 0) + 1; });
                             availableTests = availableTests.filter(function (test) {
-                                return ((counts.hasOwnProperty(test.test_id)) && (counts[test.test_id]) < test.attempts);
+                                return ((!counts.hasOwnProperty(test.test_id)) || 
+                                    ((counts.hasOwnProperty(test.test_id)) && (counts[test.test_id]) < test.attempts));
                             });
                         }
                         return availableTests;
