@@ -16,7 +16,7 @@
                             $state.go(toState, toParams);
                     } else {
                         event.preventDefault();
-                        $state.go(fromState, fromParams);
+                        $state.go("auth");
                     }
                 });
             }
