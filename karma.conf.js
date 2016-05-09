@@ -16,7 +16,6 @@ module.exports = function(config) {
             "bower_components/angular-sanitize/angular-sanitize.js",
             "node_modules/angular-mocks/angular-mocks.js",
              "src/**/*.spec.js",
-             "src/app/admin/faculties/faculties.controller.spec.js",
              "src/app/**/*.module.js",
              ".tmp/js/config.js",
              ".tmp/js/templates.js",

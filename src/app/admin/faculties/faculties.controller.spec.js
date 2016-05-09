@@ -7,7 +7,6 @@ describe("FacultiesController", function () {
     var controller, _facultiesService_;
 
     beforeEach(angular.mock.inject(function ($controller, facultiesService) {
-        facultiesService = facultiesService;
         controller = $controller("FacultiesController");
     }));
 
