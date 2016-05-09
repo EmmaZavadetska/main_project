@@ -8,15 +8,19 @@
 
     function FacultiesController (facultiesService, PAGINATION, VALID, MESSAGE, customDialog) {
         var vm = this;
+                //FORM
         vm.showSaveForm = showSaveForm;
         vm.hideSaveForm = hideSaveForm;
         vm.saveFormCollapsed = true;
-        vm.headElements = facultiesService.getHeader();
+                //TABLE CRUD
+        vm.headElements = facultiesService.getHeader(); 
         vm.saveFaculty = saveFaculty;
         vm.removeFaculty = removeFaculty;
+                //VALIDATION
         vm.minNameLength = VALID.MIN_NAME_LENGTH;
         vm.maxNameLength = VALID.MAX_NAME_LENGTH;
-        vm.amountEntities = PAGINATION.ENTITIES_RANGE_ON_PAGE;
+                //PAGINATION
+        vm.amountEntities = PAGINATION.ENTITIES_RANGE_ON_PAGE; 
         vm.maxSize = PAGINATION.PAGES_SHOWN;
         vm.currentPage = PAGINATION.CURRENT_PAGE;
         vm.currentRecordsRange = 0;
