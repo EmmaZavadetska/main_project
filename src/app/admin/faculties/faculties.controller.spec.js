@@ -1,18 +1,19 @@
-"use sctict";
+'use strict';
 
-describe("FacultiesController", function(){
+describe("FacultiesController", function () {
     beforeEach(module("app.admin"));
-    var ctrl, service;
+    beforeEach(module("app"));
+    
+    var controller, _facultiesService_;
 
-    beforeEach(module(function($provide) {
-        service = {};
-        $provide.value("FacultyService", service);
+    beforeEach(angular.mock.inject(function ($controller, facultiesService) {
+        controller = $controaller("FacultiesController");
     }));
 
-    //beforeEach(inject(function($controller) {
-    //    ctrl = $controller("FacultiesController");
-    //}));
-    it("should define controller", function(){
-      expect(ctrl).toBeTrue();
-    })
+    it("should have functions and property defined in controller", function () {
+        expect(controller.saveFaculty).toBeDefined();
+        expect(controller.removeFaculty).toBeDefined();
+        expect(controller.saveFormCollapsed).toBe(true);
+    });
+    
 });
