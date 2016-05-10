@@ -1,0 +1,39 @@
+<form name="saveForm" class="row" uib-collapse="tests.formCollapsed" ng-submit="tests.saveEntity()">
+    <div class="col-md-9">
+        <div class="col-md-4">
+            <input class="form-control" name="testname" type="text" ng-model="tests.test.test_name"
+                   placeholder="Назва тесту"  ng-minlength="3" ng-maxlength="100" required>
+            <span ng-show="saveForm.testname.$invalid && saveForm.testname.$dirty">Від 3 до 100 символів</span>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" name="tasks" type="text" ng-model="tests.test.tasks"
+                   placeholder="Завдань" ng-pattern="tests.onlyNumber" max-value="1000" required>
+            <span ng-show="saveForm.tasks.$invalid && saveForm.tasks.$dirty">Число 0...1000</span>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" name="time_for_test" type="text" ng-model="tests.test.time_for_test"
+                   placeholder="Час, хв" required ng-pattern="tests.onlyNumber" max-value="180">
+            <span ng-show="saveForm.time_for_test.$invalid && saveForm.time_for_test.$dirty">Макс 180 хв</span>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control select" ng-options="status.value as status.enabled for status in tests.status"
+                    name="status" type="text" ng-model="tests.test.enabled" required>
+                <option value="" disabled selected>Статус</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" name="attempts" type="text" ng-model="tests.test.attempts"
+                   placeholder="Спроб" ng-pattern="tests.onlyNumber" max-value="100" required>
+            <span ng-show="saveForm.attempts.$invalid && saveForm.attempts.$dirty">Макс спроб 100</span>
+        </div>
+    </div>
+    <div class="col-md-3 pull-right">
+        <button type="submit" class="btn btn-success" ng-disabled="saveForm.$invalid"
+                title="Зберегти тест">
+            <i class="glyphicon glyphicon-floppy-saved"></i>
+        </button>
+        <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="tests.hideForm()">
+            <i class="glyphicon glyphicon-floppy-remove"></i>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,59 @@
+<div id="loaderDiv" spinner class="hidden">
+    <img src="images/spinner.gif" class="ajax-loader"/>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-10 col-md-11 title">Завдання тесту: {{questions.currentTest}}</div>
+            <div class="col-xs-2 col-md-1">
+                <div class="col-xs-1 col-md-1">
+                    <button class="btn btn-success" ng-click="questions.showSaveForm()" title="Додати завдання">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div ng-include="'app/admin/subjects/tests/questions/save-question.html'"></div>
+    </div>
+
+    <div class="panel-body">
+        <p ng-if="questions.questionsList != undefined && !questions.questionsList.length">Завдань немає</p>
+        <table ng-if="questions.questionsList.length" class="table table-striped table-condensed">
+            <tbody>
+                <thead>
+                    <tr>
+                        <th class="clip header" ng-repeat="headerElement in questions.headElements">
+                            {{::headerElement}}
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+            <tbody>
+            <tr ng-class-odd="'odd'" ng-repeat="question in questions.questionsList | orderBy:'question_text'">
+                <td class="clip">{{::question.question_text}}</td>
+                <td class="clip">{{::question.level}}</td>
+                <td class="clip" ng-if="question.type===questions.simpleQuestion.VALUE">{{::questions.simpleQuestion.NAME}}</td>
+                <td class="clip" ng-if="question.type===questions.multiQuestion.VALUE">{{::questions.multiQuestion.NAME}}</td>
+                <td class="pull-right">
+                    <button class="btn btn-info" title="Варіанти відповідей"
+                            ui-sref="admin.answer({subject_id: questions.subject_id, test_id: question.test_id,
+                            question_id: question.question_id})">
+                        <i class="fa fa-list-ol"></i>
+                    </button>
+                    <button class="btn btn-info" ng-click="questions.showSaveForm(question)" title="Редагувати завдання">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button class="btn btn-info" ng-click="questions.removeQuestion(question)" title="Видалити завдання">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <uib-pagination ng-show="questions.showPagination" total-items="questions.quantityQuestions"
+                        ng-change="questions.pageChanged()" ng-model="questions.currentPage" max-size="questions.maxSize"
+                        class="my-pagination" boundary-link-numbers="true" rotate="false"
+                        previous-text="&#xf048;" next-text="&#xf051;"></uib-pagination>
+    </div>
+</div>

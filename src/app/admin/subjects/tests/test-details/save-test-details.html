@@ -1,0 +1,30 @@
+<form name="saveForm" class="row" uib-collapse="testDetails.formCollapsed" ng-submit="testDetails.saveEntity()">
+    <div class="col-md-8">
+        <div class="col-md-4">
+            <select class="form-control select" name="availableLevel" ng-options="level for level in testDetails.availableLevel"
+                    name="level" type="text" ng-model="testDetails.testLevel.level" required>
+                <option value="" disabled selected>Рівень</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" name="tasks" type="text" ng-model="testDetails.testLevel.tasks"
+                   max-value="{{testDetails.availableTask}}"
+                   placeholder="Завдань (доступно {{testDetails.availableTask}})"
+                   ng-pattern="testDetails.onlyNumber" required>
+            <span ng-show="saveForm.tasks.$invalid && saveForm.tasks.$dirty">Максимально {{testDetails.availableTask}}. Тільки цифри</span>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" name="rate" type="text" ng-model="testDetails.testLevel.rate"
+                   ng-pattern="testDetails.onlyNumber" placeholder="Ціна завдання" max-value="255" required>
+            <span ng-show="saveForm.rate.$invalid && saveForm.rate.$dirty">Тільки цифри. Не більше 255</span>
+        </div>
+    </div>
+    <div class="col-md-4 pull-right">
+        <button type="submit" class="btn btn-success" ng-disabled="saveForm.$invalid" title="Зберегти тест">
+            <i class="glyphicon glyphicon-floppy-saved"></i>
+        </button>
+        <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="testDetails.hideForm()">
+            <i class="glyphicon glyphicon-floppy-remove"></i>
+        </button>
+    </div>
+</form>

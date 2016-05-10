@@ -1,0 +1,64 @@
+<form name="saveForm" class="row" uib-collapse="questions.saveFormCollapsed" ng-submit="questions.saveQuestion()">
+    <div class="col-md-3">
+        <div class="col-md-12 form-group">
+                    <span class="btn btn-info btn-file">
+                        <i class="glyphicon glyphicon-picture"></i> Вибрати зображення
+                        <input type="file" image-load="questions.image"/>
+                    </span>
+            <img ng-show="questions.image" ng-src="{{questions.image}}" class="img-responsive img-thumbnail"
+                 width="100" height="50" alt="Зображення">
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="col-md-12 form-group">
+            <textarea type="text" rows="4" class="form-control" name="questionText"
+                      ng-model="questions.question.question_text" placeholder="Введіть текст питання..."
+                      ng-minlength="5" ng-maxlength="100" required>
+            </textarea>
+            <div ng-messages="saveForm.questionText.$error" ng-if="saveForm.questionText.$dirty">
+                <div ng-message="required">
+                    <strong>Поле обов'язкове для заповнення</strong>
+                </div>
+                <div ng-message-exp="['minlength', 'maxlength']">
+                    <strong>Кількість символів від 5 до 100</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-5 form-group">
+                    <select class="form-control select" ng-model="questions.question.level" name="levelSelected"
+                            ng-options="level for level in questions.levels" required>
+                        <option value="">Виберіть рівень</option>
+                    </select>
+                    <div ng-messages="saveForm.levelSelected.$error" ng-if="saveForm.levelSelected.$dirty">
+                        <div ng-message="required">
+                            <strong>Поле обов'язкове для заповнення</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 form-group">
+                    <select class="form-control select" ng-model="questions.question.type" name="typeSelected"
+                            ng-options="type.VALUE as type.NAME for type in questions.types" required>
+                        <option value="">Виберіть тип завдання</option>
+                    </select>
+                    <div ng-messages="saveForm.typeSelected.$error" ng-if="saveForm.typeSelected.$dirty">
+                        <div ng-message="required">
+                            <strong>Поле обов'язкове для заповнення</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2 pull-right">
+        <button type="submit" class="btn btn-success" title="Зберегти" ng-disabled="saveForm.$invalid">
+            <i class="glyphicon glyphicon-floppy-saved"></i>
+        </button>
+        <button type="reset" class="btn btn-danger" title="Відмінити" ng-click="questions.hideSaveForm()">
+            <i class="glyphicon glyphicon-floppy-remove"></i>
+        </button>
+    </div>
+</form>

@@ -1,4 +1,6 @@
 node_modules/
 bower_components/
-dist
-.idea
+tests/
+build/
+.tmp/
+.idea/
