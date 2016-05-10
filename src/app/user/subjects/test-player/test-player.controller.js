@@ -68,7 +68,6 @@
             });
         }
         
-        // // Oleh
         function getUser() {
             return authService.isLogged().then(function(response) {
                 studentsService.getStudentById(response.id).then(function(response) {
@@ -137,6 +136,5 @@
                 return Number(first[property]) - Number(second[property]);
             }
         }
-        // Oleh
     }
 })();
